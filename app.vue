@@ -2,7 +2,8 @@
     <div id="root-node" ref="rootNodeRef">
         <AppHeader></AppHeader>
         <div style="min-height: 50vh; background-color: white">
-            <NuxtPage></NuxtPage>
+            <NuxtPage />
+            <!-- <router-view></router-view> -->
         </div>
         <AppFooter></AppFooter>
     </div>
