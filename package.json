@@ -1,0 +1,27 @@
+{
+    "name": "nuxt-app",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "nuxt build",
+        "dev": "nuxt dev",
+        "generate": "nuxt generate",
+        "preview": "nuxt preview",
+        "postinstall": "nuxt prepare",
+        "start": "cross-env PORT=3000 HOST=127.0.0.1 node .output/server/index.mjs"
+    },
+    "dependencies": {
+        "nuxt": "^3.13.0",
+        "pinia": "^2.2.4",
+        "sass": "^1.80.4",
+        "vue": "latest"
+    },
+    "devDependencies": {
+        "@element-plus/nuxt": "^1.0.10",
+        "@nuxtjs/i18n": "^8.0.0",
+        "@pinia/nuxt": "^0.5.5"
+    },
+    "overrides": {
+        "vue": "latest"
+    }
+}
