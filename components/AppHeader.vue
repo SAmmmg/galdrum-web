@@ -21,7 +21,7 @@ const selectZh = ref(false);
 
 <template>
     <div class="header" ref="headerRef">
-        <span>logo</span>
+        <span>logo _xxx</span>
         <div style="margin-left: auto">
             <el-dropdown trigger="click" @visible-change="(val:boolean )=>selectZh=val">
                 <template #default>
