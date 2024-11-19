@@ -2,12 +2,12 @@
 import { User, ShoppingCart, List, MapLocation, SwitchButton } from "@element-plus/icons-vue";
 
 // 滚动一定距离背景变色
-const headerRef = ref<HTMLDivElement>();
+const di = ref(false);
 function scroll() {
     if (window.scrollY >= 50) {
-        headerRef.value?.classList.add("bg");
+        di.value = true;
     } else {
-        headerRef.value?.classList.remove("bg");
+        di.value = false;
     }
 }
 onMounted(() => {
@@ -20,12 +20,12 @@ const selectZh = ref(false);
 </script>
 
 <template>
-    <div class="header" ref="headerRef">
-        <span>logo _wdnmd</span>
+    <div class="header" :style="di ? 'background-color: #fff;color: black;' : 'color:white;'">
+        <span>logo</span>
         <div style="margin-left: auto">
             <el-dropdown trigger="click" @visible-change="(val:boolean )=>selectZh=val">
                 <template #default>
-                    <el-icon style="cursor: pointer" :class="selectZh ? 'iconBg' : ''" color="black" :size="20">
+                    <el-icon style="cursor: pointer" :class="selectZh ? 'iconBg' : ''" :color="di ? 'black' : 'white'" :size="20">
                         <User />
                     </el-icon>
                 </template>
@@ -51,7 +51,7 @@ const selectZh = ref(false);
                 </template>
             </el-dropdown>
             &nbsp;
-            <el-icon style="cursor: pointer" color="black" :size="20">
+            <el-icon style="cursor: pointer" :color="di ? 'black' : 'white'" :size="20">
                 <ShoppingCart />
             </el-icon>
         </div>
@@ -70,9 +70,10 @@ const selectZh = ref(false);
     z-index: 99;
     background-color: transparent;
     transition-duration: 0.3s;
+    color: white;
 }
 .bg {
-    background-color: #fff;
+    // background-color: #fff;
 }
 .menu {
     :deep(li):hover {

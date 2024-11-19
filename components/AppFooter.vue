@@ -45,6 +45,10 @@
             min-width: 80px;
             display: flex;
             flex-direction: column;
+            // justify-content: center;
+            span {
+                margin-bottom: 20px;
+            }
         }
     }
     .copyright {
