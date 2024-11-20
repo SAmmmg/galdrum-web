@@ -46,7 +46,7 @@
     display: flex;
 }
 .left {
-    width: 67.9%;
+    width: 68%;
     margin-right: 20px;
     display: flex;
     flex-direction: column;

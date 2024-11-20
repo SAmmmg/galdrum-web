@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
@@ -8,6 +8,38 @@
     // SimSun
     font-family: SimSun;
 }
-body{
+body {
     font-size: 14px;
 }
+:root {
+    --base-color: #2342d2;
+}
+.el-checkbox {
+    --el-color-primary: var(--base-color) !important;
+    .el-checkbox__inner {
+        background-color: transparent;
+    }
+}
+
+.el-input-number {
+    color: #fff;
+    border-color: #fff;
+    --el-color-primary: #fff !important;
+    span {
+        color: #fff;
+    }
+    .el-input__wrapper {
+        background-color: transparent;
+    }
+    .el-input-number__increase,
+    .el-input-number__decrease {
+        background-color: transparent !important;
+        // background: transparent !important;
+    }
+    .el-input__inner {
+        color: #fff !important;
+    }
+}
+// .el-button .el-button--danger .is-plain {
+//     background-color: transparent !important;
+// }

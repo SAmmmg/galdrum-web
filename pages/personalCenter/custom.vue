@@ -120,7 +120,7 @@ const obj = reactive({
     .box1 {
         position: relative;
         h1 {
-            font-size: 68px;
+            font-size: 48px;
             margin-bottom: 20px;
         }
         p {

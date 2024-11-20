@@ -10,29 +10,21 @@
         <div class="box1">
             <h1>定制你的鼓棒</h1>
         </div>
-
-        <!-- <el-collapse class="collapse" v-model="activeNames" @change="handleChange">
-            <el-collapse-item v-for="el in 5" :key="el" :title="'问题' + el" :name="el" :icon="CaretRight">
-                <template #icon="{ isActive }">
-                    <Plus v-show="isActive" style="width: 16px; margin-left: auto" />
-                    <Minus v-show="!isActive" style="width: 16px; margin-left: auto" />
-                </template>
-                <div>问题的内容{{ el }}</div>
-            </el-collapse-item>
-        </el-collapse> -->
         <ul class="collapse">
             <li v-for="(el, index) in arr" :key="index">
-                <p class="title">
-                    <span>0{{ index + 1 }}</span>
-                    <span>{{ el.wt }}</span>
-                    <el-icon @click="el.bool = !el.bool" v-show="el.bool">
-                        <Plus />
-                    </el-icon>
-                    <el-icon @click="el.bool = !el.bool" v-show="!el.bool">
-                        <Minus />
-                    </el-icon>
-                </p>
-                <div class="content" :style="el.bool ? 'height:20px;' : 'height:0px;'">{{ el.hd }}</div>
+                <GradientBox class="ggg">
+                    <p class="title" @click="el.bool = !el.bool">
+                        <span>0{{ index + 1 }}</span>
+                        <span>{{ el.wt }}</span>
+                        <el-icon v-show="el.bool">
+                            <Plus />
+                        </el-icon>
+                        <el-icon v-show="!el.bool">
+                            <Minus />
+                        </el-icon>
+                    </p>
+                    <div class="content" :style="el.bool ? 'height:40px;' : 'height:0px;'">{{ el.hd }}</div>
+                </GradientBox>
             </li>
         </ul>
     </div>
@@ -41,11 +33,6 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { CaretRight, Plus, Minus, Back } from "@element-plus/icons-vue";
-
-const activeNames = ref(["1"]);
-const handleChange = (val: any) => {
-    console.log(val);
-};
 
 const arr = ref([
     {
@@ -73,46 +60,39 @@ const arr = ref([
 
 <style lang="scss" scoped>
 .faq {
-    // min-height: 100vh;
-    // padding-top: 30vh;
-    // background-color: #fff;
     width: 100%;
     height: 100vh;
     color: #fff;
     padding: 80px;
-    // position: relative;
-    // display: flex;
-    // flex-direction: column;
     .collapse {
         li {
-            // border: 1px solid #fff;
-            // border: 2px solid;
+            // border: 4px solid transparent;
+            // border-radius: 16px;
+            // background-clip: padding-box, border-box;
+            // background-origin: padding-box, border-box;
+            // background-image: linear-gradient(to right, #1d1c1b, #1d1c1b),
+            //     linear-gradient(119.71deg, rgba(184, 196, 255, 0.46) 3.65%, #1f2230 96.75%);
+            .ggg {
+                padding: 20px 20px 0;
+                overflow: hidden;
+            }
 
-            // border-image-source: linear-gradient(119.71deg, rgba(184, 196, 255, 0.46) 3.65%, #1f2230 96.75%);
-            // border-image-slice: 2;
-            border: 4px solid transparent;
-            border-radius: 16px;
-            background-clip: padding-box, border-box;
-            background-origin: padding-box, border-box;
-            background-image: linear-gradient(to right, #1d1c1b, #1d1c1b),
-                linear-gradient(119.71deg, rgba(184, 196, 255, 0.46) 3.65%, #1f2230 96.75%);
-
-            padding: 20px 20px 0;
             margin-bottom: 20px;
-            overflow: hidden;
-            & > p {
+
+            .title {
                 display: flex;
                 font-size: 24px;
                 align-items: center;
-                margin-bottom: 20px;
+                // margin-bottom: 20px;
+                cursor: pointer;
                 .el-icon {
                     margin-left: auto;
-                    cursor: pointer;
                 }
             }
             .content {
-                // margin-top: 20px;
-                height: 20px;
+                margin-top: 20px;
+                // margin-bottom: 20px;
+                height: 40px;
                 transition-duration: 0.3s;
             }
         }
