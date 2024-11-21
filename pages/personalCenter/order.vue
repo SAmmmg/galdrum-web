@@ -35,8 +35,11 @@
                             </li>
                             <li>
                                 <span>手机号</span>
-                                <div class="jia">+86</div>
-                                <el-input style="flex: 1"></el-input>
+                                <div class="jia">
+                                    +86
+                                    <span v-show="bool" class="error">手机号格式不正确，请重新输入</span>
+                                </div>
+                                <el-input :class="{ 'error-border': bool }" style="flex: 1" @blur="blur" @focus="focus"></el-input>
                             </li>
                         </ul>
 
@@ -48,6 +51,18 @@
                 <GradientBox>
                     <div class="item">
                         <div class="title">商品信息</div>
+
+                        <GradientBox v-for="el in 2" :key="el" style="margin-bottom: 20px">
+                            <div class="sp">
+                                <img src="/blue.png" alt="" />
+                                <div>
+                                    <p>定制你的鼓棒</p>
+                                    <p>尺寸1 | 颜色1&A区 | 图标1&A区</p>
+                                    <p>x2</p>
+                                </div>
+                                <div class="price">￥286</div>
+                            </div>
+                        </GradientBox>
                     </div>
                 </GradientBox>
             </div>
@@ -68,6 +83,13 @@ const obj = reactive({
     save: false,
     sss: "",
 });
+const bool = ref(false);
+function focus() {
+    bool.value = false;
+}
+function blur() {
+    bool.value = true;
+}
 </script>
 
 <style lang="scss" scoped>
@@ -131,6 +153,31 @@ const obj = reactive({
                 font-size: 20px;
                 margin-bottom: 30px;
             }
+            .sp {
+                display: flex;
+                padding: 20px;
+                align-items: center;
+                color: #fff;
+                height: 140px;
+                & > div:not(.price) {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    height: 100%;
+                    padding: 10px 0;
+                }
+                img {
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 10px;
+                    margin-right: 10px;
+                }
+                .price {
+                    margin-left: auto;
+                    // color: rgba(35, 66, 210, 1);
+                    font-size: 20px;
+                }
+            }
         }
         .left {
             width: 40%;
@@ -143,6 +190,7 @@ const obj = reactive({
                         // align-self: center;
                         margin-bottom: 20px;
                         --el-input-border-color: rgba(255, 255, 255, 0.2);
+                        position: relative;
                         & > span {
                             display: inline-block;
                             width: 80px;
@@ -152,13 +200,18 @@ const obj = reactive({
                         .jia {
                             border-radius: 4px;
                             border: 2px solid rgba(255, 255, 255, 0.6);
-                            // box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2) inset;
-
-                            // height: 100%;
                             height: 32px;
                             line-height: 32px;
                             padding: 0 10px;
                             margin-right: 10px;
+                            position: relative;
+                            .error {
+                                color: red;
+                                position: absolute;
+                                top: calc(100% + 5px);
+                                left: 0px;
+                                white-space: nowrap;
+                            }
                         }
                         .el-select {
                             flex: 1;
@@ -171,6 +224,9 @@ const obj = reactive({
                             :deep(.el-input__wrapper) {
                                 background-color: transparent;
                             }
+                        }
+                        .error-border {
+                            --el-input-border-color: red !important;
                         }
                     }
                 }

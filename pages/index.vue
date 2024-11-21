@@ -1,8 +1,8 @@
 <!-- 首页 -->
 <template>
-    <div class="main">
+    <div>
+        <!-- <div class="main">
         <Banner></Banner>
-
         <div class="boxs">
             <div class="box1">
                 <div>
@@ -38,13 +38,16 @@
                 </ul>
             </div>
         </div>
+    </div> -->
     </div>
 </template>
 <script lang="ts" setup>
 import { ArrowRight } from "@element-plus/icons-vue";
+
+navigateTo("/personalCenter");
 </script>
 
-<style lang="scss" scoped>
+<!-- <style lang="scss" scoped>
 .main {
     .boxs {
         padding: 40px 80px 0px;
@@ -165,4 +168,4 @@ import { ArrowRight } from "@element-plus/icons-vue";
         }
     }
 }
-</style>
+</style> -->

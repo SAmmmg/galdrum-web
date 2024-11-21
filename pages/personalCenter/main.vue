@@ -13,7 +13,7 @@
             <div class="bottom">
                 <div>
                     <img src="/image/Group_73.png" alt="" />
-                    <img src="/image/Group_74.png" alt="" />
+                    <img src="/image/Group_74.png" @click="navigateTo('/PersonalCenter/shoppingCart')" alt="" />
                 </div>
             </div>
         </div>
@@ -21,10 +21,10 @@
             <div class="avatar">
                 <div style="background: url('/image/Group_30.png') no-repeat rgba(35, 34, 32, 1); background-size: 100% 100%">
                     <div class="user">
-                        <img src="/image/avatar.png" alt="" />
+                        <img src="/image/avatar.png" @click="navigateTo('/PersonalCenter/account')" alt="" />
                         <div>
-                            <button>我的订单</button>
-                            <button>常见问题</button>
+                            <button @click="navigateTo('/PersonalCenter/order')">我的订单</button>
+                            <button @click="navigateTo('/PersonalCenter/faq')">常见问题</button>
                         </div>
                     </div>
                     <p>个人中心</p>
@@ -146,6 +146,7 @@
             & > img {
                 margin-right: 30px;
                 width: 100px;
+                cursor: pointer;
             }
             & > div {
                 display: flex;

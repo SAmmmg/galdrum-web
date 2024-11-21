@@ -8,7 +8,7 @@
         </div>
 
         <div class="box1">
-            <h1>定制你的鼓棒</h1>
+            <h1>常见问题</h1>
         </div>
         <ul class="collapse">
             <li v-for="(el, index) in arr" :key="index">
