@@ -1,6 +1,6 @@
 <template>
     <div class="order-pay">
-        <div class="back" @click="navigateTo('/PersonalCenter/main')">
+        <div class="back" @click="navigateTo('/PersonalCenter/order')">
             <el-icon size="22">
                 <Back />
             </el-icon>

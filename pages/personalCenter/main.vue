@@ -107,6 +107,7 @@
                 margin-left: 20px;
                 flex: 1;
                 height: 100%;
+                cursor: pointer;
             }
         }
     }

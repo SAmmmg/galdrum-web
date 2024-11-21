@@ -70,7 +70,7 @@
 
         <div class="bottom">
             <span>应付金额：{{ obj.price }}</span>
-            <button>提交订单</button>
+            <button @click="navigateTo('/PersonalCenter/orderPay')">提交订单</button>
         </div>
     </div>
 </template>
