@@ -38,7 +38,7 @@
                                         <p>支持账号密码登录</p>
                                     </div>
                                     <div class="value">chenli921@gmail.com</div>
-                                    <div class="edit">更改邮箱</div>
+                                    <div class="edit" @click="bdyxShow = true">更改邮箱</div>
                                 </li>
                                 <li>
                                     <el-icon size="32" style="margin-right: 20px">
@@ -49,7 +49,7 @@
                                         <p>支持账号密码登录</p>
                                     </div>
                                     <div class="value">chenli921@gmail.com</div>
-                                    <div class="edit">更改邮箱</div>
+                                    <div class="edit" @click="bdsjhShow = true">更改手机号</div>
                                 </li>
                                 <li>
                                     <el-icon size="32" style="margin-right: 20px">
@@ -60,7 +60,7 @@
                                         <p>支持账号密码登录</p>
                                     </div>
                                     <div class="value">chenli921@gmail.com</div>
-                                    <div class="edit">更改邮箱</div>
+                                    <div class="edit" @click="szShow = true">更改密码</div>
                                 </li>
                             </ul>
                             <el-divider />
@@ -68,7 +68,7 @@
                             <p style="color: red">
                                 若不再需要此账号，可将其注销。注销成功后，该账号下所有服务，数据将被删除且无法恢复，谨慎操作！
                             </p>
-                            <button>注销账号</button>
+                            <button @click="logoffShow = true">注销账号</button>
                         </div>
 
                         <div class="ddgl" v-show="type == '订单管理'">
@@ -107,7 +107,7 @@
 
                         <div class="shdz" v-show="type == '收货地址'">
                             <h2>收货地址</h2>
-                            <button class="add">添加地址</button>
+                            <button class="add" @click="isShow = true">添加地址</button>
                             <ul>
                                 <li v-for="el in 4" :key="4">
                                     <h3>收货人：Peter</h3>
@@ -118,7 +118,7 @@
                                     </p>
                                     <p class="btns">
                                         <button class="edit">修改</button>
-                                        <button class="del">删除</button>
+                                        <button class="del" @click="delShow = true">删除</button>
                                     </p>
                                     <button class="mr">设为默认</button>
                                 </li>
@@ -128,6 +128,149 @@
                 </GradientBox>
             </div>
         </div>
+
+        <!-- 添加地址 -->
+        <CustomDialog v-model="isShow" :show-close="false" width="500">
+            <template #header>
+                <h2>收货地址</h2>
+            </template>
+
+            <div class="addAddress">
+                <ul>
+                    <li>
+                        <span>所在地区</span>
+                        <el-select v-model="obj.sss" placeholder="省、市、区">
+                            <el-option :label="1" :value="1" />
+                            <el-option :label="2" :value="2" />
+                            <el-option :label="3" :value="3" />
+                        </el-select>
+                    </li>
+                    <li>
+                        <span>详细地址</span>
+                        <el-input></el-input>
+                    </li>
+                    <li>
+                        <span>收货人</span>
+                        <el-input></el-input>
+                    </li>
+                    <li>
+                        <span>手机号</span>
+                        <div class="jia">
+                            +86
+                            <span v-show="bool" class="error">手机号格式不正确，请重新输入</span>
+                        </div>
+                        <el-input :class="{ 'error-border': bool }" style="flex: 1" @blur="blur" @focus="focus"></el-input>
+                    </li>
+                </ul>
+
+                <el-checkbox v-model="obj.save" label="保存地址" />
+            </div>
+
+            <template #footer>
+                <div class="addAddressBtns">
+                    <button @click="isShow = false">确认</button>
+                    <button @click="isShow = false">取消</button>
+                </div>
+            </template>
+        </CustomDialog>
+
+        <!-- 删除 -->
+        <CustomDialog v-model="delShow" :show-close="false" width="350">
+            <template #header>
+                <h2>删除</h2>
+            </template>
+            <div style="font-size: 16px; color: #fff">确定要删除这条地址？</div>
+            <template #footer>
+                <div class="addAddressBtns">
+                    <button @click="delShow = false">确认</button>
+                    <button @click="delShow = false">取消</button>
+                </div>
+            </template>
+        </CustomDialog>
+
+        <!-- 账号注销 -->
+        <CustomDialog v-model="logoffShow" :show-close="false" width="600">
+            <template #header>
+                <h2>账号注销</h2>
+            </template>
+            <div class="logoff-box">
+                <div>确认不在使用改账号并注销？ 一旦注销所有的采集任务、采集数据、账户资源都将被清空，且不可恢复！ 请谨慎操作</div>
+                <div>为了避免误操作和账号安全,请输入当前账号密码确认本次操作</div>
+                <el-input v-model="password" type="password" show-password></el-input>
+            </div>
+            <template #footer>
+                <div class="addAddressBtns logoff-btn">
+                    <button @click="logoffShow = false">我已知晓，确认注销账户</button>
+                    <button @click="logoffShow = false">取消</button>
+                </div>
+            </template>
+        </CustomDialog>
+
+        <!-- 绑定邮箱 -->
+        <CustomDialog v-model="bdyxShow" :show-close="false" width="500">
+            <template #header>
+                <h2>绑定邮箱</h2>
+            </template>
+            <div class="bdyx">
+                <p>邮箱</p>
+                <el-input placeholder="请输入新邮箱"></el-input>
+                <br />
+                <p>填写验证码</p>
+                <div>
+                    <el-input placeholder="请输入验证码"></el-input>
+                    <button>获取验证码</button>
+                </div>
+            </div>
+            <template #footer>
+                <div class="addAddressBtns">
+                    <button @click="bdyxShow = false">确认</button>
+                    <button @click="bdyxShow = false">取消</button>
+                </div>
+            </template>
+        </CustomDialog>
+
+        <!-- 绑定手机号 -->
+        <CustomDialog v-model="bdsjhShow" :show-close="false" width="500">
+            <template #header>
+                <h2>绑定手机号</h2>
+            </template>
+            <div class="bdyx">
+                <p>请输入新手机号</p>
+                <el-input placeholder="请输入新手机号"></el-input>
+                <br />
+                <p>填写验证码</p>
+                <div>
+                    <el-input placeholder="请输入验证码"></el-input>
+                    <button>获取验证码</button>
+                </div>
+            </div>
+            <template #footer>
+                <div class="addAddressBtns">
+                    <button @click="bdsjhShow = false">确认</button>
+                    <button @click="bdsjhShow = false">取消</button>
+                </div>
+            </template>
+        </CustomDialog>
+
+        <!-- 设置密码 -->
+        <CustomDialog v-model="szShow" :show-close="false" width="500">
+            <template #header>
+                <h2>设置密码</h2>
+            </template>
+            <div class="bdyx">
+                <p>旧密码</p>
+                <el-input placeholder="请输入旧密码"></el-input>
+                <br />
+                <p>新密码</p>
+                <el-input placeholder="6-16位，字母/数字/符号至少2种"></el-input>
+            </div>
+            <template #footer>
+                <div class="addAddressBtns">
+                    <button @click="szShow = false">确认</button>
+                    <button @click="szShow = false">取消</button>
+                </div>
+            </template>
+        </CustomDialog>
     </div>
 </template>
 
@@ -135,9 +278,34 @@
 import { Back, User } from "@element-plus/icons-vue";
 
 const type = ref("账户信息");
+const isShow = ref(false);
+const delShow = ref(false);
+const logoffShow = ref(false);
+const password = ref("");
+const bdyxShow = ref(false);
+const bdsjhShow = ref(false);
+const szShow = ref(false);
+
+const obj = reactive({
+    price: 1144,
+    save: false,
+    sss: "",
+});
+const bool = ref(false);
+function focus() {
+    bool.value = false;
+}
+function blur() {
+    bool.value = true;
+}
 </script>
 
 <style lang="scss" scoped>
+.el-input {
+    :deep(.el-input__wrapper) {
+        background-color: #1f1f1e;
+    }
+}
 .account {
     width: 100%;
     height: 100vh;
@@ -407,6 +575,123 @@ const type = ref("账户信息");
                     }
                 }
             }
+        }
+    }
+}
+.addAddress {
+    width: 100%;
+    & > ul {
+        li {
+            display: flex;
+            align-items: center;
+            // align-self: center;
+            margin-bottom: 20px;
+            --el-input-border-color: rgba(255, 255, 255, 0.2);
+            position: relative;
+            & > span {
+                display: inline-block;
+                width: 80px;
+                margin-right: 0px;
+                white-space: nowrap;
+            }
+            .jia {
+                border-radius: 4px;
+                border: 2px solid rgba(255, 255, 255, 0.6);
+                height: 32px;
+                line-height: 32px;
+                padding: 0 10px;
+                margin-right: 10px;
+                position: relative;
+                .error {
+                    color: red;
+                    position: absolute;
+                    top: calc(100% + 5px);
+                    left: 0px;
+                    white-space: nowrap;
+                }
+            }
+            .el-select {
+                flex: 1;
+                :deep(.el-select__wrapper) {
+                    background-color: transparent;
+                }
+            }
+            .el-input {
+                flex: 1;
+                :deep(.el-input__wrapper) {
+                    background-color: transparent;
+                }
+            }
+            .error-border {
+                --el-input-border-color: red !important;
+            }
+        }
+    }
+}
+.addAddressBtns {
+    margin-left: auto;
+
+    button {
+        color: #fff;
+        border: 1px solid #fff;
+        border-radius: 4px;
+        background-color: transparent;
+        height: 34px;
+        line-height: 34px;
+        padding: 0 15px;
+        cursor: pointer;
+    }
+    button:nth-of-type(1) {
+        border-color: #2342d2;
+        background-color: #2342d2;
+    }
+    button:nth-of-type(2) {
+        margin-left: 20px;
+    }
+}
+.logoff-box {
+    & > div:nth-of-type(1) {
+        border: 1px solid red;
+        color: red;
+        background-color: rgba($color: #ff0000, $alpha: 0.1);
+        padding: 15px 40px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    & > div:nth-of-type(2) {
+        margin-bottom: 10px;
+    }
+    // .el-input {
+    //     :deep(.el-input__wrapper) {
+    //         background-color: #1f1f1e;
+    //     }
+    // }
+}
+.logoff-btn {
+    & > button:nth-child(1) {
+        background-color: red;
+        border-color: red;
+    }
+}
+.bdyx {
+    p {
+        margin-bottom: 10px;
+    }
+    & > div {
+        display: flex;
+        button {
+            margin-left: 10px;
+            color: #fff;
+            border: 1px solid #fff;
+            border-radius: 4px;
+            height: 34px;
+            line-height: 34px;
+            padding: 0 15px;
+            cursor: pointer;
+            color: rgba(132, 154, 255, 1);
+            border-color: rgba(132, 154, 255, 1);
+            white-space: nowrap;
+            background-color: rgba($color: #849aff, $alpha: 0.1);
         }
     }
 }
