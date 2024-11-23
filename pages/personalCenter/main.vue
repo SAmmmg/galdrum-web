@@ -12,7 +12,7 @@
             </div>
             <div class="bottom">
                 <div>
-                    <img src="/image/Group_73.png" alt="" />
+                    <img @click="navigateTo('/PersonalCenter/delicate')" src="/image/Group_73.png" alt="" />
                     <img src="/image/Group_74.png" @click="navigateTo('/PersonalCenter/shoppingCart')" alt="" />
                 </div>
             </div>
@@ -159,27 +159,29 @@ const arr = ref([
 ]);
 // 登录或注册、登录、注册、找回密码、身份验证、重置密码
 const type = ref<"login_or_register" | "login" | "register" | "find_pwd" | "verify" | "reset">("login_or_register");
-const isShow = ref(true);
+const isShow = ref(false);
 </script>
 
 <style lang="scss" scoped>
 .main {
     width: 100%;
-    padding: 20px;
+    padding: 30px;
     display: flex;
 }
 .left {
-    width: 68%;
-    margin-right: 20px;
+    width: 70%;
+    margin-right: 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     .top {
         display: flex;
         justify-content: space-between;
-        & > img,
+        & > img {
+            width: 40%;
+        }
         & > div {
-            width: calc(50% - 10px);
+            width: calc(60% - 30px);
         }
         & > div {
             display: flex;
@@ -196,7 +198,8 @@ const isShow = ref(true);
                 img {
                     width: 100%;
                     position: absolute;
-                    width: 80%;
+                    // width: 80%;
+                    width: 300px;
                     height: auto;
                     top: 50%;
                     left: 50%;
@@ -204,7 +207,7 @@ const isShow = ref(true);
                 }
             }
             & > img {
-                margin-top: 20px;
+                margin-top: 30px;
                 width: 100%;
                 cursor: pointer;
             }
@@ -212,10 +215,8 @@ const isShow = ref(true);
     }
     .bottom {
         width: 100%;
-        // display: flex;
         position: relative;
-        margin-top: 20px;
-        // justify-content: flex-end;
+        margin-top: 30px;
         flex: 1;
 
         div {
@@ -225,9 +226,10 @@ const isShow = ref(true);
             display: flex;
             img:nth-of-type(1) {
                 height: 100%;
+                cursor: pointer;
             }
             img:nth-of-type(2) {
-                margin-left: 20px;
+                margin-left: 30px;
                 flex: 1;
                 height: 100%;
                 cursor: pointer;
@@ -256,7 +258,7 @@ const isShow = ref(true);
                 position: absolute;
                 bottom: 30px;
                 left: 30px;
-                font-size: 54px;
+                font-size: 48px;
                 color: white;
             }
         }
@@ -283,7 +285,7 @@ const isShow = ref(true);
                     border-radius: 20px;
                     padding: 0 20px;
                     color: #fff;
-                    font-size: 28px;
+                    font-size: 24px;
                     cursor: pointer;
                     white-space: nowrap;
                 }
