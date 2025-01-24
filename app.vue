@@ -25,8 +25,10 @@ function isMobile() {
 @import url(./app.scss);
 
 .app-main {
+    // margin-top: 60px;
     padding-top: 60px;
-    padding-bottom: 20vh;
-    min-height: 100vh;
+    // padding-bottom: 350px;
+    // min-height: calc(100vh - 350px);
+    // box-sizing: content-box;
 }
 </style>

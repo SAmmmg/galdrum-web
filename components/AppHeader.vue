@@ -65,6 +65,8 @@ const selectZh = ref(false);
     z-index: 99;
     background: var(--main-color-1) no-repeat right 15% bottom 45% url("/assets/Mask group@3x.png");
     background-size: auto 180%;
+    top: 0px;
+    left: 0px;
     & > img {
         height: 100%;
     }

@@ -40,11 +40,8 @@
 
 <style lang="scss" scoped>
 .footer {
-    position: fixed;
-    bottom: 0px;
-    left: 0px;
     width: 100%;
-    min-height: 200px;
+    min-height: 350px;
     padding: 40px 15vw;
     display: flex;
     flex-direction: column;
