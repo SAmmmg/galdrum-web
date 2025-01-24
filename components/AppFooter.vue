@@ -1,66 +1,101 @@
-<script setup lang="ts"></script>
-
 <template>
     <div class="footer">
-        <ul>
-            <li>
-                <span>关注我们</span>
-                <span>图标 图标</span>
-            </li>
+        <div class="link">
+            <div class="left">
+                <img src="/assets/logo@3x.png" alt="" />
+                <br />
+                <p>地址：广东省 深圳市 南山区 民企科技园 3栋601</p>
+                <p>邮箱：840112676@qq.com</p>
+                <br />
+                <p>
+                    <img src="/assets/Group 210@3x.png" alt="" />
+                    <img src="/assets/Group 214@3x.png" alt="" />
+                    <img src="/assets/Group 209@3x.png" alt="" />
+                </p>
+            </div>
+            <ul class="right">
+                <li>
+                    <span>我们的产品</span>
+                    <span>鼓棒定制</span>
+                    <span>鼓包</span>
+                    <span>鼓棒</span>
+                    <span>周边</span>
+                </li>
 
-            <li>
-                <span>产品</span>
-                <span>鼓棒</span>
-                <span>鼓包</span>
-            </li>
-            <li>
-                <span>关于</span>
-                <span>常见问题</span>
-                <span>我的订单 </span>
-            </li>
-        </ul>
+                <li>
+                    <span>关于我们</span>
+                    <span>品牌故事</span>
+                    <span>常见问题</span>
+                </li>
+            </ul>
+        </div>
+
         <div class="copyright">
-            <span>copyright &copy; 2024 Logo 隐私条款</span>
+            <span>Copyright &copy; 2024 Logo 隐私条款</span>
         </div>
     </div>
 </template>
 
+<script setup lang="ts"></script>
+
 <style lang="scss" scoped>
 .footer {
-    background-color: #202429;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
     width: 100%;
-    height: 20vh;
     min-height: 200px;
-    padding: 20px;
+    padding: 40px 15vw;
     display: flex;
     flex-direction: column;
-    span {
-        color: white;
-    }
-    & > ul {
+    color: white;
+    background: var(--main-color-1) no-repeat right 15% bottom 20% url("/assets/Mask group@3x.png");
+    background-size: auto 115%;
+
+    .link {
         display: flex;
-        justify-content: center;
-        li {
-            width: 10%;
-            min-width: 80px;
+        justify-content: space-between;
+        .left {
+            & > img {
+                height: 30px;
+            }
+            p {
+                display: flex;
+                gap: 10px;
+                img {
+                    width: 40px;
+                }
+            }
+        }
+        .right {
             display: flex;
-            flex-direction: column;
-            // justify-content: center;
-            span {
-                margin-bottom: 20px;
+            gap: 80px;
+            li {
+                display: flex;
+                flex-direction: column;
+                & > span:nth-of-type(1) {
+                    margin-bottom: 20px;
+                    color: #fff;
+                }
+                span {
+                    margin-bottom: 10px;
+                    color: rgba($color: #fff, $alpha: 0.5);
+                }
             }
         }
     }
+
     .copyright {
         margin-top: auto;
         text-align: center;
-        padding-top: 20px;
-        border-top: 1px solid #ccc;
+        padding-top: 40px;
+        border-top: 1px solid rgba($color: #fff, $alpha: 0.1);
+        margin-top: 40px;
     }
 }
 </style>
 <style lang="scss" scoped>
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 960px) {
     .footer {
         & > ul {
             li {

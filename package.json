@@ -19,6 +19,7 @@
     "devDependencies": {
         "@element-plus/nuxt": "^1.0.10",
         "@nuxtjs/i18n": "^8.0.0",
+        "@nuxtjs/tailwindcss": "^6.13.1",
         "@pinia/nuxt": "^0.5.5"
     },
     "overrides": {

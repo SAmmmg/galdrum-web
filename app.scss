@@ -6,40 +6,33 @@
     outline: none;
     list-style: none;
     // SimSun
-    font-family: SimSun;
-}
-body {
+    font-family: "Songti TC", "HarmonyOS Sans SC-Bold";
+    // font-weight: ;
     font-size: 14px;
+    // color: var(--main-color-1);
+    transition: all 0.3s;
+}
+@font-face {
+    font-family: "Songti TC";
+    src: url("/assets/songti-tc-regular.ttf");
+}
+@font-face {
+    font-family: "HarmonyOS Sans SC-Bold";
+    src: url("/assets/HarmonyOS_Sans_SC_Bold.ttf");
+}
+.font-HarmonyOS {
+    font-family: "HarmonyOS Sans SC-Bold" !important ;
 }
 :root {
-    --base-color: #2342d2;
-}
-.el-checkbox {
-    --el-color-primary: var(--base-color) !important;
-    .el-checkbox__inner {
-        background-color: transparent;
-    }
-}
+    --main-color-1: #131313;
+    --main-color-2: #ffffff;
+    --main-color-3: #f5f1ec;
+    --main-color-4: #84827f;
 
-.el-input-number {
-    color: #fff;
-    border-color: #fff;
-    --el-color-primary: #fff !important;
-    span {
-        color: #fff;
-    }
-    .el-input__wrapper {
-        background-color: transparent;
-    }
-    .el-input-number__increase,
-    .el-input-number__decrease {
-        background-color: transparent !important;
-        // background: transparent !important;
-    }
-    .el-input__inner {
-        color: #fff !important;
-    }
+    --aux-color-1: #6f0e19;
+    --aux-color-2: #bf8f5f;
+    --aux-color-3: #3b2c4d;
+    --aux-color-4: #eccfaa;
+    --aux-color-5: #ce7f76;
+    --aux-color-6: #20785b;
 }
-// .el-button .el-button--danger .is-plain {
-//     background-color: transparent !important;
-// }

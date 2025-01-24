@@ -2,7 +2,7 @@ export default defineNuxtConfig({
     // css: ["~/assets/style/index.scss", "@/assets/iconfont/iconfont.css"],
     devtools: { enabled: true },
 
-    modules: ["@nuxtjs/i18n", "@element-plus/nuxt", "@pinia/nuxt"],
+    modules: ["@nuxtjs/i18n", "@element-plus/nuxt", "@pinia/nuxt", "@nuxtjs/tailwindcss"],
     vite: {
         css: {
             preprocessorOptions: {

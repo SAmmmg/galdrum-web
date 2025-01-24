@@ -20,14 +20,13 @@ const selectZh = ref(false);
 </script>
 
 <template>
-    <div class="header" :style="di ? 'background-color: #fff;color: black;' : 'color:white;'">
-        <span>logo</span>
-        <div style="margin-left: auto">
+    <div class="header" :style="di ? '' : 'color:white;'">
+        <img src="/assets/logo@3x.png" alt="" />
+        <div style="margin-left: auto; display: flex; align-items: center; gap: 20px">
+            <div class="ppgs">品牌故事</div>
             <el-dropdown trigger="click" @visible-change="(val:boolean )=>selectZh=val">
                 <template #default>
-                    <el-icon style="cursor: pointer" :class="selectZh ? 'iconBg' : ''" :color="di ? 'black' : 'white'" :size="20">
-                        <User />
-                    </el-icon>
+                    <User style="cursor: pointer; width: 20px; height: 20px" />
                 </template>
                 <template #dropdown>
                     <el-dropdown-menu class="menu">
@@ -50,10 +49,7 @@ const selectZh = ref(false);
                     </el-dropdown-menu>
                 </template>
             </el-dropdown>
-            &nbsp;
-            <el-icon style="cursor: pointer" :color="di ? 'black' : 'white'" :size="20">
-                <ShoppingCart />
-            </el-icon>
+            <ShoppingCart style="cursor: pointer; width: 20px; height: 20px" />
         </div>
     </div>
 </template>
@@ -62,19 +58,34 @@ const selectZh = ref(false);
 .header {
     position: fixed;
     width: 100%;
-    padding: 20px 30px;
+    padding: 15px 15vw;
     height: 60px;
-    // line-height: 40px;
     display: flex;
     align-items: center;
     z-index: 99;
-    background-color: transparent;
-    transition-duration: 0.3s;
-    color: white;
+    background: var(--main-color-1) no-repeat right 15% bottom 45% url("/assets/Mask group@3x.png");
+    background-size: auto 180%;
+    & > img {
+        height: 100%;
+    }
+    span,
+    svg {
+        color: white;
+    }
+    .ppgs {
+        position: relative;
+        &::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #fff;
+            top: calc(100% + 4px);
+            left: 0px;
+        }
+    }
 }
-.bg {
-    // background-color: #fff;
-}
+
 .menu {
     :deep(li):hover {
         .el-icon {
