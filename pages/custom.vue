@@ -1,7 +1,19 @@
 <template>
     <div style="background-color: var(--main-color-3)">
         <div class="custom-box">
-            <div>70vw70vw</div>
+            <!-- #region 定制鼓棒 -->
+            <div class="custom-gb">
+                <div>
+                    <button class="active">左棒</button>
+                    <canvas ref="left" width="1024" height="74"></canvas>
+                </div>
+                <div>
+                    <button>右棒</button>
+                    <canvas ref="right" width="1024" height="74"></canvas>
+                </div>
+            </div>
+            <!-- #endregion 定制鼓棒 -->
+
             <div class="set">
                 <div class="left">
                     <div class="title">选择你的鼓棒材质</div>
@@ -42,11 +54,11 @@
                                     <img v-show="isActive" style="margin-left: auto; width: 20px" src="/assets/Group 308@2x.png" alt="" />
                                     <img v-show="!isActive" style="margin-left: auto; width: 20px" src="/assets/Group 300@2x.png" alt="" />
                                 </template>
-                                <div>
-                                    Consistent with <br />
+                                <div class="ipts">
                                     <el-select v-model="ac" placeholder="选择定制字体">
                                         <el-option v-for="item in 3" :key="item" :label="item" :value="item" />
                                     </el-select>
+                                    <el-input placeholder="请输入文字内容" v-model="leftForm.txt" @blur="onBlur" />
                                     <el-select v-model="ac" placeholder="选择定制图标">
                                         <el-option v-for="item in 3" :key="item" :label="item" :value="item" />
                                     </el-select>
@@ -79,11 +91,53 @@
                 </div>
             </div>
         </div>
+
+        <!-- <canvas style="visibility: hidden"></canvas> -->
     </div>
 </template>
 
 <script setup lang="ts">
 const ac = ref(1);
+const left = ref<HTMLCanvasElement>();
+const right = ref<HTMLCanvasElement>();
+
+let leftCtx: CanvasRenderingContext2D;
+let rightCtx: CanvasRenderingContext2D;
+
+const leftForm = reactive({
+    txt: "",
+});
+const rightForm = reactive({
+    txt: "",
+});
+
+function onBlur() {
+    leftCtx.font = "24px 'Songti TC'";
+    leftCtx.fillText(leftForm.txt, 300, 40);
+
+    let image = new Image();
+    image.onload = () => {
+        let w = image.width;
+        let h = image.height;
+        // console.log();
+        leftCtx.drawImage(image, 500, 17, w * (38 / h), 38);
+        // rightCtx.drawImage(image, 0, 0, 1024, 74);
+    };
+    image.src = "/image/logo.png";
+}
+onMounted(() => {
+    leftCtx = left.value?.getContext("2d") as CanvasRenderingContext2D;
+    rightCtx = right.value?.getContext("2d") as CanvasRenderingContext2D;
+
+    let image = new Image();
+    image.onload = () => {
+        leftCtx.drawImage(image, 0, 0, 1024, 74);
+        rightCtx.drawImage(image, 0, 0, 1024, 74);
+    };
+    image.src = "/image/鼓棒@2x.png";
+    // console.log(left);
+    // console.log(right);
+});
 </script>
 
 <style lang="scss" scoped>
@@ -91,6 +145,37 @@ const ac = ref(1);
     width: 70vw;
     margin: 0 auto;
     padding: 50px;
+    .custom-gb {
+        div {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            button {
+                width: 60px;
+                height: 34px;
+                border: none;
+                border-radius: 6px;
+                border: 1px solid transparent;
+                background-color: transparent;
+                height: 34px;
+                line-height: 34px;
+                text-align: center;
+                cursor: pointer;
+            }
+            .active {
+                border-color: var(--main-color-1);
+                background-color: var(--main-color-1);
+                color: #fff;
+            }
+            & > canvas {
+                width: calc(100% - 60px);
+                // flex: 1;
+                height: auto;
+            }
+        }
+    }
+
     .set {
         display: flex;
         align-items: flex-start;
@@ -148,6 +233,14 @@ const ac = ref(1);
                             height: 100%;
                             border-radius: 50%;
                         }
+                    }
+                }
+                .ipts {
+                    display: flex;
+                    gap: 10px;
+                    flex-wrap: wrap;
+                    & > div {
+                        width: calc(50% - 5px);
                     }
                 }
             }
