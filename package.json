@@ -20,7 +20,8 @@
         "@element-plus/nuxt": "^1.0.10",
         "@nuxtjs/i18n": "^8.0.0",
         "@nuxtjs/tailwindcss": "^6.13.1",
-        "@pinia/nuxt": "^0.5.5"
+        "@pinia/nuxt": "^0.5.5",
+        "@vant/nuxt": "^1.0.6"
     },
     "overrides": {
         "vue": "latest"

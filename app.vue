@@ -32,3 +32,10 @@ function isMobile() {
     // box-sizing: content-box;
 }
 </style>
+<style lang="scss">
+@media screen and (max-width: 960px) {
+    .app-main {
+        padding-top: 40px;
+    }
+}
+</style>

@@ -94,9 +94,23 @@
 <style lang="scss" scoped>
 @media screen and (max-width: 960px) {
     .footer {
-        & > ul {
-            li {
+        padding: 20px 10vw;
+        background-position: right 30% bottom 0%;
+        .link {
+            display: flex;
+            flex-direction: column;
+            // justify-content: center;
+            // align-items: center;
+            .left {
             }
+            .right {
+                margin-top: 20px;
+                gap: 40px;
+            }
+        }
+        .copyright {
+            padding-top: 20px;
+            margin-top: 20px;
         }
     }
 }

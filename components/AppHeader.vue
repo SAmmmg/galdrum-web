@@ -20,7 +20,7 @@ const selectZh = ref(false);
 </script>
 
 <template>
-    <div class="header" :style="di ? '' : 'color:white;'">
+    <div class="header">
         <img src="/assets/logo@3x.png" alt="" />
         <div style="margin-left: auto; display: flex; align-items: center; gap: 20px">
             <div class="ppgs">品牌故事</div>
@@ -67,6 +67,7 @@ const selectZh = ref(false);
     background-size: auto 180%;
     top: 0px;
     left: 0px;
+    color: white;
     & > img {
         height: 100%;
     }
@@ -87,7 +88,6 @@ const selectZh = ref(false);
         }
     }
 }
-
 .menu {
     :deep(li):hover {
         .el-icon {
@@ -113,9 +113,10 @@ const selectZh = ref(false);
 }
 </style>
 <style lang="scss" scoped>
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 960px) {
     .header {
         height: 40px;
+        padding: 10px 10vw;
     }
 }
 </style>

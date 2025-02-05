@@ -8,10 +8,19 @@
     // SimSun
     font-family: "Songti TC", "HarmonyOS Sans SC-Bold";
     // font-weight: ;
-    font-size: 14px;
+    // font-size: 14px;
     // color: var(--main-color-1);
     transition: all 0.3s;
 }
+html {
+    font-size: 14px;
+}
+@media screen and (max-width: 960px) {
+    html {
+        font-size: 12px;
+    }
+}
+
 @font-face {
     font-family: "Songti TC";
     src: url("/assets/songti-tc-regular.ttf");

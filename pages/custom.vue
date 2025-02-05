@@ -4,11 +4,14 @@
             <!-- #region 定制鼓棒 -->
             <div class="custom-gb">
                 <div>
-                    <button @click="bang = 'left'" :class="{ active: bang == 'left' }">左棒</button>
+                    <!-- <button @click="bang = 'left'" :class="{ active: bang == 'left' }">左棒</button> -->
+                    <CustomBtn @click="bang = 'left'" :active="bang == 'left'" txt="左棒" />
+                    <!-- <CustomBtn></CustomBtn> -->
                     <canvas ref="left" width="1024" height="74"></canvas>
                 </div>
                 <div>
-                    <button @click="bang = 'right'" :class="{ active: bang == 'right' }">右棒</button>
+                    <!-- <button @click="bang = 'right'" :class="{ active: bang == 'right' }">右棒</button> -->
+                    <CustomBtn @click="bang = 'right'" :active="bang == 'right'" txt="右棒" />
                     <canvas ref="right" width="1024" height="74"></canvas>
                 </div>
             </div>
@@ -18,7 +21,12 @@
                 <div class="left">
                     <div class="title">选择你的鼓棒材质</div>
                     <div class="btns">
-                        <CustomBtn v-for="el in 3" style="background-color: var(--main-color-3)" txt="山胡桃木" />
+                        <CustomBtn
+                            tooltip-txt="演奏起来较敏捷，音色柔和。较适用与流行、JAZZ、FUNK等风格"
+                            v-for="el in 3"
+                            style="background-color: var(--main-color-3)"
+                            txt="山胡桃木"
+                        />
                     </div>
                     <div class="title">选择你的鼓棒款式</div>
                     <div class="btns">
@@ -37,13 +45,17 @@
 
                     <h2>请开始设计你的鼓棒</h2>
                     <div class="sj">
-                        <CustomBtn :active="true" txt="左棒" />
-                        <CustomBtn txt="右棒" />
+                        <CustomBtn @click="bang = 'left'" :active="bang == 'left'" txt="左棒" />
+                        <CustomBtn @click="bang = 'right'" :active="bang == 'right'" txt="右棒" />
                     </div>
                     <div class="sjgb">
                         <div class="title">选择颜色</div>
                         <div class="colors">
-                            <div v-for="el in ['#0c5282', '#a34200']" :style="{ borderColor: el }">
+                            <div
+                                v-for="el in ['#0c5282', '#a34200']"
+                                :style="{ borderColor: el == form.txtColor ? el : 'transparent' }"
+                                @click="form.txtColor = el"
+                            >
                                 <div :style="{ backgroundColor: el }"></div>
                             </div>
                         </div>
@@ -60,16 +72,25 @@
                                     </el-select>
                                     <el-input placeholder="请输入文字内容" v-model="form.txt" />
                                     <el-select v-model="form.icon" placeholder="选择定制图标" clearable>
-                                        <!-- <el-option v-for="item in 3" :key="item" :label="item" :value="item" /> -->
+                                        <el-option v-for="item in uploadIcon" :key="item" :value="item">
+                                            <template #default>
+                                                <div style="height: 100%; display: flex; align-items: center; justify-content: center">
+                                                    <img :style="{ width: '20px' }" :src="item" />
+                                                </div>
+                                            </template>
+                                        </el-option>
 
                                         <template #label>
                                             <img v-show="form.icon" :style="{ width: '20px' }" :src="form.icon" alt="" />
                                             <!-- <span>阿弥诺斯</span> -->
                                             <!-- <el-tag v-for="color in value" :key="color" :color="color" /> -->
                                         </template>
+
+                                        <template #empty> 点击右侧按钮上传图标 </template>
                                     </el-select>
-                                    <CustomBtn txt="上传我的图标" :active="true" />
-                                    <el-upload action="#" :before-upload="beforeUpload" :auto-upload="true">上传我的图标</el-upload>
+                                    <el-upload action="#" :before-upload="beforeUpload" :auto-upload="true">
+                                        <CustomBtn txt="上传我的图标" :active="true" />
+                                    </el-upload>
                                 </div>
                                 <el-tabs type="border-card">
                                     <el-tab-pane label="十二星座">
@@ -81,7 +102,7 @@
                                             />
                                         </div>
                                     </el-tab-pane>
-                                    <el-tab-pane label="十二生肖">Config</el-tab-pane>
+                                    <el-tab-pane label="十二生肖"></el-tab-pane>
                                 </el-tabs>
                             </el-collapse-item>
                         </el-collapse>
@@ -106,18 +127,40 @@
                         </p>
                     </form>
                     <div class="title" style="text-align: right">总计：￥55</div>
-                    <CustomBtn style="margin-bottom: 10px" />
-                    <CustomBtn style="margin-bottom: 10px" :active="true" />
+                    <CustomBtn style="margin-bottom: 10px" txt="加入购物袋" />
+                    <CustomBtn style="margin-bottom: 10px" txt="立即购买" :active="true" />
                 </div>
             </div>
+        </div>
+
+        <!-- 抽屉 -->
+        <div class="fixed-bottom">
+            <el-badge :value="1">
+                <el-icon :size="28" @click="drawerShow = true">
+                    <ShoppingCart />
+                </el-icon>
+            </el-badge>
+            <span>合计：￥80</span>
+
+            <div class="btns">
+                <button>加入购物车</button>
+                <button>立即购买</button>
+            </div>
+
+            <el-drawer v-model="drawerShow" direction="btt" :with-header="false" :z-index="1000" :append-to-body="false" :show-close="false">
+                wcc
+            </el-drawer>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import { ShoppingCart } from "@element-plus/icons-vue";
+
 const bang = ref<"left" | "right">("left");
 const left = ref<HTMLCanvasElement>();
 const right = ref<HTMLCanvasElement>();
+const drawerShow = ref(false);
 
 let leftCtx: CanvasRenderingContext2D;
 let rightCtx: CanvasRenderingContext2D;
@@ -128,21 +171,25 @@ interface form {
     // 预设图标
     icon: string;
     // 用户定制图标
+    txtColor: string;
     // customIcon: string;
 }
 const leftForm = reactive<form>({
     txt: "",
     fontFamily: "",
     icon: "",
+    txtColor: "",
 });
 const rightForm = reactive<form>({
     txt: "",
     fontFamily: "",
     icon: "",
+    txtColor: "",
 });
 const form = computed<form>(() => {
     return bang.value == "left" ? leftForm : rightForm;
 });
+const uploadIcon = ref<string[]>([]);
 
 let timer: NodeJS.Timeout;
 watch(leftForm, () => {
@@ -152,6 +199,7 @@ watch(leftForm, () => {
 
         drawBot("left", () => {
             leftCtx.font = "24px 'Songti TC'";
+            leftCtx.fillStyle = form.value.txtColor;
             leftCtx.fillText(leftForm.txt, 300, 44);
 
             let image = new Image();
@@ -171,6 +219,7 @@ watch(rightForm, () => {
 
         drawBot("right", () => {
             rightCtx.font = "24px 'Songti TC'";
+            rightCtx.fillStyle = form.value.txtColor;
             rightCtx.fillText(leftForm.txt, 300, 44);
 
             let image = new Image();
@@ -182,6 +231,9 @@ watch(rightForm, () => {
             image.src = "/image/logo@2x.png";
         });
     }, 1000);
+});
+watch(form, () => {
+    console.log("xxx");
 });
 
 onMounted(() => {
@@ -205,15 +257,15 @@ function drawBot(type: "left" | "right", callBack?: Function) {
 }
 
 function beforeUpload(file: File) {
-    // console.log(raw);
-
     const reader = new FileReader();
 
     reader.onload = function () {
-        form.value.icon = reader.result as string;
-        console.log(reader.result); // 输出 Base64 编码字符串
+        let img = reader.result as string;
+        form.value.icon = img;
+        uploadIcon.value.push(img);
     };
-    // 读取文件内容并转换为 Base64 编码字符串
+    reader.readAsDataURL(file);
+
     return false;
 }
 </script>
@@ -230,22 +282,22 @@ function beforeUpload(file: File) {
             align-items: center;
             margin-bottom: 30px;
             button {
-                width: 60px;
-                height: 34px;
-                border: none;
-                border-radius: 6px;
+                // width: 60px;
+                // height: 34px;
+                // border: none;
+                // border-radius: 6px;
                 border: 1px solid transparent;
                 background-color: transparent;
-                height: 34px;
-                line-height: 34px;
-                text-align: center;
-                cursor: pointer;
+                // height: 34px;
+                // line-height: 34px;
+                // text-align: center;
+                // cursor: pointer;
             }
-            .active {
-                border-color: var(--main-color-1);
-                background-color: var(--main-color-1);
-                color: #fff;
-            }
+            // .active {
+            //     border-color: var(--main-color-1);
+            //     background-color: var(--main-color-1);
+            //     color: #fff;
+            // }
             & > canvas {
                 width: calc(100% - 60px);
                 // flex: 1;
@@ -306,6 +358,7 @@ function beforeUpload(file: File) {
                         border: 1px solid;
                         border-color: transparent;
                         padding: 2.5px;
+                        cursor: pointer;
                         div {
                             width: 100%;
                             height: 100%;
@@ -359,6 +412,68 @@ function beforeUpload(file: File) {
         h2 {
             font-size: 28px;
             margin-bottom: 30px;
+        }
+    }
+}
+.fixed-bottom {
+    display: none;
+}
+</style>
+
+<style lang="scss" scoped>
+@media screen and (max-width: 960px) {
+    .custom-box {
+        width: 100%;
+        padding: 0px;
+        .custom-gb {
+            & > div {
+                margin-bottom: 15px;
+                padding: 0 20px;
+            }
+        }
+        .set {
+            flex-direction: column;
+            .left {
+                margin-right: 0px;
+                padding: 20px;
+            }
+            .left,
+            .right {
+                width: 100%;
+            }
+        }
+    }
+    .fixed-bottom {
+        display: flex;
+        position: fixed;
+        left: 0px;
+        bottom: 0px;
+        width: 100%;
+        height: 60px;
+        align-items: center;
+        background-color: white;
+        border-top: 1px solid var(--main-color-3);
+        padding-left: 20px;
+        gap: 10px;
+        z-index: 1010;
+        overflow: hidden;
+        .btns {
+            margin-left: auto;
+            border: 1px solid var(--main-color-1);
+            height: calc(100% + 1px);
+            margin-top: -1px;
+            button {
+                font-size: 16px;
+                border: none;
+                height: 100%;
+                padding: 0 20px;
+            }
+            & > button:nth-of-type(1) {
+            }
+            & > button:nth-of-type(2) {
+                background-color: var(--main-color-1);
+                color: white;
+            }
         }
     }
 }
