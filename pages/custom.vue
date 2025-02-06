@@ -147,9 +147,28 @@
                 <button>立即购买</button>
             </div>
 
-            <el-drawer v-model="drawerShow" direction="btt" :with-header="false" :z-index="1000" :append-to-body="false" :show-close="false">
-                wcc
-            </el-drawer>
+            <!--  -->
+            <van-popup v-model:show="drawerShow" position="bottom" :z-index="1000" teleport="body" :style="{ paddingBottom: '60px' }">
+                <div class="right global-custom-right">
+                    <div class="title">定制金额</div>
+                    <form action="#">
+                        <p>
+                            <label for="">山桃胡木</label>
+                            <label for="">￥80</label>
+                        </p>
+                        <p>
+                            <label for="">山桃胡木</label>
+                            <label for="">￥80</label>
+                        </p>
+                        <p>
+                            <label for="">数量</label>
+                            <label for="">
+                                <NumberIpt></NumberIpt>
+                            </label>
+                        </p>
+                    </form>
+                </div>
+            </van-popup>
         </div>
     </div>
 </template>
@@ -282,16 +301,8 @@ function beforeUpload(file: File) {
             align-items: center;
             margin-bottom: 30px;
             button {
-                // width: 60px;
-                // height: 34px;
-                // border: none;
-                // border-radius: 6px;
                 border: 1px solid transparent;
                 background-color: transparent;
-                // height: 34px;
-                // line-height: 34px;
-                // text-align: center;
-                // cursor: pointer;
             }
             // .active {
             //     border-color: var(--main-color-1);
@@ -428,7 +439,7 @@ function beforeUpload(file: File) {
         .custom-gb {
             & > div {
                 margin-bottom: 15px;
-                padding: 0 20px;
+                padding: 15px 20px 0px;
             }
         }
         .set {
@@ -436,10 +447,17 @@ function beforeUpload(file: File) {
             .left {
                 margin-right: 0px;
                 padding: 20px;
+                .sjgb {
+                    border: 2px solid var(--main-color-3);
+                    border-radius: 8px;
+                }
             }
             .left,
             .right {
                 width: 100%;
+            }
+            .right {
+                display: none;
             }
         }
     }
@@ -474,6 +492,25 @@ function beforeUpload(file: File) {
                 background-color: var(--main-color-1);
                 color: white;
             }
+        }
+    }
+}
+</style>
+
+<style lang="scss">
+.global-custom-right {
+    flex: 1;
+    background-color: white;
+    padding: 20px;
+    .title {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    form {
+        p {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
         }
     }
 }

@@ -41,7 +41,6 @@
 <style lang="scss" scoped>
 .footer {
     width: 100%;
-    min-height: 350px;
     padding: 40px 15vw;
     display: flex;
     flex-direction: column;
@@ -94,18 +93,18 @@
 <style lang="scss" scoped>
 @media screen and (max-width: 960px) {
     .footer {
-        padding: 20px 10vw;
+        padding: 0px 20px 20px;
         background-position: right 30% bottom 0%;
         .link {
-            display: flex;
-            flex-direction: column;
-            // justify-content: center;
-            // align-items: center;
-            .left {
-            }
+            // display: flex;
+            // flex-direction: column;
+            .left,
             .right {
                 margin-top: 20px;
-                gap: 40px;
+            }
+            flex-wrap: wrap;
+            .right {
+                gap: 20px;
             }
         }
         .copyright {

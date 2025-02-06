@@ -21,7 +21,8 @@
         "@nuxtjs/i18n": "^8.0.0",
         "@nuxtjs/tailwindcss": "^6.13.1",
         "@pinia/nuxt": "^0.5.5",
-        "@vant/nuxt": "^1.0.6"
+        "@vant/nuxt": "^1.0.6",
+        "nuxt-swiper": "^2.0.0"
     },
     "overrides": {
         "vue": "latest"
