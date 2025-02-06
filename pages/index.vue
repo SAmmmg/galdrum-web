@@ -1,23 +1,12 @@
 <template>
-    <van-swipe :autoplay="3000" indicator-color="white">
-        <van-swipe-item>
+    <swiper-container class="sw3" ref="swiperRef3">
+        <swiper-slide v-for="(slide, idx) in slides" :key="idx">
             <img src="/image/banner.png" alt="" />
-        </van-swipe-item>
-        <van-swipe-item>
-            <img src="/image/banner.png" alt="" />
-        </van-swipe-item>
-        <van-swipe-item>
-            <img src="/image/banner.png" alt="" />
-        </van-swipe-item>
-    </van-swipe>
+        </swiper-slide>
+    </swiper-container>
     <div class="box">
         <img src="/image/Group 1000007222@2x.png" style="width: 95%" />
 
-        <!-- <el-carousel arrow="always" indicator-position="none">
-            <el-carousel-item v-for="item in 4" :key="item">
-                <img src="/image/banner.png" alt="" />
-            </el-carousel-item>
-        </el-carousel> -->
         <swiper-container class="sw2" ref="swiperRef2">
             <swiper-slide v-for="(slide, idx) in slides" :key="idx">
                 <img src="/image/banner.png" alt="" />
@@ -46,6 +35,7 @@
 const swiperRef = ref(null);
 const swiperRef1 = ref(null);
 const swiperRef2 = ref(null);
+const swiperRef3 = ref(null);
 const slides = ref(Array.from({ length: 10 }));
 
 useSwiper(swiperRef, {
@@ -65,8 +55,17 @@ useSwiper(swiperRef1, {
 useSwiper(swiperRef2, {
     slidesPerView: 1,
     spaceBetween: 0,
-    // centeredSlides: true,
     loop: true,
+    autoplay: {
+        delay: 3000,
+    },
+});
+
+useSwiper(swiperRef3, {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    loop: true,
+    autoplay: true,
 });
 </script>
 
