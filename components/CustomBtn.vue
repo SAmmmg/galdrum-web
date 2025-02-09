@@ -15,10 +15,6 @@ const props = defineProps<{
     tooltipTxt?: string;
 }>();
 const emits = defineEmits(["click"]);
-// const txt = defineModel({
-//     type: String,
-//     default: "文字",
-// });
 </script>
 
 <style lang="scss" scoped>

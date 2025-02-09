@@ -74,7 +74,6 @@ useSwiper(swiperRef3, {
     background-color: var(--main-color-1);
     padding: 30px 15vw;
     & > img {
-        // width: 60%;
         margin: 30px 0;
         border: 1px dashed rgba($color: #fff, $alpha: 0.3);
     }

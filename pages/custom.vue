@@ -3,17 +3,24 @@
         <div class="custom-box">
             <!-- #region 定制鼓棒 -->
             <div class="custom-gb">
-                <div>
-                    <!-- <button @click="bang = 'left'" :class="{ active: bang == 'left' }">左棒</button> -->
+                <div class="mask-box">
+                    <div class="txt">A区</div>
+                    <div class="txt">B区</div>
+                    <div class="txt">C区</div>
+                    <div class="mask" :class="{ activeMask: actRegion == 'A' }"></div>
+                    <div class="mask" :class="{ activeMask: actRegion == 'B' }"></div>
+                    <div class="mask" :class="{ activeMask: actRegion == 'C' }"></div>
+                </div>
+                <div class="canvas">
                     <CustomBtn @click="bang = 'left'" :active="bang == 'left'" txt="左棒" />
-                    <!-- <CustomBtn></CustomBtn> -->
                     <canvas ref="left" width="1024" height="74"></canvas>
                 </div>
-                <div>
-                    <!-- <button @click="bang = 'right'" :class="{ active: bang == 'right' }">右棒</button> -->
+                <div class="space"></div>
+                <div class="canvas">
                     <CustomBtn @click="bang = 'right'" :active="bang == 'right'" txt="右棒" />
                     <canvas ref="right" width="1024" height="74"></canvas>
                 </div>
+                <div class="space"></div>
             </div>
             <!-- #endregion 定制鼓棒 -->
 
@@ -60,8 +67,8 @@
                             </div>
                         </div>
 
-                        <el-collapse accordion>
-                            <el-collapse-item title="A区">
+                        <el-collapse accordion v-model="actRegion">
+                            <el-collapse-item title="A区" name="A">
                                 <template #icon="{ isActive }">
                                     <img v-show="isActive" style="margin-left: auto; width: 20px" src="/assets/Group 308@2x.png" alt="" />
                                     <img v-show="!isActive" style="margin-left: auto; width: 20px" src="/assets/Group 300@2x.png" alt="" />
@@ -180,6 +187,7 @@ const bang = ref<"left" | "right">("left");
 const left = ref<HTMLCanvasElement>();
 const right = ref<HTMLCanvasElement>();
 const drawerShow = ref(false);
+const actRegion = ref();
 
 let leftCtx: CanvasRenderingContext2D;
 let rightCtx: CanvasRenderingContext2D;
@@ -262,6 +270,7 @@ onMounted(() => {
     drawBot("left");
     drawBot("right");
 });
+// 绘制棒子
 function drawBot(type: "left" | "right", callBack?: Function) {
     let image = new Image();
     image.onload = () => {
@@ -274,7 +283,7 @@ function drawBot(type: "left" | "right", callBack?: Function) {
     };
     image.src = "/image/鼓棒@2x.png";
 }
-
+// 自定义上传图标
 function beforeUpload(file: File) {
     const reader = new FileReader();
 
@@ -287,31 +296,91 @@ function beforeUpload(file: File) {
 
     return false;
 }
+// 绘制logo
+function drawLogo(type: "left" | "right") {
+    let image = new Image();
+    image.onload = () => {
+        if (type == "left") {
+            leftCtx.drawImage(image, 0, 0, 1024, 74);
+        } else {
+            rightCtx.drawImage(image, 0, 0, 1024, 74);
+        }
+    };
+    image.src = "/image/鼓棒@2x.png";
+}
 </script>
 
 <style lang="scss" scoped>
 .custom-box {
     width: 70vw;
     margin: 0 auto;
-    padding: 50px;
+    padding: 0px 50px 50px;
     .custom-gb {
-        div {
+        padding-top: 50px;
+        position: relative;
+        .space {
+            height: 30px;
+            width: 100%;
+        }
+        .mask-box {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 1;
+            .txt {
+                position: absolute;
+                top: 20px;
+            }
+            .txt:nth-of-type(1) {
+                left: 40%;
+            }
+            .txt:nth-of-type(2) {
+                left: 75%;
+            }
+            .txt:nth-of-type(3) {
+                left: 90%;
+            }
+            .mask {
+                position: absolute;
+                top: 50px;
+                background-color: transparent;
+                // #e5e3dc
+                border: 1px dashed #dad7ce;
+                border-radius: 8px;
+                height: calc(100% - 70px);
+                transform: translateX(calc(-50% + 10px));
+            }
+            .activeMask {
+                background-color: #e5e3dc;
+            }
+            .mask:nth-of-type(4) {
+                left: 40%;
+                width: 30%;
+            }
+            .mask:nth-of-type(5) {
+                left: 75%;
+                width: 18%;
+            }
+            .mask:nth-of-type(6) {
+                left: 90%;
+                width: 9%;
+            }
+        }
+        .canvas {
             width: 100%;
             display: flex;
             align-items: center;
-            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
             button {
+                width: 60px;
                 border: 1px solid transparent;
                 background-color: transparent;
             }
-            // .active {
-            //     border-color: var(--main-color-1);
-            //     background-color: var(--main-color-1);
-            //     color: #fff;
-            // }
             & > canvas {
                 width: calc(100% - 60px);
-                // flex: 1;
                 height: auto;
             }
         }
@@ -437,9 +506,18 @@ function beforeUpload(file: File) {
         width: 100%;
         padding: 0px;
         .custom-gb {
-            & > div {
-                margin-bottom: 15px;
-                padding: 15px 20px 0px;
+            width: calc(100% - 40px);
+            margin: 0 auto;
+            .space {
+                height: 20px;
+            }
+            .canvas {
+                button {
+                    width: 40px;
+                }
+                canvas {
+                    width: calc(100% - 40px);
+                }
             }
         }
         .set {
@@ -474,7 +552,6 @@ function beforeUpload(file: File) {
         padding-left: 20px;
         gap: 10px;
         z-index: 1010;
-        overflow: hidden;
         .btns {
             margin-left: auto;
             border: 1px solid var(--main-color-1);

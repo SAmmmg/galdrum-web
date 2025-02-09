@@ -52,6 +52,7 @@
         display: flex;
         justify-content: space-between;
         .left {
+            margin-right: 10px;
             & > img {
                 height: 30px;
             }
@@ -96,8 +97,6 @@
         padding: 0px 20px 20px;
         background-position: right 30% bottom 0%;
         .link {
-            // display: flex;
-            // flex-direction: column;
             .left,
             .right {
                 margin-top: 20px;
