@@ -70,8 +70,8 @@
                         <el-collapse accordion v-model="actRegion">
                             <el-collapse-item title="A区" name="A">
                                 <template #icon="{ isActive }">
-                                    <img v-show="isActive" style="margin-left: auto; width: 20px" src="/assets/Group 308@2x.png" alt="" />
-                                    <img v-show="!isActive" style="margin-left: auto; width: 20px" src="/assets/Group 300@2x.png" alt="" />
+                                    <img class="ml-auto w-[20px]" v-show="isActive" src="/image/Group 308@2x.png" alt="" />
+                                    <img class="ml-auto w-[20px]" v-show="!isActive" src="/image/Group 300@2x.png" alt="" />
                                 </template>
                                 <div class="ipts">
                                     <el-select v-model="form.fontFamily" placeholder="选择定制字体">
@@ -129,7 +129,7 @@
                         <p>
                             <label for="">数量</label>
                             <label for="">
-                                <NumberIpt></NumberIpt>
+                                <CustomNumberIpt />
                             </label>
                         </p>
                     </form>
@@ -170,7 +170,7 @@
                         <p>
                             <label for="">数量</label>
                             <label for="">
-                                <NumberIpt></NumberIpt>
+                                <CustomNumberIpt />
                             </label>
                         </p>
                     </form>
@@ -181,6 +181,7 @@
 </template>
 
 <script setup lang="ts">
+// import { CustomNumberIpt } from "#build/components";
 import { ShoppingCart } from "@element-plus/icons-vue";
 
 const bang = ref<"left" | "right">("left");

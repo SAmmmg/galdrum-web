@@ -1,8 +1,8 @@
 <template>
     <div class="number-ipt">
-        <img @click="num > 1 ? num-- : ''" src="/assets/Group 308@2x.png" alt="" />
+        <img @click="num > 1 ? num-- : ''" src="/image/Group 308@2x.png" alt="" />
         <span>{{ num }}</span>
-        <img @click="num++" src="/assets/Group 300@2x.png" alt="" />
+        <img @click="num++" src="/image/Group 300@2x.png" alt="" />
     </div>
 </template>
 

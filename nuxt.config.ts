@@ -1,6 +1,18 @@
 export default defineNuxtConfig({
     // css: ["~/assets/style/index.scss", "@/assets/iconfont/iconfont.css"],
     // css: ["~/assets/css/tailwind.css"],
+    tailwindcss: {
+        config: {
+            theme: {
+                screens: {
+                    // 0~960
+                    h5: "0px",
+                    // 960~~
+                    pc: "960px",
+                },
+            },
+        },
+    },
     devtools: { enabled: true },
 
     modules: ["@nuxtjs/i18n", "@element-plus/nuxt", "@pinia/nuxt", "@nuxtjs/tailwindcss", "@vant/nuxt", "nuxt-swiper"],

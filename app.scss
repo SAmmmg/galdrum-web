@@ -6,7 +6,7 @@
     outline: none;
     list-style: none;
     // SimSun
-    font-family: "Songti TC", "HarmonyOS Sans SC-Bold";
+    // font-family: "ui-sans-serif", "Songti TC", "HarmonyOS Sans SC-Bold";
     // font-weight: ;
     // font-size: 14px;
     // color: var(--main-color-1);
@@ -28,6 +28,9 @@ html {
 @font-face {
     font-family: "HarmonyOS Sans SC-Bold";
     src: url("/assets/HarmonyOS_Sans_SC_Bold.ttf");
+}
+.font-Songti {
+    font-family: "Songti TC" !important ;
 }
 .font-HarmonyOS {
     font-family: "HarmonyOS Sans SC-Bold" !important ;
