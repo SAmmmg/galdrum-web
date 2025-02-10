@@ -22,7 +22,7 @@ function isMobile() {
 </script>
 
 <style lang="scss">
-@import url(./app.scss);
+@import url(../app.scss);
 
 .app-main {
     // margin-top: 60px;
