@@ -1,5 +1,6 @@
 export default defineNuxtConfig({
     // css: ["~/assets/style/index.scss", "@/assets/iconfont/iconfont.css"],
+    // css: ["~/assets/css/tailwind.css"],
     devtools: { enabled: true },
 
     modules: ["@nuxtjs/i18n", "@element-plus/nuxt", "@pinia/nuxt", "@nuxtjs/tailwindcss", "@vant/nuxt", "nuxt-swiper"],
@@ -7,10 +8,10 @@ export default defineNuxtConfig({
         css: {
             preprocessorOptions: {
                 scss: {
-                    api: "modern-compiler"
-                }
-            }
-        }
+                    api: "modern-compiler",
+                },
+            },
+        },
     },
     // nitro: {
     //   prerender: {
