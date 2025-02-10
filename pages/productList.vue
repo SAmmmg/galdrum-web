@@ -60,7 +60,7 @@
         <!-- h5 -->
         <div class="product-box-h5">
             <div class="product-nav">
-                <el-icon color="#000"><ArrowLeftBold /></el-icon>
+                <el-icon color="#000" @click="navigateTo('/')"><ArrowLeftBold /></el-icon>
                 <span class="active">全部</span>
                 <span>鼓棒</span>
                 <span>鼓包</span>
