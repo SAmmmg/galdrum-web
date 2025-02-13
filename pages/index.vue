@@ -1,5 +1,5 @@
 <template>
-    <swiper-container class="sw3" ref="swiperRef3">
+    <swiper-container class="sw3" ref="swiperRef3" :autoplay="true">
         <swiper-slide v-for="(slide, idx) in slides" :key="idx">
             <img src="/image/banner.png" alt="" />
         </swiper-slide>
@@ -7,7 +7,7 @@
     <div class="box">
         <img src="/image/Group 1000007222@2x.png" style="width: 95%" />
 
-        <swiper-container class="sw2" ref="swiperRef2">
+        <swiper-container class="sw2" ref="swiperRef2" :autoplay="true">
             <swiper-slide v-for="(slide, idx) in slides" :key="idx">
                 <img src="/image/banner.png" alt="" />
             </swiper-slide>
@@ -15,7 +15,7 @@
 
         <img src="/image/Group 185@2x.png" style="width: 95%" />
 
-        <swiper-container class="sw1" ref="swiperRef1">
+        <swiper-container class="sw1" ref="swiperRef1" :autoplay="true">
             <swiper-slide v-for="(slide, idx) in slides" :key="idx">
                 <img src="/public/image/Group_71.png" alt="" />
             </swiper-slide>
@@ -23,7 +23,7 @@
 
         <img src="/image/Group 208@2x.png" style="width: 60%" />
 
-        <swiper-container class="sw" ref="swiperRef">
+        <swiper-container class="sw" ref="swiperRef" :autoplay="true">
             <swiper-slide v-for="(slide, idx) in slides" :key="idx">
                 <img src="/public/image/Group_71.png" alt="" />
             </swiper-slide>

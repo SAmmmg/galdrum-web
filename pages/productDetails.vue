@@ -91,7 +91,7 @@
                 </template>
             </van-swipe>
 
-            <div class="price px-[16px] py-[10px] mb-[4px]">
+            <div class="price bg-white px-[16px] py-[10px] mb-[4px]">
                 <p class="mb-[8px]">
                     <span class="mr-[10px] font-bold text-[16px]">HK$150</span>
                     <span class="line-through text-[#666]"> HK$160 </span>
@@ -128,8 +128,9 @@
 
             <div class="product-comment px-[16px] py-[10px] bg-white">
                 <p class="text-[16px]">用户评价</p>
-                <van-swipe>
-                    <van-swipe-item>
+
+                <swiper-container ref="swiperRef" :free-mode="true" slides-per-view="auto">
+                    <swiper-slide v-for="el in 3" class="w-[80%] min-w-[250px] mr-[16px]">
                         <div class="bg-[#f5f5f5] p-[12px] rounded-[10px]">
                             <p class="flex items-center">
                                 <img class="w-[28px] mr-[10px]" src="/public/image/avatar.png" alt="" />
@@ -141,8 +142,19 @@
                             </p>
                             <p>小姐姐人非常好，有耐心，认真仔细， 感谢!</p>
                         </div>
-                    </van-swipe-item>
-                </van-swipe>
+                    </swiper-slide>
+                </swiper-container>
+            </div>
+
+            <div class="bg-[#f5f5f5]" style="border: 1px solid white">
+                <van-divider> 宝贝详情（富文本） </van-divider>
+            </div>
+
+            <div class="rich-text bg-white p-[16px]">
+                <template v-for="el in 3">
+                    <p class="font-bold mb-[20px] text-[24px] text-center">鼓棒轻便挂扣包</p>
+                    <img class="w-full mb-[20px]" src="/image/Rectangle 234.png" />
+                </template>
             </div>
         </div>
     </div>
@@ -153,9 +165,15 @@ const route = useRoute();
 const num = ref(1);
 const type = ref<"商品详情" | "商品评价">("商品详情");
 
-// const swiperRef = ref();
-// const slides = ref(Array.from({ length: 10 }));
-// const slide = ref(1);
+const swiperRef = ref();
+
+onMounted(() => {
+    useSwiper(swiperRef, {
+        slidesPerView: "auto",
+        spaceBetween: 10,
+        freeMode: true,
+    });
+});
 </script>
 
 <style lang="scss" scoped>
