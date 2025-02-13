@@ -9,7 +9,7 @@
 
             <img class="w-full mx-auto my-[36px]" src="/public/image/Group 1000007195@2x.png" />
 
-            <p class="font-Songti">
+            <p class="font-Songti mb-[24px]">
                 我们深信每位鼓手都应该要有自己的风格和个性，因此我们推出了 灵活的定制服务。无论是图案、色彩，还是鼓棒的材质和形状，都
                 尽可能根据鼓手的喜好和需求进行定制，这让每一位鼓手都能在舞 台上和日常生活中，尽情探索和表达自己的风格和个性。
             </p>

@@ -4,7 +4,7 @@
             <img src="/image/banner.png" alt="" />
         </swiper-slide>
     </swiper-container>
-    <div class="box">
+    <div class="box" @click="navigateTo('/myAddress')">
         <img src="/image/Group 1000007222@2x.png" style="width: 95%" />
 
         <swiper-container class="sw2" ref="swiperRef2" :autoplay="true">

@@ -11,6 +11,7 @@ export default defineNuxtConfig({
                     pc: "960px",
                 },
             },
+            content: ["./pages/**/*.{html,js,vue}", "./components/**/*.{html,js,vue}"],
         },
     },
     devtools: { enabled: true },
