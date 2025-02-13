@@ -79,7 +79,72 @@
         </div>
 
         <!-- h5 -->
-        <div class="product-box-h5"></div>
+        <div class="product-box-h5">
+            <van-swipe :autoplay="6000" loop class="sw">
+                <van-swipe-item><img src="/image/banner.png" alt="" /></van-swipe-item>
+                <van-swipe-item><img src="/image/banner.png" alt="" /></van-swipe-item>
+                <template #indicator="{ active, total }">
+                    <div class="custom-indicator">
+                        <span class="text-[14px]">{{ active + 1 }}</span>
+                        <span>/{{ total }}</span>
+                    </div>
+                </template>
+            </van-swipe>
+
+            <div class="price px-[16px] py-[10px] mb-[4px]">
+                <p class="mb-[8px]">
+                    <span class="mr-[10px] font-bold text-[16px]">HK$150</span>
+                    <span class="line-through text-[#666]"> HK$160 </span>
+                </p>
+                <p class="mb-[12px]">
+                    <span class="text-[16px]">可水洗的收纳袋，加厚无异味防潮防尘</span>
+                </p>
+                <p class="mj">
+                    <span class="">满200-20</span>
+                    <span>已售 242</span>
+                </p>
+            </div>
+
+            <van-cell-group class="mb-[4px]">
+                <van-cell>
+                    <template #title>
+                        <span class="mr-[20px] text-[#666]">规格</span>
+                        <span>玫红色 原木色</span>
+                    </template>
+                    <template #right-icon>
+                        <van-icon class="leading-[24px]" name="arrow" />
+                    </template>
+                </van-cell>
+                <van-cell>
+                    <template #title>
+                        <span class="mr-[20px] text-[#666]">运费</span>
+                        <span>免运费（偏远地区除外）</span>
+                    </template>
+                    <template #right-icon>
+                        <van-icon class="leading-[24px]" name="arrow" />
+                    </template>
+                </van-cell>
+            </van-cell-group>
+
+            <div class="product-comment px-[16px] py-[10px] bg-white">
+                <p class="text-[16px]">用户评价</p>
+                <van-swipe>
+                    <van-swipe-item>
+                        <div class="bg-[#f5f5f5] p-[12px] rounded-[10px]">
+                            <p class="flex items-center">
+                                <img class="w-[28px] mr-[10px]" src="/public/image/avatar.png" alt="" />
+                                <span class="text-[16px]">小姐姐</span>
+                                <span class="ml-auto text-[#999]">2024-09-21</span>
+                            </p>
+                            <p class="flex my-[12px] items-center">
+                                <img v-for="el in 5" src="/public/image/Star1.png" alt="" />
+                            </p>
+                            <p>小姐姐人非常好，有耐心，认真仔细， 感谢!</p>
+                        </div>
+                    </van-swipe-item>
+                </van-swipe>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -87,73 +152,129 @@
 const route = useRoute();
 const num = ref(1);
 const type = ref<"商品详情" | "商品评价">("商品详情");
+
+// const swiperRef = ref();
+// const slides = ref(Array.from({ length: 10 }));
+// const slide = ref(1);
 </script>
 
 <style lang="scss" scoped>
 .product-details {
     background-color: var(--main-color-3);
-    // pc
-    .product-box-pc {
-        padding: 30px 15vw;
-        .product-info {
-            display: flex;
-            gap: 30px;
+}
+// pc
+.product-box-pc {
+    padding: 30px 15vw;
+    .product-info {
+        display: flex;
+        gap: 30px;
 
-            & > img {
-                width: 40%;
-                border-radius: 20px;
-                aspect-ratio: 1 / 1;
-                object-fit: cover;
-            }
-            & > div {
-                width: calc(60% - 30px);
-                .title {
-                    font-size: 28px;
-                    font-weight: bold;
-                }
-                .mj {
-                    span:nth-child(1) {
-                        background-color: rgba($color: #ff0000, $alpha: 0.05);
-                        border: 1px solid #ff0000;
-                        border-radius: 4px;
-                        padding: 4px 6px;
-                        color: #ff0000;
-                    }
-                    span:nth-child(2) {
-                        margin-left: 15px;
-                        color: #666;
-                    }
-                }
-                .label {
-                }
-                .price {
-                    background-color: rgba($color: #fff, $alpha: 0.7);
-                }
-            }
+        & > img {
+            width: 40%;
+            border-radius: 20px;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
         }
-        .product-nav {
-            .active {
+        & > div {
+            width: calc(60% - 30px);
+            .title {
                 font-size: 28px;
                 font-weight: bold;
-                position: relative;
-                &::before {
-                    content: " ";
-                    width: 30px;
-                    height: 8px;
-                    border-radius: 20px;
-                    position: absolute;
-                    top: calc(100% + 2px);
-                    left: 50%;
-                    transform: translateX(-50%);
-                    background-color: black;
+            }
+            .mj {
+                span:nth-child(1) {
+                    background-color: rgba($color: #ff0000, $alpha: 0.05);
+                    border: 1px solid #ff0000;
+                    border-radius: 4px;
+                    padding: 4px 6px;
+                    color: #ff0000;
                 }
+                span:nth-child(2) {
+                    margin-left: 15px;
+                    color: #666;
+                }
+            }
+            .label {
+            }
+            .price {
+                background-color: rgba($color: #fff, $alpha: 0.7);
             }
         }
     }
+    .product-nav {
+        .active {
+            font-size: 28px;
+            font-weight: bold;
+            position: relative;
+            &::before {
+                content: " ";
+                width: 30px;
+                height: 8px;
+                border-radius: 20px;
+                position: absolute;
+                top: calc(100% + 2px);
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: black;
+            }
+        }
+    }
+}
 
-    // h5
-    .product-box-h5 {
+// h5
+.product-box-h5 {
+    display: none;
+}
+</style>
+
+<style lang="scss" scoped>
+@media screen and (max-width: 960px) {
+    .product-box-pc {
         display: none;
+    }
+    .product-box-h5 {
+        display: block;
+    }
+}
+
+// h5
+.product-box-h5 {
+    background-color: var(--main-color-3);
+    .sw {
+        aspect-ratio: 375 / 300;
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+        .custom-indicator {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            background: rgba(0, 0, 0, 0.1);
+            color: #fff;
+        }
+    }
+    .product-comment {
+    }
+    .product-price {
+        background-color: #fff;
+        .mj {
+            span:nth-child(1) {
+                background-color: rgba($color: #ff0000, $alpha: 0.05);
+                border: 1px solid #ff0000;
+                border-radius: 4px;
+                padding: 4px 6px;
+                color: #ff0000;
+            }
+            span:nth-child(2) {
+                margin-left: 15px;
+                color: #666;
+            }
+        }
     }
 }
 </style>
