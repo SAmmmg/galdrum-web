@@ -85,7 +85,7 @@
 
 <script setup lang="ts">
 const route = useRoute();
-const num = ref();
+const num = ref(1);
 const type = ref<"商品详情" | "商品评价">("商品详情");
 </script>
 
