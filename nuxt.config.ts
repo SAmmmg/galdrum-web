@@ -12,8 +12,10 @@ export default defineNuxtConfig({
                 },
             },
             content: ["./pages/**/*.{html,js,vue}", "./components/**/*.{html,js,vue}"],
+            important: true,
         },
     },
+
     devtools: { enabled: true },
 
     modules: ["@nuxtjs/i18n", "@element-plus/nuxt", "@pinia/nuxt", "@nuxtjs/tailwindcss", "@vant/nuxt", "nuxt-swiper"],
@@ -90,7 +92,7 @@ export default defineNuxtConfig({
     },
 
     i18n: {
-        baseUrl: process.env.NODE_ENV === "development" ? "http://localhost:3011" : "https://www.myimg.ai",
+        baseUrl: process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://www.myimg.ai",
         vueI18n: "./i18n.config.ts", // if you are using custom path, default
         defaultLocale: "zh_CN", // 默认语言
         locales: [
@@ -111,6 +113,7 @@ export default defineNuxtConfig({
         ],
         strategy: "prefix_except_default", // 路由是否要加入前缀（/zh、/en） 我不需要生成多语言路由 所以设为 no_prefix 其他设置请参考 https://i18n.nuxtjs.org/strategies
         // dynamicRouteParams: true,
+
         useSetI18nParams: true,
         detectBrowserLanguage: false, //浏览器检测语言
         // langDir: 'i18n/' //延迟加载

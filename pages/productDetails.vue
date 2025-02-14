@@ -126,8 +126,8 @@
                 </van-cell>
             </van-cell-group>
 
-            <div class="product-comment px-[16px] py-[10px] bg-white">
-                <p class="text-[16px]">用户评价</p>
+            <div class="product-comment px-[16px] py-[10px] bg-white" @click="navigateTo('/commentList')">
+                <p class="text-[16px] mb-[10px]">用户评价</p>
 
                 <swiper-container ref="swiperRef" :free-mode="true" slides-per-view="auto">
                     <swiper-slide v-for="el in 3" class="w-[80%] min-w-[250px] mr-[16px]">

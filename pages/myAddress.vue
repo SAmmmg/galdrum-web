@@ -6,7 +6,7 @@
                 <van-icon name="location" size="22" color="#131313" />
                 <div class="flex-[1] ml-[12px] mr-[18px]">
                     <p>
-                        <span class="text-[22px] font-black mr-[6px]">王小姐</span>
+                        <span class="text-[20px] font-black mr-[6px]">王小姐</span>
                         <span class="">18888888888</span>
                     </p>
                     <p>广东省 深圳市 南山区 桃源街道新视艺 创客公园B座602</p>

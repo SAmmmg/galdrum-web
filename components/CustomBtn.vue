@@ -36,8 +36,9 @@ const emits = defineEmits(["click"]);
 <style lang="scss" scoped>
 @media screen and (max-width: 960px) {
     .custom-btn {
-        height: 30px;
-        line-height: 30px;
+        font-size: 14px;
+        // height: 30px;
+        // line-height: 30px;
     }
 }
 </style>
