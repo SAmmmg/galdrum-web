@@ -2,7 +2,7 @@
     <div class="p-[16px] min-h-[calc(100vh-40px)] flex flex-col">
         <h5-Back class="mb-[20px]" title="我的地址" />
         <ul>
-            <li v-for="el in 5" class="flex items-center bg-[#f5f5f5] rounded-[10px] p-[16px] mb-[16px]">
+            <li v-for="el in 2" class="flex items-center bg-[#f5f5f5] rounded-[10px] p-[16px] mb-[16px]">
                 <van-icon name="location" size="22" color="#131313" />
                 <div class="flex-[1] ml-[12px] mr-[18px]">
                     <p>
@@ -14,6 +14,12 @@
                 <van-icon name="edit" size="22" color="#131313" />
             </li>
         </ul>
+
+        <div class="text-center">
+            <img class="w-[60%] mx-[auto] mb-[20px]" src="/public/image/Group 1000007177@3x.png" />
+            <span class="text-[18px]">暂无地址</span>
+        </div>
+
         <CustomBtn class="mt-auto" txt="新增地址" :active="true" />
     </div>
 </template>

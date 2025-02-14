@@ -51,3 +51,8 @@ html {
     --el-color-primary: var(--main-color-1);
     --el-dropdown-menuItem-hover-fill: #ccc !important;
 }
+
+:root:root {
+    // --van-button-primary-background: red;
+    --van-switch-on-background: var(--main-color-1);
+}
