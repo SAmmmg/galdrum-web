@@ -116,7 +116,7 @@ const selectZh = ref(false);
 @media screen and (max-width: 960px) {
     .header {
         height: 40px;
-        padding: 10px 10vw;
+        padding: 10px 20px;
     }
 }
 </style>

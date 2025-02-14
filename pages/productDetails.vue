@@ -46,7 +46,7 @@
                             <CustomBtn txt="立即购买" :active="true" />
                         </div>
                         <div class="w-[120px]">
-                            <CustomBtn class="w-[60px]" txt="加入购物车" />
+                            <CustomBtn txt="加入购物车" />
                         </div>
                     </div>
                 </div>
