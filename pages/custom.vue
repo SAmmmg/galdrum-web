@@ -12,13 +12,13 @@
                         <div class="mask" :class="{ activeMask: actRegion == 'B' }"></div>
                         <div class="mask" :class="{ activeMask: actRegion == 'C' }"></div>
                     </div>
-                    <div class="canvas">
+                    <div class="canvas" @click="preview('left')">
                         <CustomBtn @click="bang = 'left'" :active="bang == 'left'" txt="左棒" />
                         <canvas ref="left" width="1024" height="74"></canvas>
                     </div>
                     <div class="space"></div>
-                    <div class="canvas">
-                        <CustomBtn @click="bang = 'right'" :active="bang == 'right'" txt="右棒" />
+                    <div class="canvas" @click="preview('right')">
+                        <CustomBtn :active="bang == 'right'" txt="右棒" />
                         <canvas ref="right" width="1024" height="74"></canvas>
                     </div>
                     <div class="space"></div>
@@ -176,6 +176,31 @@
                 </div>
             </van-popup>
         </div>
+
+        <!-- 预览 -->
+        <van-image-preview
+            v-model:show="previewShow"
+            :images="previewImg"
+            :showIndex="false"
+            :loop="false"
+            :doubleScale="false"
+            :closeOnClickImage="false"
+            :closeOnClickOverlay="false"
+        >
+            <template #image="{ src }">
+                <div>
+                    <swiper-container ref="swiperRef" :free-mode="true" slides-per-view="auto">
+                        <swiper-slide class="w-[500vw] max-w-[500vw]">
+                            <img class="w-[500vw] max-w-[500vw]" :src="src" alt="" />
+                        </swiper-slide>
+                        <!-- <swiper-slide class="w-[500vw] max-w-[500vw]"></swiper-slide> -->
+                    </swiper-container>
+                    <p class="text-white text-center" @touchstart="previewShow = false" @click="previewShow = false">
+                        <van-icon name="close" size="24px" />
+                    </p>
+                </div>
+            </template>
+        </van-image-preview>
     </div>
 </template>
 
@@ -372,17 +397,27 @@ function beforeUpload(file: File) {
 
     return false;
 }
+
+const swiperRef = ref();
+const once = ref(false);
+const previewShow = ref(false);
+const previewImg = ref<string[]>([]);
 // 绘制logo
-function drawLogo(type: "left" | "right") {
-    let image = new Image();
-    image.onload = () => {
-        if (type == "left") {
-            leftCtx.drawImage(image, 0, 0, 1024, 74);
-        } else {
-            rightCtx.drawImage(image, 0, 0, 1024, 74);
-        }
-    };
-    image.src = "/image/鼓棒@2x.png";
+function preview(type: "left" | "right") {
+    let dom = type == "left" ? left.value : right.value;
+    let dataUrl = dom?.toDataURL() as string;
+    previewImg.value[0] = dataUrl;
+    previewShow.value = true;
+    // showImagePreview([dataUrl]);
+    if (once.value) return;
+    nextTick(() => {
+        once.value = true;
+        useSwiper(swiperRef, {
+            slidesPerView: "auto",
+            spaceBetween: 0,
+            freeMode: true,
+        });
+    });
 }
 </script>
 
@@ -392,10 +427,10 @@ function drawLogo(type: "left" | "right") {
     margin: 0 auto;
     padding: 0px 50px 50px;
     .custom-gb {
-        position: sticky;
-        top: 60px;
+        position: relative;
+        // top: 60px;
+        // z-index: 11;
         background-color: var(--main-color-3);
-        z-index: 11;
         & > div {
             padding-top: 50px;
         }
@@ -591,7 +626,9 @@ function drawLogo(type: "left" | "right") {
         .custom-gb {
             // width: calc(100% - 40px);
             // margin: 0 auto;
+            position: sticky;
             top: 40px;
+            z-index: 11;
             & > div {
                 margin: 0 auto;
 
