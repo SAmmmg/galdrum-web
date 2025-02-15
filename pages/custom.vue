@@ -1,28 +1,29 @@
 <template>
     <div style="background-color: var(--main-color-3)">
         <div class="custom-box">
-            <!-- #region 定制鼓棒 -->
+            <!-- 定制鼓棒  -->
             <div class="custom-gb">
-                <div class="mask-box">
-                    <div class="txt">A区</div>
-                    <div class="txt">B区</div>
-                    <div class="txt">C区</div>
-                    <div class="mask" :class="{ activeMask: actRegion == 'A' }"></div>
-                    <div class="mask" :class="{ activeMask: actRegion == 'B' }"></div>
-                    <div class="mask" :class="{ activeMask: actRegion == 'C' }"></div>
+                <div>
+                    <div class="mask-box">
+                        <div class="txt">A区</div>
+                        <div class="txt">B区</div>
+                        <div class="txt">C区</div>
+                        <div class="mask" :class="{ activeMask: actRegion == 'A' }"></div>
+                        <div class="mask" :class="{ activeMask: actRegion == 'B' }"></div>
+                        <div class="mask" :class="{ activeMask: actRegion == 'C' }"></div>
+                    </div>
+                    <div class="canvas">
+                        <CustomBtn @click="bang = 'left'" :active="bang == 'left'" txt="左棒" />
+                        <canvas ref="left" width="1024" height="74"></canvas>
+                    </div>
+                    <div class="space"></div>
+                    <div class="canvas">
+                        <CustomBtn @click="bang = 'right'" :active="bang == 'right'" txt="右棒" />
+                        <canvas ref="right" width="1024" height="74"></canvas>
+                    </div>
+                    <div class="space"></div>
                 </div>
-                <div class="canvas">
-                    <CustomBtn @click="bang = 'left'" :active="bang == 'left'" txt="左棒" />
-                    <canvas ref="left" width="1024" height="74"></canvas>
-                </div>
-                <div class="space"></div>
-                <div class="canvas">
-                    <CustomBtn @click="bang = 'right'" :active="bang == 'right'" txt="右棒" />
-                    <canvas ref="right" width="1024" height="74"></canvas>
-                </div>
-                <div class="space"></div>
             </div>
-            <!-- #endregion 定制鼓棒 -->
 
             <div class="set">
                 <div class="left">
@@ -59,26 +60,26 @@
                         <div class="title">选择颜色</div>
                         <div class="colors">
                             <div
-                                v-for="el in ['#0c5282', '#a34200']"
-                                :style="{ borderColor: el == form.txtColor ? el : 'transparent' }"
-                                @click="form.txtColor = el"
+                                v-for="el in colors"
+                                :style="{ borderColor: el == formItem.txtColor ? el : 'transparent' }"
+                                @click="formItem.txtColor = el"
                             >
                                 <div :style="{ backgroundColor: el }"></div>
                             </div>
                         </div>
 
                         <el-collapse accordion v-model="actRegion">
-                            <el-collapse-item title="A区" name="A">
+                            <el-collapse-item v-for="(el, k) in form" :title="k + '区'" :name="k">
                                 <template #icon="{ isActive }">
-                                    <img class="ml-auto w-[20px]" v-show="isActive" src="/image/Group 308@2x.png" alt="" />
-                                    <img class="ml-auto w-[20px]" v-show="!isActive" src="/image/Group 300@2x.png" alt="" />
+                                    <img class="ml-auto w-[20px]" @click.stop v-show="isActive" src="/image/Group 308@2x.png" alt="" />
+                                    <img class="ml-auto w-[20px]" @click.stop v-show="!isActive" src="/image/Group 300@2x.png" alt="" />
                                 </template>
                                 <div class="ipts">
-                                    <el-select v-model="form.fontFamily" placeholder="选择定制字体">
+                                    <el-select v-model="el.fontFamily" placeholder="选择定制字体">
                                         <el-option v-for="item in 3" :key="item" :label="item" :value="item" />
                                     </el-select>
-                                    <el-input placeholder="请输入文字内容" v-model="form.txt" />
-                                    <el-select v-model="form.icon" placeholder="选择定制图标" clearable>
+                                    <el-input placeholder="请输入文字内容" v-model.lazy="el.txt" />
+                                    <el-select v-model="el.icon" placeholder="选择定制图标" clearable>
                                         <el-option v-for="item in uploadIcon" :key="item" :value="item">
                                             <template #default>
                                                 <div style="height: 100%; display: flex; align-items: center; justify-content: center">
@@ -88,9 +89,7 @@
                                         </el-option>
 
                                         <template #label>
-                                            <img v-show="form.icon" :style="{ width: '20px' }" :src="form.icon" alt="" />
-                                            <!-- <span>阿弥诺斯</span> -->
-                                            <!-- <el-tag v-for="color in value" :key="color" :color="color" /> -->
+                                            <img v-show="el.icon" :style="{ width: '20px' }" :src="el.icon" alt="" />
                                         </template>
 
                                         <template #empty> 点击右侧按钮上传图标 </template>
@@ -103,9 +102,9 @@
                                     <el-tab-pane label="十二星座">
                                         <div class="icons">
                                             <img
-                                                @click="form.icon = el"
-                                                v-for="el in ['/image/Frame@2x(1).png', '/image/Frame@2x(2).png']"
-                                                :src="el"
+                                                @click="el.icon = ele"
+                                                v-for="ele in ['/image/Frame@2x(1).png', '/image/Frame@2x(2).png']"
+                                                :src="ele"
                                             />
                                         </div>
                                     </el-tab-pane>
@@ -184,86 +183,78 @@
 // import { CustomNumberIpt } from "#build/components";
 import { ShoppingCart } from "@element-plus/icons-vue";
 
+const colors = ref(["#0c5282", "#a34200", "#00754e", "#0074ff", "#FF6700", "#00DD99", "#E882B7", "#5BA300"]);
 const bang = ref<"left" | "right">("left");
 const left = ref<HTMLCanvasElement>();
 const right = ref<HTMLCanvasElement>();
 const drawerShow = ref(false);
-const actRegion = ref();
+const actRegion = ref<"A" | "B" | "C">("A");
 
 let leftCtx: CanvasRenderingContext2D;
 let rightCtx: CanvasRenderingContext2D;
 
-interface form {
+interface formItem {
+    // 文字
     txt: string;
-    fontFamily: string;
-    // 预设图标
-    icon: string;
-    // 用户定制图标
+    // 文字颜色
     txtColor: string;
-    // customIcon: string;
+    // 字体
+    fontFamily: string;
+    // 图标
+    icon: string;
+}
+interface form {
+    A: formItem;
+    B: formItem;
+    C: formItem;
 }
 const leftForm = reactive<form>({
-    txt: "",
-    fontFamily: "",
-    icon: "",
-    txtColor: "",
+    A: {
+        txt: "",
+        fontFamily: "",
+        icon: "",
+        txtColor: "",
+    },
+    B: {
+        txt: "",
+        fontFamily: "",
+        icon: "",
+        txtColor: "",
+    },
+    C: {
+        txt: "",
+        fontFamily: "",
+        icon: "",
+        txtColor: "",
+    },
 });
 const rightForm = reactive<form>({
-    txt: "",
-    fontFamily: "",
-    icon: "",
-    txtColor: "",
+    A: {
+        txt: "",
+        fontFamily: "",
+        icon: "",
+        txtColor: "",
+    },
+    B: {
+        txt: "",
+        fontFamily: "",
+        icon: "",
+        txtColor: "",
+    },
+    C: {
+        txt: "",
+        fontFamily: "",
+        icon: "",
+        txtColor: "",
+    },
 });
 const form = computed<form>(() => {
     return bang.value == "left" ? leftForm : rightForm;
 });
+const formItem = computed<formItem>(() => {
+    return form.value[actRegion.value];
+});
 const uploadIcon = ref<string[]>([]);
-
-let timer: NodeJS.Timeout;
-watch(leftForm, () => {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-        leftCtx.clearRect(0, 0, 1024, 74);
-
-        drawBot("left", () => {
-            leftCtx.font = "24px 'Songti TC'";
-            leftCtx.fillStyle = form.value.txtColor;
-            leftCtx.fillText(leftForm.txt, 300, 44);
-
-            let image = new Image();
-            image.onload = () => {
-                let w = image.width;
-                let h = image.height;
-                leftCtx.drawImage(image, 500, 17, w * (38 / h), 38);
-            };
-            image.src = form.value.icon;
-        });
-    }, 1000);
-});
-watch(rightForm, () => {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-        rightCtx.clearRect(0, 0, 1024, 74);
-
-        drawBot("right", () => {
-            rightCtx.font = "24px 'Songti TC'";
-            rightCtx.fillStyle = form.value.txtColor;
-            rightCtx.fillText(leftForm.txt, 300, 44);
-
-            let image = new Image();
-            image.onload = () => {
-                let w = image.width;
-                let h = image.height;
-                rightCtx.drawImage(image, 500, 17, w * (38 / h), 38);
-            };
-            image.src = "/image/logo@2x.png";
-        });
-    }, 1000);
-});
-watch(form, () => {
-    console.log("xxx");
-});
-
 onMounted(() => {
     leftCtx = left.value?.getContext("2d") as CanvasRenderingContext2D;
     rightCtx = right.value?.getContext("2d") as CanvasRenderingContext2D;
@@ -271,18 +262,102 @@ onMounted(() => {
     drawBot("left");
     drawBot("right");
 });
-// 绘制棒子
-function drawBot(type: "left" | "right", callBack?: Function) {
-    let image = new Image();
-    image.onload = () => {
-        if (type == "left") {
-            leftCtx.drawImage(image, 0, 0, 1024, 74);
-        } else {
-            rightCtx.drawImage(image, 0, 0, 1024, 74);
+for (const [key, val] of Object.entries(leftForm)) {
+    let timer: NodeJS.Timeout;
+    watch(
+        () => val,
+        newVal => {
+            clearTimeout(timer);
+            timer = setTimeout(async () => {
+                leftCtx.clearRect(0, 0, 1024, 74);
+                await drawBot("left");
+                drawIconTxt("left");
+            }, 1000);
+        },
+        {
+            deep: true,
         }
-        if (callBack) callBack();
-    };
-    image.src = "/image/鼓棒@2x.png";
+    );
+}
+
+for (const [key, val] of Object.entries(rightForm)) {
+    let timer: NodeJS.Timeout;
+    watch(
+        () => val,
+        newVal => {
+            clearTimeout(timer);
+            timer = setTimeout(async () => {
+                rightCtx.clearRect(0, 0, 1024, 74);
+                await drawBot("right");
+                drawIconTxt("right");
+            }, 1000);
+        },
+        {
+            deep: true,
+        }
+    );
+}
+
+// 绘制棒子
+async function drawBot(type: "left" | "right") {
+    return new Promise((res, rej) => {
+        let image = new Image();
+        let ctx = type == "left" ? leftCtx : rightCtx;
+        image.onload = () => {
+            // ctx.clearRect(0, 0, 1024, 74);
+            ctx.drawImage(image, 0, 0, 1024, 74);
+            res(true);
+        };
+        image.src = "/image/鼓棒@2x.png";
+    });
+}
+// 绘制图标和文字
+function drawIconTxt(type: "left" | "right") {
+    let ctx = type == "left" ? leftCtx : rightCtx;
+    let form = type == "left" ? leftForm : rightForm;
+
+    // ctx.clearRect(0, 0, 1024, 74);
+    for (const [key, val] of Object.entries(form)) {
+        if (key == "A") {
+            ctx.font = "24px 'Songti TC'";
+            ctx.fillStyle = val.txtColor;
+            ctx.fillText(val.txt, 210, 44);
+
+            let image = new Image();
+            image.onload = () => {
+                let w = image.width;
+                let h = image.height;
+                ctx.drawImage(image, 480, 17, w * (38 / h), 38);
+            };
+            image.src = val.icon;
+        }
+        if (key == "B") {
+            ctx.font = "24px 'Songti TC'";
+            ctx.fillStyle = val.txtColor;
+            ctx.fillText(val.txt, 670, 44);
+
+            let image = new Image();
+            image.onload = () => {
+                let w = image.width;
+                let h = image.height;
+                ctx.drawImage(image, 820, 17, w * (38 / h), 38);
+            };
+            image.src = val.icon;
+        }
+        if (key == "C") {
+            ctx.font = "24px 'Songti TC'";
+            ctx.fillStyle = val.txtColor;
+            ctx.fillText(val.txt, 890, 44);
+
+            let image = new Image();
+            image.onload = () => {
+                let w = image.width;
+                let h = image.height;
+                ctx.drawImage(image, 930, 17, w * (38 / h), 38);
+            };
+            image.src = val.icon;
+        }
+    }
 }
 // 自定义上传图标
 function beforeUpload(file: File) {
@@ -290,7 +365,7 @@ function beforeUpload(file: File) {
 
     reader.onload = function () {
         let img = reader.result as string;
-        form.value.icon = img;
+        formItem.value.icon = img;
         uploadIcon.value.push(img);
     };
     reader.readAsDataURL(file);
@@ -317,8 +392,13 @@ function drawLogo(type: "left" | "right") {
     margin: 0 auto;
     padding: 0px 50px 50px;
     .custom-gb {
-        padding-top: 50px;
-        position: relative;
+        position: sticky;
+        top: 60px;
+        background-color: var(--main-color-3);
+        z-index: 11;
+        & > div {
+            padding-top: 50px;
+        }
         .space {
             height: 30px;
             width: 100%;
@@ -333,6 +413,7 @@ function drawLogo(type: "left" | "right") {
             .txt {
                 position: absolute;
                 top: 20px;
+                cursor: pointer;
             }
             .txt:nth-of-type(1) {
                 left: 40%;
@@ -430,7 +511,8 @@ function drawLogo(type: "left" | "right") {
                 }
                 .colors {
                     display: flex;
-                    gap: 15px;
+                    gap: 10px;
+                    flex-wrap: wrap;
                     & > div {
                         width: 30px;
                         height: 30px;
@@ -507,8 +589,16 @@ function drawLogo(type: "left" | "right") {
         width: 100%;
         padding: 0px;
         .custom-gb {
-            width: calc(100% - 40px);
-            margin: 0 auto;
+            // width: calc(100% - 40px);
+            // margin: 0 auto;
+            top: 40px;
+            & > div {
+                margin: 0 auto;
+
+                width: calc(100% - 40px);
+                position: relative;
+            }
+
             .space {
                 height: 20px;
             }
