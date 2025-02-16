@@ -1,67 +1,72 @@
 <template>
-    <div style="background-color: var(--main-color-3)">
+    <div class="gen-box" style="">
         <div class="custom-box">
             <!-- 定制鼓棒  -->
-            <div class="custom-gb">
-                <div>
-                    <div class="mask-box">
-                        <div class="txt">A区</div>
-                        <div class="txt">B区</div>
-                        <div class="txt">C区</div>
-                        <div class="mask" :class="{ activeMask: actRegion == 'A' }"></div>
-                        <div class="mask" :class="{ activeMask: actRegion == 'B' }"></div>
-                        <div class="mask" :class="{ activeMask: actRegion == 'C' }"></div>
+            <div class="" id="target1">
+                <Teleport :to="tto">
+                    <div @click="preview" class="flex">
+                        <div class="flex flex-col w-[80px] justify-around">
+                            <CustomBtn class="font-Songti w-[60px]" :active="bang == 'left'" txt="左棒" />
+                            <CustomBtn class="font-Songti w-[60px]" :active="bang == 'right'" txt="右棒" />
+                        </div>
+                        <div class="flex flex-col flex-[1] py-[30px] relative">
+                            <!-- <div class="txt absolute">A区</div> -->
+                            <!-- <div class="txt absolute">B区</div> -->
+                            <!-- <div class="txt absolute">C区</div> -->
+                            <div class="mask absolute" :class="{ activeMask: actRegion == 'A' }">
+                                <div>A区</div>
+                            </div>
+                            <div class="mask absolute" :class="{ activeMask: actRegion == 'B' }">
+                                <div>B区</div>
+                            </div>
+                            <div class="mask absolute" :class="{ activeMask: actRegion == 'C' }">
+                                <div>C区</div>
+                            </div>
+                            <canvas class="w-full mb-[30px]" ref="left" width="1024" height="74"></canvas>
+                            <canvas class="w-full" ref="right" width="1024" height="74"></canvas>
+                        </div>
                     </div>
-                    <div class="canvas" @click="preview('left')">
-                        <CustomBtn @click="bang = 'left'" :active="bang == 'left'" txt="左棒" />
-                        <canvas ref="left" width="1024" height="74"></canvas>
-                    </div>
-                    <div class="space"></div>
-                    <div class="canvas" @click="preview('right')">
-                        <CustomBtn :active="bang == 'right'" txt="右棒" />
-                        <canvas ref="right" width="1024" height="74"></canvas>
-                    </div>
-                    <div class="space"></div>
-                </div>
+                </Teleport>
             </div>
 
             <div class="set">
                 <div class="left">
-                    <div class="title">选择你的鼓棒材质</div>
+                    <div class="title font-Songti">选择你的鼓棒材质</div>
                     <div class="btns">
                         <CustomBtn
+                            class="font-Songti"
                             tooltip-txt="演奏起来较敏捷，音色柔和。较适用与流行、JAZZ、FUNK等风格"
                             v-for="el in 3"
-                            style="background-color: var(--main-color-3)"
+                            style="background-color: #fffcf8"
                             txt="山胡桃木"
                         />
                     </div>
-                    <div class="title">选择你的鼓棒款式</div>
+                    <div class="title font-Songti">选择你的鼓棒款式</div>
                     <div class="btns">
-                        <CustomBtn v-for="el in 3" style="background-color: var(--main-color-3)" txt="山胡桃木" />
+                        <CustomBtn class="font-Songti" v-for="el in 3" style="background-color: #fffcf8" txt="山胡桃木" />
                     </div>
-                    <div class="title">选择您的槌头</div>
+                    <div class="title font-Songti">选择您的槌头</div>
                     <div class="btns">
-                        <CustomBtn v-for="el in 3" style="background-color: var(--main-color-3)" txt="山胡桃木" />
+                        <CustomBtn class="font-Songti" v-for="el in 3" style="background-color: #fffcf8" txt="山胡桃木" />
                     </div>
-                    <div class="title">选择你的鼓棒尺寸</div>
+                    <div class="title font-Songti">选择你的鼓棒尺寸</div>
                     <div class="btns">
-                        <CustomBtn v-for="el in 3" style="background-color: var(--main-color-3)" txt="山胡桃木" />
+                        <CustomBtn class="font-Songti" v-for="el in 3" style="background-color: #fffcf8" txt="山胡桃木" />
                     </div>
 
                     <el-divider border-style="dashed" />
 
-                    <h2>请开始设计你的鼓棒</h2>
+                    <h2 class="font-Songti">请开始设计你的鼓棒</h2>
                     <div class="sj">
                         <CustomBtn @click="bang = 'left'" :active="bang == 'left'" txt="左棒" />
                         <CustomBtn @click="bang = 'right'" :active="bang == 'right'" txt="右棒" />
                     </div>
                     <div class="sjgb">
-                        <div class="title">选择颜色</div>
+                        <div class="title font-bold">选择颜色</div>
                         <div class="colors">
                             <div
                                 v-for="el in colors"
-                                :style="{ borderColor: el == formItem.txtColor ? el : 'transparent' }"
+                                :style="{ borderColor: el == formItem?.txtColor ? el : 'transparent' }"
                                 @click="formItem.txtColor = el"
                             >
                                 <div :style="{ backgroundColor: el }"></div>
@@ -71,34 +76,41 @@
                         <el-collapse accordion v-model="actRegion">
                             <el-collapse-item v-for="(el, k) in form" :title="k + '区'" :name="k">
                                 <template #icon="{ isActive }">
-                                    <img class="ml-auto w-[20px]" @click.stop v-show="isActive" src="/image/Group 308@2x.png" alt="" />
-                                    <img class="ml-auto w-[20px]" @click.stop v-show="!isActive" src="/image/Group 300@2x.png" alt="" />
+                                    <img
+                                        class="ml-auto w-[20px]"
+                                        @click.stop="actRegion = k"
+                                        v-show="isActive"
+                                        src="/image/Group 1000007417@2x.png"
+                                    />
+                                    <img
+                                        class="ml-auto w-[20px]"
+                                        @click.stop="actRegion = k"
+                                        v-show="!isActive"
+                                        src="/image/Group 1000007416@2x.png"
+                                    />
                                 </template>
                                 <div class="ipts">
                                     <el-select v-model="el.fontFamily" placeholder="选择定制字体">
                                         <el-option v-for="item in 3" :key="item" :label="item" :value="item" />
                                     </el-select>
                                     <el-input placeholder="请输入文字内容" v-model.lazy="el.txt" />
-                                    <el-select v-model="el.icon" placeholder="选择定制图标" clearable>
-                                        <el-option v-for="item in uploadIcon" :key="item" :value="item">
-                                            <template #default>
-                                                <div style="height: 100%; display: flex; align-items: center; justify-content: center">
-                                                    <img :style="{ width: '20px' }" :src="item" />
-                                                </div>
-                                            </template>
-                                        </el-option>
-
-                                        <template #label>
-                                            <img v-show="el.icon" :style="{ width: '20px' }" :src="el.icon" alt="" />
+                                    <el-input class="custom-icon" placeholder="选择定制图标" readonly @click="el.showBox = !el.showBox">
+                                        <template #suffix>
+                                            <el-icon :class="el.showBox ? 'rotate-180' : 'rotate-0'">
+                                                <ArrowDown />
+                                            </el-icon>
                                         </template>
-
-                                        <template #empty> 点击右侧按钮上传图标 </template>
-                                    </el-select>
+                                    </el-input>
                                     <el-upload action="#" :before-upload="beforeUpload" :auto-upload="true">
                                         <CustomBtn txt="上传我的图标" :active="true" />
                                     </el-upload>
                                 </div>
-                                <el-tabs type="border-card">
+                                <el-tabs class="icon-box" type="border-card" v-show="el.showBox">
+                                    <el-tab-pane label="我的图标">
+                                        <div class="icons">
+                                            <img @click="el.icon = item" v-for="item in uploadIcon" :key="item" :src="item" />
+                                        </div>
+                                    </el-tab-pane>
                                     <el-tab-pane label="十二星座">
                                         <div class="icons">
                                             <img
@@ -180,7 +192,7 @@
         <!-- 预览 -->
         <van-image-preview
             v-model:show="previewShow"
-            :images="previewImg"
+            :images="['']"
             :showIndex="false"
             :loop="false"
             :doubleScale="false"
@@ -190,12 +202,11 @@
             <template #image="{ src }">
                 <div>
                     <swiper-container ref="swiperRef" :free-mode="true" slides-per-view="auto">
-                        <swiper-slide class="w-[500vw] max-w-[500vw]">
-                            <img class="w-[500vw] max-w-[500vw]" :src="src" alt="" />
+                        <swiper-slide class="w-[200vw] max-w-[200vw]" id="target2">
+                            <!-- <img class="w-[500vw] max-w-[500vw]" :src="src" /> -->
                         </swiper-slide>
-                        <!-- <swiper-slide class="w-[500vw] max-w-[500vw]"></swiper-slide> -->
                     </swiper-container>
-                    <p class="text-white text-center" @touchstart="previewShow = false" @click="previewShow = false">
+                    <p class="text-white text-center mt-[20px]" @touchstart="previewHide" @click="previewHide">
                         <van-icon name="close" size="24px" />
                     </p>
                 </div>
@@ -206,7 +217,7 @@
 
 <script setup lang="ts">
 // import { CustomNumberIpt } from "#build/components";
-import { ShoppingCart } from "@element-plus/icons-vue";
+import { ShoppingCart, ArrowDown } from "@element-plus/icons-vue";
 
 const colors = ref(["#0c5282", "#a34200", "#00754e", "#0074ff", "#FF6700", "#00DD99", "#E882B7", "#5BA300"]);
 const bang = ref<"left" | "right">("left");
@@ -227,6 +238,8 @@ interface formItem {
     fontFamily: string;
     // 图标
     icon: string;
+    // 显示图标选择盒子
+    showBox: boolean;
 }
 interface form {
     A: formItem;
@@ -239,18 +252,21 @@ const leftForm = reactive<form>({
         fontFamily: "",
         icon: "",
         txtColor: "",
+        showBox: false,
     },
     B: {
         txt: "",
         fontFamily: "",
         icon: "",
         txtColor: "",
+        showBox: false,
     },
     C: {
         txt: "",
         fontFamily: "",
         icon: "",
         txtColor: "",
+        showBox: false,
     },
 });
 const rightForm = reactive<form>({
@@ -259,18 +275,21 @@ const rightForm = reactive<form>({
         fontFamily: "",
         icon: "",
         txtColor: "",
+        showBox: false,
     },
     B: {
         txt: "",
         fontFamily: "",
         icon: "",
         txtColor: "",
+        showBox: false,
     },
     C: {
         txt: "",
         fontFamily: "",
         icon: "",
         txtColor: "",
+        showBox: false,
     },
 });
 const form = computed<form>(() => {
@@ -290,7 +309,7 @@ onMounted(() => {
 for (const [key, val] of Object.entries(leftForm)) {
     let timer: NodeJS.Timeout;
     watch(
-        () => val,
+        () => [val.txt, val.txtColor, val.fontFamily, val.icon],
         newVal => {
             clearTimeout(timer);
             timer = setTimeout(async () => {
@@ -337,7 +356,7 @@ async function drawBot(type: "left" | "right") {
     });
 }
 // 绘制图标和文字
-function drawIconTxt(type: "left" | "right") {
+async function drawIconTxt(type: "left" | "right") {
     let ctx = type == "left" ? leftCtx : rightCtx;
     let form = type == "left" ? leftForm : rightForm;
 
@@ -346,39 +365,39 @@ function drawIconTxt(type: "left" | "right") {
         if (key == "A") {
             ctx.font = "24px 'Songti TC'";
             ctx.fillStyle = val.txtColor;
-            ctx.fillText(val.txt, 210, 44);
+            ctx.fillText(val.txt, 170, 44);
 
             let image = new Image();
             image.onload = () => {
                 let w = image.width;
                 let h = image.height;
-                ctx.drawImage(image, 480, 17, w * (38 / h), 38);
+                ctx.drawImage(image, 435, 17, w * (38 / h), 38);
             };
             image.src = val.icon;
         }
         if (key == "B") {
             ctx.font = "24px 'Songti TC'";
             ctx.fillStyle = val.txtColor;
-            ctx.fillText(val.txt, 670, 44);
+            ctx.fillText(val.txt, 690, 44);
 
             let image = new Image();
             image.onload = () => {
                 let w = image.width;
                 let h = image.height;
-                ctx.drawImage(image, 820, 17, w * (38 / h), 38);
+                ctx.drawImage(image, 795, 17, w * (38 / h), 38);
             };
             image.src = val.icon;
         }
         if (key == "C") {
             ctx.font = "24px 'Songti TC'";
             ctx.fillStyle = val.txtColor;
-            ctx.fillText(val.txt, 890, 44);
+            ctx.fillText(val.txt, 860, 44);
 
             let image = new Image();
             image.onload = () => {
                 let w = image.width;
                 let h = image.height;
-                ctx.drawImage(image, 930, 17, w * (38 / h), 38);
+                ctx.drawImage(image, 940, 17, w * (38 / h), 38);
             };
             image.src = val.icon;
         }
@@ -398,108 +417,75 @@ function beforeUpload(file: File) {
     return false;
 }
 
+const tto = ref("#target1");
 const swiperRef = ref();
-const once = ref(false);
 const previewShow = ref(false);
-const previewImg = ref<string[]>([]);
 // 绘制logo
-function preview(type: "left" | "right") {
-    let dom = type == "left" ? left.value : right.value;
-    let dataUrl = dom?.toDataURL() as string;
-    previewImg.value[0] = dataUrl;
+function preview() {
     previewShow.value = true;
-    // showImagePreview([dataUrl]);
-    if (once.value) return;
     nextTick(() => {
-        once.value = true;
-        useSwiper(swiperRef, {
-            slidesPerView: "auto",
-            spaceBetween: 0,
-            freeMode: true,
-        });
+        setTimeout(() => {
+            tto.value = "#target2";
+        }, 0);
     });
+}
+
+function previewHide() {
+    previewShow.value = false;
+    tto.value = "#target1";
 }
 </script>
 
 <style lang="scss" scoped>
+.gen-box {
+    --van-image-preview-overlay-background: rgba(0, 0, 0, 0.5) !important;
+    background-color: #fffcf8;
+}
 .custom-box {
     width: 70vw;
     margin: 0 auto;
     padding: 0px 50px 50px;
-    .custom-gb {
-        position: relative;
-        // top: 60px;
-        // z-index: 11;
-        background-color: var(--main-color-3);
-        & > div {
-            padding-top: 50px;
-        }
-        .space {
-            height: 30px;
-            width: 100%;
-        }
-        .mask-box {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            z-index: 1;
-            .txt {
-                position: absolute;
-                top: 20px;
-                cursor: pointer;
-            }
-            .txt:nth-of-type(1) {
-                left: 40%;
-            }
-            .txt:nth-of-type(2) {
-                left: 75%;
-            }
-            .txt:nth-of-type(3) {
-                left: 90%;
-            }
-            .mask {
-                position: absolute;
-                top: 50px;
-                background-color: transparent;
-                // #e5e3dc
-                border: 1px dashed #dad7ce;
-                border-radius: 8px;
-                height: calc(100% - 70px);
-                transform: translateX(calc(-50% + 10px));
-            }
-            .activeMask {
-                background-color: #e5e3dc;
-            }
-            .mask:nth-of-type(4) {
-                left: 40%;
-                width: 30%;
-            }
-            .mask:nth-of-type(5) {
-                left: 75%;
-                width: 18%;
-            }
-            .mask:nth-of-type(6) {
-                left: 90%;
-                width: 9%;
-            }
-        }
+
+    #target1 {
+        position: sticky;
+        top: 60px;
+        background-color: #fffcf8;
+        z-index: 11;
+        padding-top: 20px;
         .canvas {
-            width: 100%;
-            display: flex;
-            align-items: center;
             position: relative;
-            z-index: 2;
-            button {
-                width: 60px;
-                border: 1px solid transparent;
-                background-color: transparent;
+        }
+        .mask {
+            position: absolute;
+            width: 100px;
+            height: calc(100% - 60px);
+            top: 30px;
+            background-color: transparent;
+            border: 1px dashed #dad7ce;
+            border-radius: 8px;
+            z-index: -1;
+            & > div {
+                position: absolute;
+                top: -30px;
+                left: 50%;
+                transform: translateX(-50%);
+                white-space: nowrap;
             }
-            & > canvas {
-                width: calc(100% - 60px);
-                height: auto;
-            }
+        }
+        .activeMask {
+            background-color: #e5e3dc;
+        }
+        .mask:nth-of-type(1) {
+            left: calc((100% * 160) / 1024);
+            width: calc((100% * 320) / 1024);
+        }
+        .mask:nth-of-type(2) {
+            left: calc((100% * 680) / 1024);
+            width: calc((100% * 160) / 1024);
+        }
+        .mask:nth-of-type(3) {
+            left: calc((100% * 850) / 1024);
+            width: calc((100% * 130) / 1024);
         }
     }
 
@@ -522,7 +508,8 @@ function preview(type: "left" | "right") {
                 display: flex;
                 margin-bottom: 30px;
                 & > button {
-                    background-color: var(--main-color-3);
+                    background-color: #fffcf8;
+                    width: 100px;
                 }
                 & > button:nth-of-type(1) {
                     border-top-right-radius: 0px;
@@ -536,9 +523,12 @@ function preview(type: "left" | "right") {
                 }
             }
             .sjgb {
-                background-color: var(--main-color-3);
+                background-color: #fffcf8;
                 padding: 20px;
+                border-radius: 10px;
+                border: 2px solid var(--main-color-3);
                 :deep(.el-collapse) {
+                    --el-collapse-border-color: var(--main-color-3);
                     button:not(.custom-btn),
                     div {
                         background-color: transparent !important;
@@ -548,6 +538,7 @@ function preview(type: "left" | "right") {
                     display: flex;
                     gap: 10px;
                     flex-wrap: wrap;
+                    margin-bottom: 20px;
                     & > div {
                         width: 30px;
                         height: 30px;
@@ -571,9 +562,19 @@ function preview(type: "left" | "right") {
                     margin-bottom: 10px;
                     & > div {
                         width: calc(50% - 5px);
+                        height: 32px;
                     }
                     .custom-btn {
                         width: 120px;
+                    }
+                    .custom-icon {
+                        :deep(.el-input__wrapper) {
+                            cursor: pointer;
+                            padding: 4px 12px;
+                        }
+                        :deep(input) {
+                            cursor: pointer;
+                        }
                     }
                 }
                 .icons {
@@ -588,6 +589,16 @@ function preview(type: "left" | "right") {
                         &:hover {
                             background-color: rgba($color: #000, $alpha: 0.1);
                         }
+                    }
+                }
+                .icon-box {
+                    border-radius: 10px;
+                    border-width: 2px;
+                    overflow: hidden;
+                    --el-border-color: var(--main-color-3) !important;
+                    --el-border-color-light: transparent !important;
+                    :deep(.is-active) {
+                        background-color: var(--main-color-3) !important;
                     }
                 }
             }
@@ -616,6 +627,50 @@ function preview(type: "left" | "right") {
 .fixed-bottom {
     display: none;
 }
+#target2 {
+    position: sticky;
+    top: 60px;
+    background-color: #fffcf8;
+    z-index: 11;
+    padding: 80px 60px 30px;
+    .canvas {
+        position: relative;
+    }
+    .mask {
+        position: absolute;
+        width: 100px;
+        height: calc(100% - 60px);
+        top: 30px;
+        background-color: transparent;
+        border: 3px dashed #dad7ce;
+        border-radius: 8px;
+        z-index: -1;
+        & > div {
+            font-size: 36px;
+            font-weight: bold;
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+        }
+    }
+    .activeMask {
+        background-color: #e5e3dc;
+    }
+    .mask:nth-of-type(1) {
+        left: calc((100% * 160) / 1024);
+        width: calc((100% * 320) / 1024);
+    }
+    .mask:nth-of-type(2) {
+        left: calc((100% * 680) / 1024);
+        width: calc((100% * 160) / 1024);
+    }
+    .mask:nth-of-type(3) {
+        left: calc((100% * 850) / 1024);
+        width: calc((100% * 130) / 1024);
+    }
+}
 </style>
 
 <style lang="scss" scoped>
@@ -624,11 +679,7 @@ function preview(type: "left" | "right") {
         width: 100%;
         padding: 0px;
         .custom-gb {
-            // width: calc(100% - 40px);
-            // margin: 0 auto;
-            position: sticky;
             top: 40px;
-            z-index: 11;
             & > div {
                 margin: 0 auto;
 
@@ -654,7 +705,7 @@ function preview(type: "left" | "right") {
                 margin-right: 0px;
                 padding: 20px;
                 .sjgb {
-                    border: 2px solid var(--main-color-3);
+                    border: 2px solid #fffcf8;
                     border-radius: 8px;
                 }
             }
@@ -667,6 +718,19 @@ function preview(type: "left" | "right") {
             }
         }
     }
+    #target1 {
+        top: 40px !important;
+        padding: 0 20px;
+    }
+    #target2 {
+        padding: 60px 40px 20px;
+        .mask {
+            & > div {
+                top: -60px;
+                font-size: 30px;
+            }
+        }
+    }
     .fixed-bottom {
         display: flex;
         position: fixed;
@@ -676,7 +740,7 @@ function preview(type: "left" | "right") {
         height: 60px;
         align-items: center;
         background-color: white;
-        border-top: 1px solid var(--main-color-3);
+        border-top: 1px solid #fffcf8;
         padding-left: 20px;
         gap: 10px;
         z-index: 1010;

@@ -1,10 +1,10 @@
 <template>
-    <div class="flex flex-col items-center min-h-[calc(100vh-40px)]" style="padding: 100px 40px 0">
-        <img width="100" src="/public/image/pay_success.png" />
+    <div class="flex flex-col items-center min-h-[calc(100vh-40px)] pay-result" style="padding: 100px 40px 0">
+        <img width="100" :src="type == 'success' ? '/image/pay_success.png' : '/image/pay_error.png'" />
         <span class="text-[18px]" style="margin: 20px 0px 40px">支付{{ type == "success" ? "成功" : "失败" }}</span>
-        <div class="w-full flex gap-[20px]">
-            <CustomBtn class="flex-[1]" txt="查看订单" :active="true" />
-            <CustomBtn class="flex-[1]" txt="返回首页" @click="navigateTo('/')" />
+        <div class="w-full flex gap-[20px] justify-center">
+            <CustomBtn class="w-[120px]" txt="查看订单" :active="true" />
+            <CustomBtn class="w-[120px]" txt="返回首页" @click="navigateTo('/')" />
         </div>
     </div>
 </template>
@@ -17,4 +17,13 @@ if (route.query.type == "error") {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.pay-result {
+    background-color: var(--main-color-3);
+}
+@media screen and (max-width: 960px) {
+    .pay-result {
+        background-color: #fff;
+    }
+}
+</style>
