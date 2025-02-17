@@ -6,9 +6,13 @@ export default defineNuxtConfig({
             theme: {
                 screens: {
                     // 0~960
-                    h5: "0px",
+                    h5: {
+                        max: "960px",
+                    },
                     // 960~~
-                    pc: "960px",
+                    pc: {
+                        min: "960px",
+                    },
                 },
             },
             content: ["./pages/**/*.{html,js,vue}", "./components/**/*.{html,js,vue}"],

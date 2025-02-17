@@ -5,14 +5,16 @@
             <div class="" id="target1">
                 <Teleport :to="tto">
                     <div @click="preview" class="flex">
-                        <div class="flex flex-col w-[80px] justify-around">
-                            <CustomBtn class="font-Songti w-[60px]" :active="bang == 'left'" txt="左棒" />
-                            <CustomBtn class="font-Songti w-[60px]" :active="bang == 'right'" txt="右棒" />
+                        <div class="flex flex-col flexBtn" v-if="tto == '#target1'">
+                            <CustomBtn
+                                class="font-Songti w-full h5:mb-[10px] pc:mb-[30px]"
+                                @click.stop="bang = 'left'"
+                                :active="bang == 'left'"
+                                txt="左棒"
+                            />
+                            <CustomBtn class="font-Songti w-full" @click.stop="bang = 'right'" :active="bang == 'right'" txt="右棒" />
                         </div>
                         <div class="flex flex-col flex-[1] py-[30px] relative">
-                            <!-- <div class="txt absolute">A区</div> -->
-                            <!-- <div class="txt absolute">B区</div> -->
-                            <!-- <div class="txt absolute">C区</div> -->
                             <div class="mask absolute" :class="{ activeMask: actRegion == 'A' }">
                                 <div>A区</div>
                             </div>
@@ -22,7 +24,7 @@
                             <div class="mask absolute" :class="{ activeMask: actRegion == 'C' }">
                                 <div>C区</div>
                             </div>
-                            <canvas class="w-full mb-[30px]" ref="left" width="1024" height="74"></canvas>
+                            <canvas class="w-full h5:mb-[10px] pc:mb-[30px]" ref="left" width="1024" height="74"></canvas>
                             <canvas class="w-full" ref="right" width="1024" height="74"></canvas>
                         </div>
                     </div>
@@ -31,33 +33,45 @@
 
             <div class="set">
                 <div class="left">
-                    <div class="title font-Songti">选择你的鼓棒材质</div>
-                    <div class="btns">
+                    <div class="title font-Songti pc:mb-[15px] h5:mb-[20px]">选择你的鼓棒材质</div>
+                    <div class="btns mb-[20px]">
                         <CustomBtn
-                            class="font-Songti"
+                            class="font-Songti border-[#d6d6d6] bg-[var(--main-color-3)] text-[#00000080]"
                             tooltip-txt="演奏起来较敏捷，音色柔和。较适用与流行、JAZZ、FUNK等风格"
                             v-for="el in 3"
-                            style="background-color: #fffcf8"
                             txt="山胡桃木"
                         />
                     </div>
-                    <div class="title font-Songti">选择你的鼓棒款式</div>
-                    <div class="btns">
-                        <CustomBtn class="font-Songti" v-for="el in 3" style="background-color: #fffcf8" txt="山胡桃木" />
+                    <div class="title font-Songti pc:mb-[15px] h5:mb-[20px]">选择你的鼓棒款式</div>
+                    <div class="btns mb-[20px]">
+                        <CustomBtn
+                            class="font-Songti border-[#d6d6d6] bg-[var(--main-color-3)] text-[#00000080]"
+                            v-for="el in 3"
+                            txt="山胡桃木"
+                        />
                     </div>
-                    <div class="title font-Songti">选择您的槌头</div>
-                    <div class="btns">
-                        <CustomBtn class="font-Songti" v-for="el in 3" style="background-color: #fffcf8" txt="山胡桃木" />
+                    <div class="title font-Songti pc:mb-[15px] h5:mb-[20px]">选择您的槌头</div>
+                    <div class="btns mb-[20px]">
+                        <CustomBtn
+                            class="font-Songti border-[#d6d6d6] bg-[var(--main-color-3)] text-[#00000080]"
+                            v-for="el in 3"
+                            txt="山胡桃木"
+                        />
                     </div>
-                    <div class="title font-Songti">选择你的鼓棒尺寸</div>
-                    <div class="btns">
-                        <CustomBtn class="font-Songti" v-for="el in 3" style="background-color: #fffcf8" txt="山胡桃木" />
+                    <div class="title font-Songti pc:mb-[15px] h5:mb-[20px]">选择你的鼓棒尺寸</div>
+                    <div class="btns mb-[20px]">
+                        <CustomBtn
+                            class="font-Songti border-[#d6d6d6] bg-[var(--main-color-3)] text-[#00000080]"
+                            v-for="el in 3"
+                            txt="山胡桃木"
+                        />
                     </div>
 
-                    <el-divider border-style="dashed" />
+                    <!-- <el-divider border-style="dashed" /> -->
+                    <div class="mb-[20px] w-full border-dashed border-2 border-[var(--main-color-3)] h-[1px]"></div>
 
-                    <h2 class="font-Songti">请开始设计你的鼓棒</h2>
-                    <div class="sj">
+                    <h2 class="font-Songti pc:mb-[30px] h5:mb-[10px]">请开始设计您的鼓棒</h2>
+                    <div class="sj pc:mb-[30px] h5:mb-[10px]">
                         <CustomBtn @click="bang = 'left'" :active="bang == 'left'" txt="左棒" />
                         <CustomBtn @click="bang = 'right'" :active="bang == 'right'" txt="右棒" />
                     </div>
@@ -89,23 +103,34 @@
                                         src="/image/Group 1000007416@2x.png"
                                     />
                                 </template>
-                                <div class="ipts">
-                                    <el-select v-model="el.fontFamily" placeholder="选择定制字体">
-                                        <el-option v-for="item in 3" :key="item" :label="item" :value="item" />
+                                <div class="ipts flex flex-wrap gap-[10px] mb-[10px]">
+                                    <el-select class="h5:w-full" v-model="el.fontFamily" placeholder="选择定制字体">
+                                        <template #label>
+                                            <span :style="{ fontFamily: el.fontFamily }">{{ el.fontFamily }}</span>
+                                        </template>
+                                        <el-option v-for="item in fonts" :key="item" :label="item" :value="item">
+                                            <span :style="{ fontFamily: item }">ABCabc123({{ item }})</span>
+                                        </el-option>
                                     </el-select>
-                                    <el-input placeholder="请输入文字内容" v-model.lazy="el.txt" />
-                                    <el-input class="custom-icon" placeholder="选择定制图标" readonly @click="el.showBox = !el.showBox">
+                                    <el-input class="h5:w-full" placeholder="请输入文字内容" v-model.lazy="el.txt" />
+                                    <el-input
+                                        class="custom-icon h5:w-full"
+                                        placeholder="选择定制图标"
+                                        readonly
+                                        @click="el.showBox = !el.showBox"
+                                    >
                                         <template #suffix>
-                                            <el-icon :class="el.showBox ? 'rotate-180' : 'rotate-0'">
+                                            <el-icon @click.stop="el.showBox = !el.showBox" :class="el.showBox ? 'rotate-180' : 'rotate-0'">
                                                 <ArrowDown />
                                             </el-icon>
                                         </template>
                                     </el-input>
-                                    <el-upload action="#" :before-upload="beforeUpload" :auto-upload="true">
-                                        <CustomBtn txt="上传我的图标" :active="true" />
+                                    <!--  -->
+                                    <el-upload class="h5:hidden" action="#" :before-upload="beforeUpload" :auto-upload="true">
+                                        <CustomBtn class="h5:hidden" txt="上传我的图标" :active="true" />
                                     </el-upload>
                                 </div>
-                                <el-tabs class="icon-box" type="border-card" v-show="el.showBox">
+                                <el-tabs class="icon-box h5:mb-[10px]" type="border-card" v-show="el.showBox">
                                     <el-tab-pane label="我的图标">
                                         <div class="icons">
                                             <img @click="el.icon = item" v-for="item in uploadIcon" :key="item" :src="item" />
@@ -122,6 +147,10 @@
                                     </el-tab-pane>
                                     <el-tab-pane label="十二生肖"></el-tab-pane>
                                 </el-tabs>
+                                <!--  -->
+                                <el-upload class="pc:hidden" action="#" :before-upload="beforeUpload" :auto-upload="true">
+                                    <CustomBtn class="pc:hidden w-full" txt="上传我的图标" :active="true" />
+                                </el-upload>
                             </el-collapse-item>
                         </el-collapse>
                     </div>
@@ -144,9 +173,9 @@
                             </label>
                         </p>
                     </form>
-                    <div class="title" style="text-align: right">总计：￥55</div>
-                    <CustomBtn style="margin-bottom: 10px" txt="加入购物袋" />
-                    <CustomBtn style="margin-bottom: 10px" txt="立即购买" :active="true" />
+                    <div class="title text-right">总计：￥55</div>
+                    <CustomBtn class="mb-[10px]" txt="加入购物袋" />
+                    <CustomBtn txt="立即购买" :active="true" />
                 </div>
             </div>
         </div>
@@ -219,6 +248,18 @@
 // import { CustomNumberIpt } from "#build/components";
 import { ShoppingCart, ArrowDown } from "@element-plus/icons-vue";
 
+const fonts = ref([
+    "AlexBrush-Regular",
+    "Ballpark Weiner",
+    "Cooper Regular",
+    "HarringtON",
+    "Old English",
+    "Sofia-Regular",
+    "Stencil",
+    "engravers_t",
+    "gabriola",
+    "honey_script_semibold",
+]);
 const colors = ref(["#0c5282", "#a34200", "#00754e", "#0074ff", "#FF6700", "#00DD99", "#E882B7", "#5BA300"]);
 const bang = ref<"left" | "right">("left");
 const left = ref<HTMLCanvasElement>();
@@ -347,12 +388,26 @@ async function drawBot(type: "left" | "right") {
     return new Promise((res, rej) => {
         let image = new Image();
         let ctx = type == "left" ? leftCtx : rightCtx;
-        image.onload = () => {
+        image.onload = async () => {
             // ctx.clearRect(0, 0, 1024, 74);
             ctx.drawImage(image, 0, 0, 1024, 74);
+            await drawLogo(type);
             res(true);
         };
         image.src = "/image/鼓棒@2x.png";
+    });
+}
+async function drawLogo(type: "left" | "right") {
+    return new Promise((res, rej) => {
+        let image = new Image();
+        let ctx = type == "left" ? leftCtx : rightCtx;
+        image.onload = () => {
+            let w = image.width;
+            let h = image.height;
+            ctx.drawImage(image, 520, 18, w * (36 / h), 36);
+            res(true);
+        };
+        image.src = "/image/logo_black.png";
     });
 }
 // 绘制图标和文字
@@ -360,44 +415,46 @@ async function drawIconTxt(type: "left" | "right") {
     let ctx = type == "left" ? leftCtx : rightCtx;
     let form = type == "left" ? leftForm : rightForm;
 
-    // ctx.clearRect(0, 0, 1024, 74);
     for (const [key, val] of Object.entries(form)) {
         if (key == "A") {
-            ctx.font = "24px 'Songti TC'";
+            ctx.textAlign = "right";
+            ctx.font = `24px '${val.fontFamily}'`;
             ctx.fillStyle = val.txtColor;
-            ctx.fillText(val.txt, 170, 44);
+            ctx.fillText(val.txt, 470, 44);
 
             let image = new Image();
             image.onload = () => {
                 let w = image.width;
                 let h = image.height;
-                ctx.drawImage(image, 435, 17, w * (38 / h), 38);
+                ctx.drawImage(image, 170, 17, w * (38 / h), 38);
             };
             image.src = val.icon;
         }
         if (key == "B") {
-            ctx.font = "24px 'Songti TC'";
+            ctx.textAlign = "right";
+            ctx.font = `24px '${val.fontFamily}'`;
             ctx.fillStyle = val.txtColor;
-            ctx.fillText(val.txt, 690, 44);
+            ctx.fillText(val.txt, 830, 44);
 
             let image = new Image();
             image.onload = () => {
                 let w = image.width;
                 let h = image.height;
-                ctx.drawImage(image, 795, 17, w * (38 / h), 38);
+                ctx.drawImage(image, 685, 17, w * (38 / h), 38);
             };
             image.src = val.icon;
         }
         if (key == "C") {
-            ctx.font = "24px 'Songti TC'";
+            ctx.textAlign = "right";
+            ctx.font = `24px '${val.fontFamily}'`;
             ctx.fillStyle = val.txtColor;
-            ctx.fillText(val.txt, 860, 44);
+            ctx.fillText(val.txt, 975, 44);
 
             let image = new Image();
             image.onload = () => {
                 let w = image.width;
                 let h = image.height;
-                ctx.drawImage(image, 940, 17, w * (38 / h), 38);
+                ctx.drawImage(image, 855, 17, w * (38 / h), 38);
             };
             image.src = val.icon;
         }
@@ -417,10 +474,10 @@ function beforeUpload(file: File) {
     return false;
 }
 
-const tto = ref("#target1");
+const tto = ref<"#target1" | "#target2">("#target1");
 const swiperRef = ref();
 const previewShow = ref(false);
-// 绘制logo
+// 预览
 function preview() {
     previewShow.value = true;
     nextTick(() => {
@@ -494,7 +551,7 @@ function previewHide() {
         align-items: flex-start;
         .title {
             font-size: 18px;
-            margin-bottom: 15px;
+            // margin-bottom: 15px;
         }
         .left,
         .right {
@@ -506,10 +563,11 @@ function previewHide() {
             margin-right: 10px;
             .sj {
                 display: flex;
-                margin-bottom: 30px;
+                // margin-bottom: 30px;
                 & > button {
                     background-color: #fffcf8;
                     width: 100px;
+                    border-color: #d6d6d6;
                 }
                 & > button:nth-of-type(1) {
                     border-top-right-radius: 0px;
@@ -519,7 +577,6 @@ function previewHide() {
                 & > button:nth-of-type(2) {
                     border-top-left-radius: 0px;
                     border-bottom-left-radius: 0px;
-                    // border-left: none;
                 }
             }
             .sjgb {
@@ -527,6 +584,7 @@ function previewHide() {
                 padding: 20px;
                 border-radius: 10px;
                 border: 2px solid var(--main-color-3);
+
                 :deep(.el-collapse) {
                     --el-collapse-border-color: var(--main-color-3);
                     button:not(.custom-btn),
@@ -556,10 +614,10 @@ function previewHide() {
                     }
                 }
                 .ipts {
-                    display: flex;
-                    gap: 10px;
-                    flex-wrap: wrap;
-                    margin-bottom: 10px;
+                    // display: flex;
+                    // gap: 10px;
+                    // flex-wrap: wrap;
+                    // margin-bottom: 10px;
                     & > div {
                         width: calc(50% - 5px);
                         height: 32px;
@@ -616,11 +674,11 @@ function previewHide() {
         .btns {
             display: flex;
             gap: 20px;
-            margin-bottom: 30px;
+            // margin-bottom: 30px;
         }
         h2 {
             font-size: 28px;
-            margin-bottom: 30px;
+            // margin-bottom: 30px;
         }
     }
 }
@@ -671,6 +729,20 @@ function previewHide() {
         width: calc((100% * 130) / 1024);
     }
 }
+.flexBtn {
+    width: 60px;
+    margin-right: 20px;
+    justify-content: center;
+    button {
+        border-color: transparent;
+        background-color: transparent;
+    }
+}
+:deep(.el-upload) {
+    width: 100%;
+    // text-align: left;
+    justify-content: start;
+}
 </style>
 
 <style lang="scss" scoped>
@@ -705,8 +777,8 @@ function previewHide() {
                 margin-right: 0px;
                 padding: 20px;
                 .sjgb {
-                    border: 2px solid #fffcf8;
-                    border-radius: 8px;
+                    // border: 2px solid #fffcf8;
+                    // border-radius: 8px;
                 }
             }
             .left,
@@ -761,6 +833,14 @@ function previewHide() {
                 background-color: var(--main-color-1);
                 color: white;
             }
+        }
+    }
+    .flexBtn {
+        width: 40px;
+        margin-right: 10px;
+        button {
+            height: 24px;
+            line-height: 22px;
         }
     }
 }

@@ -1,5 +1,5 @@
 <template>
-    <button class="custom-btn" :class="props.active ? 'active' : ''" @click="emits('click')">
+    <button class="custom-btn" :class="props.active ? 'active' : ''">
         <el-tooltip v-if="tooltipTxt" :content="tooltipTxt" raw-content placement="top" effect="light" :show-arrow="false">
             <span style="width: 100%; height: 100%; display: block">{{ props.txt || "文字" }}</span>
         </el-tooltip>
@@ -14,7 +14,6 @@ const props = defineProps<{
     txt?: String;
     tooltipTxt?: string;
 }>();
-const emits = defineEmits(["click"]);
 </script>
 
 <style lang="scss" scoped>

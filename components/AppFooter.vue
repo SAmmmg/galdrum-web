@@ -2,15 +2,15 @@
     <div class="footer">
         <div class="link">
             <div class="left">
-                <img src="/assets/logo@3x.png" alt="" />
+                <img src="/image/logo_white.png" />
                 <br />
                 <p>地址：广东省 深圳市 南山区 民企科技园 3栋601</p>
                 <p>邮箱：840112676@qq.com</p>
                 <br />
                 <p>
-                    <img src="/assets/Group 210@3x.png" alt="" />
-                    <img src="/assets/Group 214@3x.png" alt="" />
-                    <img src="/assets/Group 209@3x.png" alt="" />
+                    <img src="/image/Group 210@3x.png" />
+                    <img src="/image/Group 214@3x.png" />
+                    <img src="/image/Group 209@3x.png" />
                 </p>
             </div>
             <ul class="right">
@@ -45,7 +45,7 @@
     display: flex;
     flex-direction: column;
     color: white;
-    background: var(--main-color-1) no-repeat right 15% bottom 20% url("/assets/Mask group@3x.png");
+    background: var(--main-color-1) no-repeat right 15% bottom 20% url("/image/Mask group.png");
     background-size: auto 115%;
 
     .link {

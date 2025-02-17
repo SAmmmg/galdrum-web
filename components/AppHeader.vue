@@ -21,7 +21,7 @@ const selectZh = ref(false);
 
 <template>
     <div class="header">
-        <img src="/assets/logo@3x.png" alt="" />
+        <img src="/image/logo_white.png" alt="" />
         <div style="margin-left: auto; display: flex; align-items: center; gap: 20px">
             <div class="ppgs">品牌故事</div>
             <el-dropdown trigger="click" @visible-change="(val:boolean )=>selectZh=val">
@@ -63,7 +63,7 @@ const selectZh = ref(false);
     display: flex;
     align-items: center;
     z-index: 99;
-    background: var(--main-color-1) no-repeat right 15% bottom 45% url("/assets/Mask group@3x.png");
+    background: var(--main-color-1) no-repeat right 15% bottom 45% url("/image/Mask group.png");
     background-size: auto 180%;
     top: 0px;
     left: 0px;
