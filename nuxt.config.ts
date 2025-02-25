@@ -22,7 +22,17 @@ export default defineNuxtConfig({
 
     devtools: { enabled: true },
 
-    modules: ["@nuxtjs/i18n", "@element-plus/nuxt", "@pinia/nuxt", "@nuxtjs/tailwindcss", "@vant/nuxt", "nuxt-swiper"],
+    modules: [
+        "@nuxtjs/i18n",
+        "@element-plus/nuxt",
+        "@pinia/nuxt",
+        "@nuxtjs/tailwindcss",
+        "@vant/nuxt",
+        "nuxt-swiper",
+        // "pinia-plugin-persistedstate/nuxt",
+    ],
+
+    // "pinia-plugin-persistedstate"
     vite: {
         css: {
             preprocessorOptions: {

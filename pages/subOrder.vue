@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-[var(--main-color-3)]" @click="show = true">
+    <div class="bg-[var(--main-color-3)]">
         <div class="bg-[var(--main-color-1)] text-white">
             <h5-Back class="p-[16px] header" icon-color="white" title="提交订单" />
             <p class="pl-[30px] text-[20px] mb-[16px]">登待付款</p>
@@ -115,22 +115,11 @@
             </div>
         </van-popup>
     </div>
-
-    <van-popup v-model:show="show" style="background: transparent">
-        <div class="bg-white w-[calc(100vw-40px)] rounded-[20px] p-[20px]">
-            <span @click="show = false">内容</span>
-        </div>
-        <div class="mt-[20px] text-center">
-            <van-icon name="close" size="30px" color="#fff" @click="show = false" />
-        </div>
-    </van-popup>
 </template>
 
 <script setup lang="ts">
 import { ShoppingCart } from "@element-plus/icons-vue";
 
-const show = ref(false);
-const val = ref(1);
 const drawerShow = ref(false);
 </script>
 

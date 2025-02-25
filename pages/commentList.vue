@@ -23,16 +23,25 @@
                 </div>
             </li>
         </ul>
+
+        <van-image-preview v-model:show="show" :images="images" :start-position="index">
+            <template #image="{ src, style, onLoad }">
+                <img class="w-[90%] mx-auto" :src="src" :style="[style]" />
+            </template>
+        </van-image-preview>
     </div>
 </template>
 
 <script setup lang="ts">
 const imgs = ref(["/image/Group 622.png", "/image/Group 622.png", "/image/Group 622.png", "/image/Group 622.png", "/image/Group 622.png"]);
+
+const show = ref(false);
+const images = ref();
+const index = ref(0);
 function preview(data: string[], idx: number) {
-    showImagePreview({
-        images: data,
-        startPosition: idx,
-    });
+    images.value = data;
+    index.value = idx;
+    show.value = true;
 }
 </script>
 

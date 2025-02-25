@@ -174,13 +174,13 @@
                         </p>
                     </form>
                     <div class="title text-right">总计：￥55</div>
-                    <CustomBtn class="mb-[10px]" txt="加入购物袋" />
+                    <CustomBtn class="mb-[10px]" txt="加入购物袋" @click="show = true" />
                     <CustomBtn txt="立即购买" :active="true" />
                 </div>
             </div>
         </div>
 
-        <!-- 抽屉 -->
+        <!-- h5 抽屉 -->
         <div class="fixed-bottom">
             <el-badge :value="1">
                 <el-icon :size="28" @click="drawerShow = true">
@@ -218,7 +218,7 @@
             </van-popup>
         </div>
 
-        <!-- 预览 -->
+        <!-- 放大预览鼓棒 -->
         <van-image-preview
             v-model:show="previewShow"
             :images="['']"
@@ -241,6 +241,17 @@
                 </div>
             </template>
         </van-image-preview>
+
+        <CustomPopup v-model="show" :show-close="false">
+            <div class="w-[100%] p-[40px] flex flex-col items-center">
+                <img src="/public/image/Group 652@2x.png" class="w-[70%]" />
+                <p class="text-[24px] mt-[10px]">加入购物车成功！</p>
+                <div class="flex gap-[20px] my-[20px] w-full">
+                    <custom-btn class="flex-[1]" txt="查看购物车" :active="true" />
+                    <custom-btn class="flex-[1]" txt="返回首页" />
+                </div>
+            </div>
+        </CustomPopup>
     </div>
 </template>
 
@@ -248,6 +259,7 @@
 // import { CustomNumberIpt } from "#build/components";
 import { ShoppingCart, ArrowDown } from "@element-plus/icons-vue";
 
+const show = ref(false);
 const fonts = ref([
     "AlexBrush-Regular",
     "Ballpark Weiner",
