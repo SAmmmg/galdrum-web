@@ -10,19 +10,24 @@
                                 class="font-Songti w-full h5:mb-[10px] pc:mb-[30px]"
                                 @click.stop="bang = 'left'"
                                 :active="bang == 'left'"
-                                txt="左棒"
+                                :txt="$t('custom.drumstick.design.leftStick')"
                             />
-                            <CustomBtn class="font-Songti w-full" @click.stop="bang = 'right'" :active="bang == 'right'" txt="右棒" />
+                            <CustomBtn 
+                                class="font-Songti w-full" 
+                                @click.stop="bang = 'right'" 
+                                :active="bang == 'right'" 
+                                :txt="$t('custom.drumstick.design.rightStick')" 
+                            />
                         </div>
                         <div class="flex flex-col flex-[1] py-[30px] relative">
                             <div class="mask absolute" :class="{ activeMask: actRegion == 'A' }">
-                                <div>A区</div>
+                                <div>{{ $t('custom.drumstick.design.regions.A') }}</div>
                             </div>
                             <div class="mask absolute" :class="{ activeMask: actRegion == 'B' }">
-                                <div>B区</div>
+                                <div>{{ $t('custom.drumstick.design.regions.B') }}</div>
                             </div>
                             <div class="mask absolute" :class="{ activeMask: actRegion == 'C' }">
-                                <div>C区</div>
+                                <div>{{ $t('custom.drumstick.design.regions.C') }}</div>
                             </div>
                             <canvas class="w-full h5:mb-[10px] pc:mb-[30px]" ref="left" width="1024" height="74"></canvas>
                             <canvas class="w-full" ref="right" width="1024" height="74"></canvas>
@@ -33,50 +38,57 @@
 
             <div class="set">
                 <div class="left">
-                    <div class="title font-Songti pc:mb-[15px] h5:mb-[20px]">选择你的鼓棒材质</div>
+                    <div class="title font-Songti pc:mb-[15px] h5:mb-[20px]">{{ $t('custom.drumstick.select.material') }}</div>
                     <div class="btns mb-[20px]">
                         <CustomBtn
                             class="font-Songti border-[#d6d6d6] bg-[var(--main-color-3)] text-[#00000080]"
-                            tooltip-txt="演奏起来较敏捷，音色柔和。较适用与流行、JAZZ、FUNK等风格"
+                            :tooltip-txt="$t('custom.drumstick.material.tooltip')"
                             v-for="el in 3"
-                            txt="山胡桃木"
+                            :txt="$t('custom.drumstick.price.material.hickory')"
                         />
                     </div>
-                    <div class="title font-Songti pc:mb-[15px] h5:mb-[20px]">选择你的鼓棒款式</div>
+                    <div class="title font-Songti pc:mb-[15px] h5:mb-[20px]">{{ $t('custom.drumstick.select.style') }}</div>
                     <div class="btns mb-[20px]">
                         <CustomBtn
                             class="font-Songti border-[#d6d6d6] bg-[var(--main-color-3)] text-[#00000080]"
                             v-for="el in 3"
-                            txt="山胡桃木"
+                            :txt="$t('custom.drumstick.price.material.hickory')"
                         />
                     </div>
-                    <div class="title font-Songti pc:mb-[15px] h5:mb-[20px]">选择您的槌头</div>
+                    <div class="title font-Songti pc:mb-[15px] h5:mb-[20px]">{{ $t('custom.drumstick.select.head') }}</div>
                     <div class="btns mb-[20px]">
                         <CustomBtn
                             class="font-Songti border-[#d6d6d6] bg-[var(--main-color-3)] text-[#00000080]"
                             v-for="el in 3"
-                            txt="山胡桃木"
+                            :txt="$t('custom.drumstick.price.material.hickory')"
                         />
                     </div>
-                    <div class="title font-Songti pc:mb-[15px] h5:mb-[20px]">选择你的鼓棒尺寸</div>
+                    <div class="title font-Songti pc:mb-[15px] h5:mb-[20px]">{{ $t('custom.drumstick.select.size') }}</div>
                     <div class="btns mb-[20px]">
                         <CustomBtn
                             class="font-Songti border-[#d6d6d6] bg-[var(--main-color-3)] text-[#00000080]"
                             v-for="el in 3"
-                            txt="山胡桃木"
+                            :txt="$t('custom.drumstick.price.material.hickory')"
                         />
                     </div>
 
-                    <!-- <el-divider border-style="dashed" /> -->
                     <div class="mb-[20px] w-full border-dashed border-2 border-[var(--main-color-3)] h-[1px]"></div>
 
-                    <h2 class="font-Songti pc:mb-[30px] h5:mb-[10px]">请开始设计您的鼓棒</h2>
+                    <h2 class="font-Songti pc:mb-[30px] h5:mb-[10px]">{{ $t('custom.drumstick.design.title') }}</h2>
                     <div class="sj pc:mb-[30px] h5:mb-[10px]">
-                        <CustomBtn @click="bang = 'left'" :active="bang == 'left'" txt="左棒" />
-                        <CustomBtn @click="bang = 'right'" :active="bang == 'right'" txt="右棒" />
+                        <CustomBtn 
+                            @click="bang = 'left'" 
+                            :active="bang == 'left'" 
+                            :txt="$t('custom.drumstick.design.leftStick')" 
+                        />
+                        <CustomBtn 
+                            @click="bang = 'right'" 
+                            :active="bang == 'right'" 
+                            :txt="$t('custom.drumstick.design.rightStick')" 
+                        />
                     </div>
                     <div class="sjgb">
-                        <div class="title font-bold">选择颜色</div>
+                        <div class="title font-bold">{{ $t('custom.drumstick.design.colorTitle') }}</div>
                         <div class="colors">
                             <div
                                 v-for="el in colors"
@@ -88,7 +100,11 @@
                         </div>
 
                         <el-collapse accordion v-model="actRegion">
-                            <el-collapse-item v-for="(el, k) in form" :title="k + '区'" :name="k">
+                            <el-collapse-item 
+                                v-for="(el, k) in form" 
+                                :title="$t(`custom.drumstick.design.regions.${k}`)" 
+                                :name="k"
+                            >
                                 <template #icon="{ isActive }">
                                     <img
                                         class="ml-auto w-[20px]"
@@ -104,7 +120,7 @@
                                     />
                                 </template>
                                 <div class="ipts flex flex-wrap gap-[10px] mb-[10px]">
-                                    <el-select class="h5:w-full" v-model="el.fontFamily" placeholder="选择定制字体">
+                                    <el-select class="h5:w-full" v-model="el.fontFamily" :placeholder="$t('custom.drumstick.design.fontPlaceholder')">
                                         <template #label>
                                             <span :style="{ fontFamily: el.fontFamily }">{{ el.fontFamily }}</span>
                                         </template>
@@ -112,10 +128,14 @@
                                             <span :style="{ fontFamily: item }">ABCabc123({{ item }})</span>
                                         </el-option>
                                     </el-select>
-                                    <el-input class="h5:w-full" placeholder="请输入文字内容" v-model.lazy="el.txt" />
+                                    <el-input 
+                                        class="h5:w-full" 
+                                        :placeholder="$t('custom.drumstick.design.textPlaceholder')" 
+                                        v-model.lazy="el.txt" 
+                                    />
                                     <el-input
                                         class="custom-icon h5:w-full"
-                                        placeholder="选择定制图标"
+                                        :placeholder="$t('custom.drumstick.design.iconPlaceholder')"
                                         readonly
                                         @click="el.showBox = !el.showBox"
                                     >
@@ -125,18 +145,21 @@
                                             </el-icon>
                                         </template>
                                     </el-input>
-                                    <!--  -->
                                     <el-upload class="h5:hidden" action="#" :before-upload="beforeUpload" :auto-upload="true">
-                                        <CustomBtn class="h5:hidden" txt="上传我的图标" :active="true" />
+                                        <CustomBtn 
+                                            class="h5:hidden" 
+                                            :txt="$t('custom.drumstick.design.uploadIcon')" 
+                                            :active="true" 
+                                        />
                                     </el-upload>
                                 </div>
                                 <el-tabs class="icon-box h5:mb-[10px]" type="border-card" v-show="el.showBox">
-                                    <el-tab-pane label="我的图标">
+                                    <el-tab-pane :label="$t('custom.drumstick.design.tabs.myIcon')">
                                         <div class="icons">
                                             <img @click="el.icon = item" v-for="item in uploadIcon" :key="item" :src="item" />
                                         </div>
                                     </el-tab-pane>
-                                    <el-tab-pane label="十二星座">
+                                    <el-tab-pane :label="$t('custom.drumstick.design.tabs.zodiac')">
                                         <div class="icons">
                                             <img
                                                 @click="el.icon = ele"
@@ -145,37 +168,47 @@
                                             />
                                         </div>
                                     </el-tab-pane>
-                                    <el-tab-pane label="十二生肖"></el-tab-pane>
+                                    <el-tab-pane :label="$t('custom.drumstick.design.tabs.chineseZodiac')"></el-tab-pane>
                                 </el-tabs>
-                                <!--  -->
                                 <el-upload class="pc:hidden" action="#" :before-upload="beforeUpload" :auto-upload="true">
-                                    <CustomBtn class="pc:hidden w-full" txt="上传我的图标" :active="true" />
+                                    <CustomBtn 
+                                        class="pc:hidden w-full" 
+                                        :txt="$t('custom.drumstick.design.uploadIcon')" 
+                                        :active="true" 
+                                    />
                                 </el-upload>
                             </el-collapse-item>
                         </el-collapse>
                     </div>
                 </div>
                 <div class="right">
-                    <div class="title">定制金额</div>
+                    <div class="title">{{ $t('custom.drumstick.price.title') }}</div>
                     <form action="#">
                         <p>
-                            <label for="">山桃胡木</label>
-                            <label for="">￥80</label>
+                            <label>{{ $t('custom.drumstick.price.material.hickory') }}</label>
+                            <label>{{ $t('custom.drumstick.price.material.price') }}</label>
                         </p>
                         <p>
-                            <label for="">山桃胡木</label>
-                            <label for="">￥80</label>
+                            <label>{{ $t('custom.drumstick.price.material.hickory') }}</label>
+                            <label>{{ $t('custom.drumstick.price.material.price') }}</label>
                         </p>
                         <p>
-                            <label for="">数量</label>
-                            <label for="">
+                            <label>{{ $t('custom.drumstick.price.quantity') }}</label>
+                            <label>
                                 <CustomNumberIpt />
                             </label>
                         </p>
                     </form>
-                    <div class="title text-right">总计：￥55</div>
-                    <CustomBtn class="mb-[10px]" txt="加入购物袋" @click="show = true" />
-                    <CustomBtn txt="立即购买" :active="true" />
+                    <div class="title text-right">{{ $t('custom.drumstick.price.total', { amount: '55' }) }}</div>
+                    <CustomBtn 
+                        class="mb-[10px]" 
+                        :txt="$t('custom.drumstick.buttons.addToCart')" 
+                        @click="show = true" 
+                    />
+                    <CustomBtn 
+                        :txt="$t('custom.drumstick.buttons.buyNow')" 
+                        :active="true" 
+                    />
                 </div>
             </div>
         </div>
@@ -187,29 +220,28 @@
                     <ShoppingCart />
                 </el-icon>
             </el-badge>
-            <span>合计：￥80</span>
+            <span>{{ $t('custom.drumstick.mobile.total', { amount: '80' }) }}</span>
 
             <div class="btns">
-                <button>加入购物车</button>
-                <button>立即购买</button>
+                <button>{{ $t('custom.drumstick.buttons.addToCart') }}</button>
+                <button>{{ $t('custom.drumstick.buttons.buyNow') }}</button>
             </div>
 
-            <!--  -->
             <van-popup v-model:show="drawerShow" position="bottom" :z-index="1000" teleport="body" :style="{ paddingBottom: '60px' }">
                 <div class="right global-custom-right">
-                    <div class="title">定制金额</div>
+                    <div class="title">{{ $t('custom.drumstick.price.title') }}</div>
                     <form action="#">
                         <p>
-                            <label for="">山桃胡木</label>
-                            <label for="">￥80</label>
+                            <label>{{ $t('custom.drumstick.price.material.hickory') }}</label>
+                            <label>{{ $t('custom.drumstick.price.material.price') }}</label>
                         </p>
                         <p>
-                            <label for="">山桃胡木</label>
-                            <label for="">￥80</label>
+                            <label>{{ $t('custom.drumstick.price.material.hickory') }}</label>
+                            <label>{{ $t('custom.drumstick.price.material.price') }}</label>
                         </p>
                         <p>
-                            <label for="">数量</label>
-                            <label for="">
+                            <label>{{ $t('custom.drumstick.price.quantity') }}</label>
+                            <label>
                                 <CustomNumberIpt />
                             </label>
                         </p>
@@ -218,37 +250,20 @@
             </van-popup>
         </div>
 
-        <!-- 放大预览鼓棒 -->
-        <van-image-preview
-            v-model:show="previewShow"
-            :images="['']"
-            :showIndex="false"
-            :loop="false"
-            :doubleScale="false"
-            :closeOnClickImage="false"
-            :closeOnClickOverlay="false"
-        >
-            <template #image="{ src }">
-                <div>
-                    <swiper-container ref="swiperRef" :free-mode="true" slides-per-view="auto">
-                        <swiper-slide class="w-[200vw] max-w-[200vw]" id="target2">
-                            <!-- <img class="w-[500vw] max-w-[500vw]" :src="src" /> -->
-                        </swiper-slide>
-                    </swiper-container>
-                    <p class="text-white text-center mt-[20px]" @touchstart="previewHide" @click="previewHide">
-                        <van-icon name="close" size="24px" />
-                    </p>
-                </div>
-            </template>
-        </van-image-preview>
-
         <CustomPopup v-model="show" :show-close="false">
             <div class="w-[100%] p-[40px] flex flex-col items-center">
                 <img src="/public/image/Group 652@2x.png" class="w-[70%]" />
-                <p class="text-[24px] mt-[10px]">加入购物车成功！</p>
+                <p class="text-[24px] mt-[10px]">{{ $t('custom.drumstick.popup.success') }}</p>
                 <div class="flex gap-[20px] my-[20px] w-full">
-                    <custom-btn class="flex-[1]" txt="查看购物车" :active="true" />
-                    <custom-btn class="flex-[1]" txt="返回首页" />
+                    <custom-btn 
+                        class="flex-[1]" 
+                        :txt="$t('custom.drumstick.buttons.viewCart')" 
+                        :active="true" 
+                    />
+                    <custom-btn 
+                        class="flex-[1]" 
+                        :txt="$t('custom.drumstick.buttons.backToHome')" 
+                    />
                 </div>
             </div>
         </CustomPopup>
@@ -256,7 +271,9 @@
 </template>
 
 <script setup lang="ts">
-// import { CustomNumberIpt } from "#build/components";
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+
 import { ShoppingCart, ArrowDown } from "@element-plus/icons-vue";
 
 const show = ref(false);
