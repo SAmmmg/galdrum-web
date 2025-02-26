@@ -2,7 +2,7 @@ export default {
     custom: {
         drumstick: {
             material: {
-                tooltip: "演奏起来较敏捷，音色柔和。较适用与流行、JAZZ、FUNK等风格"
+                tooltip: "演奏起来较敏捷，音色柔和。较适用与流行、JAZZ、FUNK等风格",
             },
             select: {
                 material: "选择你的鼓棒材质",
@@ -19,7 +19,7 @@ export default {
                 regions: {
                     A: "A区",
                     B: "B区",
-                    C: "C区"
+                    C: "C区",
                 },
                 fontPlaceholder: "选择定制字体",
                 textPlaceholder: "请输入文字内容",
@@ -27,8 +27,8 @@ export default {
                 tabs: {
                     myIcon: "我的图标",
                     zodiac: "十二星座",
-                    chineseZodiac: "十二生肖"
-                }
+                    chineseZodiac: "十二生肖",
+                },
             },
             price: {
                 title: "定制金额",
@@ -36,21 +36,21 @@ export default {
                 quantity: "数量",
                 material: {
                     hickory: "山胡桃木",
-                    price: "￥80"
-                }
+                    price: "￥80",
+                },
             },
             buttons: {
                 addToCart: "加入购物袋",
                 buyNow: "立即购买",
                 viewCart: "查看购物车",
-                backToHome: "返回首页"
+                backToHome: "返回首页",
             },
             popup: {
-                success: "加入购物车成功！"
+                success: "加入购物车成功！",
             },
             mobile: {
-                total: "合计：￥{amount}"
-            }
-        }
-    }
-}
+                total: "合计：￥{amount}",
+            },
+        },
+    },
+};

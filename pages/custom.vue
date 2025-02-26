@@ -7,27 +7,27 @@
                     <div @click="preview" class="flex">
                         <div class="flex flex-col flexBtn" v-if="tto == '#target1'">
                             <CustomBtn
-                                class="font-Songti w-full h5:mb-[10px] pc:mb-[30px]"
+                                class="font-Songti w-full whitespace-nowrap h5:mb-[10px] pc:mb-[30px]"
                                 @click.stop="bang = 'left'"
                                 :active="bang == 'left'"
                                 :txt="$t('custom.drumstick.design.leftStick')"
                             />
-                            <CustomBtn 
-                                class="font-Songti w-full" 
-                                @click.stop="bang = 'right'" 
-                                :active="bang == 'right'" 
-                                :txt="$t('custom.drumstick.design.rightStick')" 
+                            <CustomBtn
+                                class="font-Songti w-full whitespace-nowrap"
+                                @click.stop="bang = 'right'"
+                                :active="bang == 'right'"
+                                :txt="$t('custom.drumstick.design.rightStick')"
                             />
                         </div>
                         <div class="flex flex-col flex-[1] py-[30px] relative">
                             <div class="mask absolute" :class="{ activeMask: actRegion == 'A' }">
-                                <div>{{ $t('custom.drumstick.design.regions.A') }}</div>
+                                <div>{{ $t("custom.drumstick.design.regions.A") }}</div>
                             </div>
                             <div class="mask absolute" :class="{ activeMask: actRegion == 'B' }">
-                                <div>{{ $t('custom.drumstick.design.regions.B') }}</div>
+                                <div>{{ $t("custom.drumstick.design.regions.B") }}</div>
                             </div>
                             <div class="mask absolute" :class="{ activeMask: actRegion == 'C' }">
-                                <div>{{ $t('custom.drumstick.design.regions.C') }}</div>
+                                <div>{{ $t("custom.drumstick.design.regions.C") }}</div>
                             </div>
                             <canvas class="w-full h5:mb-[10px] pc:mb-[30px]" ref="left" width="1024" height="74"></canvas>
                             <canvas class="w-full" ref="right" width="1024" height="74"></canvas>
@@ -38,7 +38,7 @@
 
             <div class="set">
                 <div class="left">
-                    <div class="title font-Songti pc:mb-[15px] h5:mb-[20px]">{{ $t('custom.drumstick.select.material') }}</div>
+                    <div class="title font-Songti pc:mb-[15px] h5:mb-[20px]">{{ $t("custom.drumstick.select.material") }}</div>
                     <div class="btns mb-[20px]">
                         <CustomBtn
                             class="font-Songti border-[#d6d6d6] bg-[var(--main-color-3)] text-[#00000080]"
@@ -47,7 +47,7 @@
                             :txt="$t('custom.drumstick.price.material.hickory')"
                         />
                     </div>
-                    <div class="title font-Songti pc:mb-[15px] h5:mb-[20px]">{{ $t('custom.drumstick.select.style') }}</div>
+                    <div class="title font-Songti pc:mb-[15px] h5:mb-[20px]">{{ $t("custom.drumstick.select.style") }}</div>
                     <div class="btns mb-[20px]">
                         <CustomBtn
                             class="font-Songti border-[#d6d6d6] bg-[var(--main-color-3)] text-[#00000080]"
@@ -55,7 +55,7 @@
                             :txt="$t('custom.drumstick.price.material.hickory')"
                         />
                     </div>
-                    <div class="title font-Songti pc:mb-[15px] h5:mb-[20px]">{{ $t('custom.drumstick.select.head') }}</div>
+                    <div class="title font-Songti pc:mb-[15px] h5:mb-[20px]">{{ $t("custom.drumstick.select.head") }}</div>
                     <div class="btns mb-[20px]">
                         <CustomBtn
                             class="font-Songti border-[#d6d6d6] bg-[var(--main-color-3)] text-[#00000080]"
@@ -63,7 +63,7 @@
                             :txt="$t('custom.drumstick.price.material.hickory')"
                         />
                     </div>
-                    <div class="title font-Songti pc:mb-[15px] h5:mb-[20px]">{{ $t('custom.drumstick.select.size') }}</div>
+                    <div class="title font-Songti pc:mb-[15px] h5:mb-[20px]">{{ $t("custom.drumstick.select.size") }}</div>
                     <div class="btns mb-[20px]">
                         <CustomBtn
                             class="font-Songti border-[#d6d6d6] bg-[var(--main-color-3)] text-[#00000080]"
@@ -74,21 +74,13 @@
 
                     <div class="mb-[20px] w-full border-dashed border-2 border-[var(--main-color-3)] h-[1px]"></div>
 
-                    <h2 class="font-Songti pc:mb-[30px] h5:mb-[10px]">{{ $t('custom.drumstick.design.title') }}</h2>
+                    <h2 class="font-Songti pc:mb-[30px] h5:mb-[10px]">{{ $t("custom.drumstick.design.title") }}</h2>
                     <div class="sj pc:mb-[30px] h5:mb-[10px]">
-                        <CustomBtn 
-                            @click="bang = 'left'" 
-                            :active="bang == 'left'" 
-                            :txt="$t('custom.drumstick.design.leftStick')" 
-                        />
-                        <CustomBtn 
-                            @click="bang = 'right'" 
-                            :active="bang == 'right'" 
-                            :txt="$t('custom.drumstick.design.rightStick')" 
-                        />
+                        <CustomBtn @click="bang = 'left'" :active="bang == 'left'" :txt="$t('custom.drumstick.design.leftStick')" />
+                        <CustomBtn @click="bang = 'right'" :active="bang == 'right'" :txt="$t('custom.drumstick.design.rightStick')" />
                     </div>
                     <div class="sjgb">
-                        <div class="title font-bold">{{ $t('custom.drumstick.design.colorTitle') }}</div>
+                        <div class="title font-bold">{{ $t("custom.drumstick.design.colorTitle") }}</div>
                         <div class="colors">
                             <div
                                 v-for="el in colors"
@@ -100,11 +92,7 @@
                         </div>
 
                         <el-collapse accordion v-model="actRegion">
-                            <el-collapse-item 
-                                v-for="(el, k) in form" 
-                                :title="$t(`custom.drumstick.design.regions.${k}`)" 
-                                :name="k"
-                            >
+                            <el-collapse-item v-for="(el, k) in form" :title="$t(`custom.drumstick.design.regions.${k}`)" :name="k">
                                 <template #icon="{ isActive }">
                                     <img
                                         class="ml-auto w-[20px]"
@@ -120,7 +108,11 @@
                                     />
                                 </template>
                                 <div class="ipts flex flex-wrap gap-[10px] mb-[10px]">
-                                    <el-select class="h5:w-full" v-model="el.fontFamily" :placeholder="$t('custom.drumstick.design.fontPlaceholder')">
+                                    <el-select
+                                        class="h5:w-full"
+                                        v-model="el.fontFamily"
+                                        :placeholder="$t('custom.drumstick.design.fontPlaceholder')"
+                                    >
                                         <template #label>
                                             <span :style="{ fontFamily: el.fontFamily }">{{ el.fontFamily }}</span>
                                         </template>
@@ -128,10 +120,10 @@
                                             <span :style="{ fontFamily: item }">ABCabc123({{ item }})</span>
                                         </el-option>
                                     </el-select>
-                                    <el-input 
-                                        class="h5:w-full" 
-                                        :placeholder="$t('custom.drumstick.design.textPlaceholder')" 
-                                        v-model.lazy="el.txt" 
+                                    <el-input
+                                        class="h5:w-full"
+                                        :placeholder="$t('custom.drumstick.design.textPlaceholder')"
+                                        v-model.lazy="el.txt"
                                     />
                                     <el-input
                                         class="custom-icon h5:w-full"
@@ -146,11 +138,7 @@
                                         </template>
                                     </el-input>
                                     <el-upload class="h5:hidden" action="#" :before-upload="beforeUpload" :auto-upload="true">
-                                        <CustomBtn 
-                                            class="h5:hidden" 
-                                            :txt="$t('custom.drumstick.design.uploadIcon')" 
-                                            :active="true" 
-                                        />
+                                        <CustomBtn class="h5:hidden" :txt="$t('custom.drumstick.design.uploadIcon')" :active="true" />
                                     </el-upload>
                                 </div>
                                 <el-tabs class="icon-box h5:mb-[10px]" type="border-card" v-show="el.showBox">
@@ -171,44 +159,33 @@
                                     <el-tab-pane :label="$t('custom.drumstick.design.tabs.chineseZodiac')"></el-tab-pane>
                                 </el-tabs>
                                 <el-upload class="pc:hidden" action="#" :before-upload="beforeUpload" :auto-upload="true">
-                                    <CustomBtn 
-                                        class="pc:hidden w-full" 
-                                        :txt="$t('custom.drumstick.design.uploadIcon')" 
-                                        :active="true" 
-                                    />
+                                    <CustomBtn class="pc:hidden w-full" :txt="$t('custom.drumstick.design.uploadIcon')" :active="true" />
                                 </el-upload>
                             </el-collapse-item>
                         </el-collapse>
                     </div>
                 </div>
                 <div class="right">
-                    <div class="title">{{ $t('custom.drumstick.price.title') }}</div>
+                    <div class="title">{{ $t("custom.drumstick.price.title") }}</div>
                     <form action="#">
                         <p>
-                            <label>{{ $t('custom.drumstick.price.material.hickory') }}</label>
-                            <label>{{ $t('custom.drumstick.price.material.price') }}</label>
+                            <label>{{ $t("custom.drumstick.price.material.hickory") }}</label>
+                            <label>{{ $t("custom.drumstick.price.material.price") }}</label>
                         </p>
                         <p>
-                            <label>{{ $t('custom.drumstick.price.material.hickory') }}</label>
-                            <label>{{ $t('custom.drumstick.price.material.price') }}</label>
+                            <label>{{ $t("custom.drumstick.price.material.hickory") }}</label>
+                            <label>{{ $t("custom.drumstick.price.material.price") }}</label>
                         </p>
                         <p>
-                            <label>{{ $t('custom.drumstick.price.quantity') }}</label>
+                            <label>{{ $t("custom.drumstick.price.quantity") }}</label>
                             <label>
                                 <CustomNumberIpt />
                             </label>
                         </p>
                     </form>
-                    <div class="title text-right">{{ $t('custom.drumstick.price.total', { amount: '55' }) }}</div>
-                    <CustomBtn 
-                        class="mb-[10px]" 
-                        :txt="$t('custom.drumstick.buttons.addToCart')" 
-                        @click="show = true" 
-                    />
-                    <CustomBtn 
-                        :txt="$t('custom.drumstick.buttons.buyNow')" 
-                        :active="true" 
-                    />
+                    <div class="title text-right">{{ $t("custom.drumstick.price.total", { amount: "55" }) }}</div>
+                    <CustomBtn class="mb-[10px]" :txt="$t('custom.drumstick.buttons.addToCart')" @click="show = true" />
+                    <CustomBtn :txt="$t('custom.drumstick.buttons.buyNow')" :active="true" />
                 </div>
             </div>
         </div>
@@ -220,27 +197,27 @@
                     <ShoppingCart />
                 </el-icon>
             </el-badge>
-            <span>{{ $t('custom.drumstick.mobile.total', { amount: '80' }) }}</span>
+            <span>{{ $t("custom.drumstick.mobile.total", { amount: "80" }) }}</span>
 
             <div class="btns">
-                <button>{{ $t('custom.drumstick.buttons.addToCart') }}</button>
-                <button>{{ $t('custom.drumstick.buttons.buyNow') }}</button>
+                <button>{{ $t("custom.drumstick.buttons.addToCart") }}</button>
+                <button>{{ $t("custom.drumstick.buttons.buyNow") }}</button>
             </div>
 
             <van-popup v-model:show="drawerShow" position="bottom" :z-index="1000" teleport="body" :style="{ paddingBottom: '60px' }">
                 <div class="right global-custom-right">
-                    <div class="title">{{ $t('custom.drumstick.price.title') }}</div>
+                    <div class="title">{{ $t("custom.drumstick.price.title") }}</div>
                     <form action="#">
                         <p>
-                            <label>{{ $t('custom.drumstick.price.material.hickory') }}</label>
-                            <label>{{ $t('custom.drumstick.price.material.price') }}</label>
+                            <label>{{ $t("custom.drumstick.price.material.hickory") }}</label>
+                            <label>{{ $t("custom.drumstick.price.material.price") }}</label>
                         </p>
                         <p>
-                            <label>{{ $t('custom.drumstick.price.material.hickory') }}</label>
-                            <label>{{ $t('custom.drumstick.price.material.price') }}</label>
+                            <label>{{ $t("custom.drumstick.price.material.hickory") }}</label>
+                            <label>{{ $t("custom.drumstick.price.material.price") }}</label>
                         </p>
                         <p>
-                            <label>{{ $t('custom.drumstick.price.quantity') }}</label>
+                            <label>{{ $t("custom.drumstick.price.quantity") }}</label>
                             <label>
                                 <CustomNumberIpt />
                             </label>
@@ -253,17 +230,10 @@
         <CustomPopup v-model="show" :show-close="false">
             <div class="w-[100%] p-[40px] flex flex-col items-center">
                 <img src="/public/image/Group 652@2x.png" class="w-[70%]" />
-                <p class="text-[24px] mt-[10px]">{{ $t('custom.drumstick.popup.success') }}</p>
+                <p class="text-[24px] mt-[10px]">{{ $t("custom.drumstick.popup.success") }}</p>
                 <div class="flex gap-[20px] my-[20px] w-full">
-                    <custom-btn 
-                        class="flex-[1]" 
-                        :txt="$t('custom.drumstick.buttons.viewCart')" 
-                        :active="true" 
-                    />
-                    <custom-btn 
-                        class="flex-[1]" 
-                        :txt="$t('custom.drumstick.buttons.backToHome')" 
-                    />
+                    <custom-btn class="flex-[1]" :txt="$t('custom.drumstick.buttons.viewCart')" :active="true" />
+                    <custom-btn class="flex-[1]" :txt="$t('custom.drumstick.buttons.backToHome')" />
                 </div>
             </div>
         </CustomPopup>
@@ -271,8 +241,8 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-const { t } = useI18n()
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
 
 import { ShoppingCart, ArrowDown } from "@element-plus/icons-vue";
 
@@ -643,10 +613,6 @@ function previewHide() {
                     }
                 }
                 .ipts {
-                    // display: flex;
-                    // gap: 10px;
-                    // flex-wrap: wrap;
-                    // margin-bottom: 10px;
                     & > div {
                         width: calc(50% - 5px);
                         height: 32px;
@@ -759,7 +725,7 @@ function previewHide() {
     }
 }
 .flexBtn {
-    width: 60px;
+    width: 80px;
     margin-right: 20px;
     justify-content: center;
     button {

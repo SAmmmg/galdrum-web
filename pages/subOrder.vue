@@ -1,5 +1,7 @@
+<!-- 提交订单 -->
 <template>
-    <div class="bg-[var(--main-color-3)]">
+    <!-- h5 -->
+    <div class="h5:block pc:hidden bg-[var(--main-color-3)]">
         <div class="bg-[var(--main-color-1)] text-white">
             <h5-Back class="p-[16px] header" icon-color="white" title="提交订单" />
             <p class="pl-[30px] text-[20px] mb-[16px]">登待付款</p>
@@ -79,7 +81,8 @@
         </div>
     </div>
 
-    <div class="fixed-bottom">
+    <!-- h5底部 -->
+    <div class="h5:flex pc:hidden fixed-bottom">
         <el-badge :value="1">
             <el-icon :size="28" @click="drawerShow = true">
                 <ShoppingCart />
@@ -115,12 +118,121 @@
             </div>
         </van-popup>
     </div>
+
+    <!-- pc -->
+    <div class="h5:hidden pc:block bg-[#f5f1ec] px-[15vw] py-[40px]">
+        <div class="bg-white rounded-[10px] p-[40px] min-h-[270px] relative">
+            <div class="relative mb-[40px]">
+                <span class="text-[28px] font-bold">收货地址</span>
+                <div class="absolute right-0 bottom-0 flex items-center">
+                    <img src="/image/Group 54@2x.png" class="w-[18px]" />
+                    <span class="text-[#485FDE] ml-[5px] cursor-pointer">我的收货地址</span>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap" v-if="xz">
+                <div class="flex items-center w-[50%] mb-[20px]">
+                    <div class="w-[80px]">收件人</div>
+                    <el-input class="custom-ipt w-[70%] max-w-[400px]" />
+                </div>
+                <div class="flex items-center w-[50%] mb-[20px]">
+                    <div class="w-[80px]">联系电话</div>
+                    <el-input class="custom-ipt w-[70%] max-w-[400px]" />
+                </div>
+                <div class="flex items-center w-[50%]">
+                    <div class="w-[80px]">所在地区</div>
+                    <el-input class="custom-ipt w-[70%] max-w-[400px]" />
+                </div>
+                <div class="flex items-center w-[50%]">
+                    <div class="w-[80px]">详细地址</div>
+                    <el-input class="custom-ipt w-[70%] max-w-[400px]" />
+                </div>
+            </div>
+
+            <div
+                v-else
+                class="cursor-pointer absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] border-[1px] border-solid border-[#000] rounded-[20px] px-[10px] h-[26px] leading-[24px]"
+                @click="xz = !xz"
+            >
+                <span class="font-bold">+</span>
+                <span> 新增收货地址</span>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-[10px] p-[40px] relative mt-[20px]">
+            <div class="relative mb-[20px]">
+                <span class="text-[28px] font-bold">商品信息</span>
+            </div>
+            <el-table class="cutom-table tab" :data="tableData" style="width: 100%">
+                <el-table-column prop="date" label="商品内容" width="240" />
+                <el-table-column prop="name" label="左棒" />
+                <el-table-column prop="name" label="右棒" />
+                <el-table-column prop="name" label="数量" />
+                <el-table-column prop="name" label="原价" />
+                <el-table-column prop="name" label="运费" />
+                <el-table-column prop="name" label="优惠" />
+                <el-table-column prop="name" label="价格" />
+            </el-table>
+        </div>
+
+        <!-- 收货地址模态框 -->
+        <CustomPopup v-model="show" custom-class="w-[800px]">
+            <div class="p-[20px]">
+                <div class="relative mb-[40px]">
+                    <span class="text-[28px]">收货地址</span>
+                    <div class="absolute right-0 bottom-0 flex items-center text-[#485FDE]">
+                        <!-- <img src="/image/Group 54@2x.png" class="w-[18px]" /> -->
+                        <span class="font-bold">+</span>
+                        <span class="ml-[5px] cursor-pointer">新增收货地址</span>
+                    </div>
+                </div>
+                <el-table class="cutom-table" :data="tableData" style="width: 100%">
+                    <el-table-column prop="date" label="收货人" width="120px" />
+                    <el-table-column prop="name" label="收货地址" width="200px" />
+                    <el-table-column prop="name" label="联系方式" width="120px" />
+                    <el-table-column prop="name" label="操作">
+                        <template #default="{ row }">
+                            <span class="mr-[20px] cursor-pointer text-[#485FDE]">编辑</span>
+                            <span class="mr-[40px] cursor-pointer text-[#FF2F2F]">删除</span>
+                            <button class="border-[1px] border-solid border-[#485FDE] text-[#485FDE] bg-[#f6f7fd] px-[5px] rounded-[4px]">
+                                默认地址
+                            </button>
+                        </template>
+                    </el-table-column>
+                </el-table>
+            </div>
+        </CustomPopup>
+    </div>
 </template>
 
 <script setup lang="ts">
 import { ShoppingCart } from "@element-plus/icons-vue";
 
+const xz = ref(false);
+const show = ref(true);
 const drawerShow = ref(false);
+const tableData = [
+    {
+        date: "2016-05-03",
+        name: "Tom",
+        address: "No. 189, Grove St, Los Angeles",
+    },
+    {
+        date: "2016-05-02",
+        name: "Tom",
+        address: "No. 189, Grove St, Los Angeles",
+    },
+    {
+        date: "2016-05-04",
+        name: "Tom",
+        address: "No. 189, Grove St, Los Angeles",
+    },
+    {
+        date: "2016-05-01",
+        name: "Tom",
+        address: "No. 189, Grove St, Los Angeles",
+    },
+];
 </script>
 
 <style lang="scss" scoped>
@@ -170,6 +282,20 @@ const drawerShow = ref(false);
             background-color: var(--main-color-1);
             color: white;
         }
+    }
+}
+.tab {
+    border-color: transparent;
+    :deep(.el-table__header-wrapper) {
+        margin-bottom: 10px;
+        border-radius: 4px;
+    }
+    :deep(.el-table__row) {
+        background-color: #f5f1ec;
+    }
+    :deep(.el-table__body-wrapper) {
+        border: 1px solid #d6d6d6;
+        border-radius: 4px;
     }
 }
 </style>

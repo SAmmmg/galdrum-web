@@ -1,6 +1,6 @@
 <template>
     <van-popup v-model:show="show" style="background: transparent">
-        <div class="bg-white w-[calc(100vw-40px)] max-w-[500px] rounded-[20px]">
+        <div class="bg-white rounded-[20px]" :class="customClass ? customClass : 'w-[calc(100vw-40px)] max-w-[500px] '">
             <slot name="default"></slot>
         </div>
         <div v-if="showClose" class="mt-[20px] text-center">
@@ -17,6 +17,9 @@ const props = defineProps({
     showClose: {
         type: Boolean,
         default: true,
+    },
+    customClass: {
+        type: String,
     },
 });
 const show = defineModel({
