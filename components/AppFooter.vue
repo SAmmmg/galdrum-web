@@ -4,8 +4,8 @@
             <div class="left">
                 <img src="/image/logo_white.png" />
                 <br />
-                <p>地址：广东省 深圳市 南山区 民企科技园 3栋601</p>
-                <p>邮箱：840112676@qq.com</p>
+                <p>{{ $t('custom.footer.address') }}</p>
+                <p>{{ $t('custom.footer.email') }}</p>
                 <br />
                 <p>
                     <img src="/image/Group 210@3x.png" />
@@ -15,23 +15,23 @@
             </div>
             <ul class="right">
                 <li>
-                    <span>我们的产品</span>
-                    <span>鼓棒定制</span>
-                    <span>鼓包</span>
-                    <span>鼓棒</span>
-                    <span>周边</span>
+                    <span>{{ $t('custom.footer.products.title') }}</span>
+                    <span>{{ $t('custom.footer.products.drumstickCustom') }}</span>
+                    <span>{{ $t('custom.footer.products.drumBag') }}</span>
+                    <span>{{ $t('custom.footer.products.drumstick') }}</span>
+                    <span>{{ $t('custom.footer.products.accessories') }}</span>
                 </li>
 
                 <li>
-                    <span>关于我们</span>
-                    <span>品牌故事</span>
-                    <span>常见问题</span>
+                    <span>{{ $t('custom.footer.about.title') }}</span>
+                    <span>{{ $t('custom.footer.about.brandStory') }}</span>
+                    <span>{{ $t('custom.footer.about.faq') }}</span>
                 </li>
             </ul>
         </div>
 
         <div class="copyright">
-            <span>Copyright &copy; 2024 Logo 隐私条款</span>
+            <span>{{ $t('custom.footer.copyright') }}</span>
         </div>
     </div>
 </template>

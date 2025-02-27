@@ -11,6 +11,7 @@ import ar from "@/i18n/ar";
 import hi from "@/i18n/hi";
 import tr from "@/i18n/tr";
 import vi from "@/i18n/vi";
+import zh_HK from "@/i18n/zh_HK";
 import zh_CN from "@/i18n/zh_CN";
 
 export default defineI18nConfig(() => ({
@@ -32,5 +33,6 @@ export default defineI18nConfig(() => ({
     hi,
     tr,
     vi,
+    zh_HK
   },
 }));
