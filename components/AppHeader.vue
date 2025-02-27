@@ -26,7 +26,8 @@ const selectZh = ref(false);
             <div class="ppgs">品牌故事</div>
             <el-dropdown trigger="click" @visible-change="(val:boolean )=>selectZh=val">
                 <template #default>
-                    <User style="cursor: pointer; width: 20px; height: 20px" />
+                    <!-- <User style="cursor: pointer; width: 20px; height: 20px" /> -->
+                    <img src="/image/header1.png" class="w-[18px] h-[18px] cursor-pointer" />
                 </template>
                 <template #dropdown>
                     <el-dropdown-menu class="menu">
@@ -49,7 +50,7 @@ const selectZh = ref(false);
                     </el-dropdown-menu>
                 </template>
             </el-dropdown>
-            <ShoppingCart style="cursor: pointer; width: 20px; height: 20px" />
+            <img src="/image/header2.png" class="w-[20px] h-[20px] cursor-pointer" />
         </div>
     </div>
 </template>

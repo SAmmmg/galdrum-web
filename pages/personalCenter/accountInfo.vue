@@ -1,0 +1,24 @@
+<template>
+    <div class="flex-[1] bg-white rounded-[10px] p-[40px]">
+        <div class="flex items-center mb-[30px]">
+            <span class="block w-[80px]">头像</span>
+            <img class="w-[80px] aspect-1/1" src="/image/avatar.png" />
+        </div>
+
+        <div class="flex items-center mb-[30px]">
+            <span class="block w-[80px]">用户ID</span>
+            <span>7283728</span>
+        </div>
+
+        <div class="flex items-center">
+            <span class="block w-[80px]">昵称</span>
+            <el-input class="custom-ipt w-[200px]" v-model="name" />
+        </div>
+    </div>
+</template>
+
+<script setup lang="ts">
+const name = "小溪小溪";
+</script>
+
+<style scoped></style>

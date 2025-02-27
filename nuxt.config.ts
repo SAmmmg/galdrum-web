@@ -19,6 +19,9 @@ export default defineNuxtConfig({
             important: true,
         },
     },
+    elementPlus: {
+        defaultLocale: "zh-cn",
+    },
 
     devtools: { enabled: true },
 
