@@ -129,7 +129,6 @@ export default defineNuxtConfig({
         ],
         strategy: "prefix_except_default", // 路由是否要加入前缀（/zh、/en） 我不需要生成多语言路由 所以设为 no_prefix 其他设置请参考 https://i18n.nuxtjs.org/strategies
         // dynamicRouteParams: true,
-
         useSetI18nParams: true,
         detectBrowserLanguage: false, //浏览器检测语言
         // langDir: 'i18n/' //延迟加载

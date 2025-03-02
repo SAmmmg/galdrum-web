@@ -137,14 +137,6 @@ useSwiper(swiperRef3, {
 </script>
 
 <style lang="scss" scoped>
-.custom-ipt {
-    height: 40px;
-    :deep(.el-input__wrapper) {
-        background-color: #f5f1ec;
-        border-radius: 8px;
-        --el-input-border-color: #d6d6d6;
-    }
-}
 .box {
     background-color: var(--main-color-1);
     padding: 30px 15vw;
