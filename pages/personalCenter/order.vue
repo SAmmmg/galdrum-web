@@ -1,5 +1,5 @@
 <template>
-    <div class="flex-[1]">
+    <div class="flex-[1] overflow-hidden">
         <div class="relative mb-[20px]">
             <div class="order-nav text-[20px]">
                 <template v-for="el in ['全部订单', '待付款', '待发货', '待收货', '已完成']">

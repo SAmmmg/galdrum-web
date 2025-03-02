@@ -227,6 +227,29 @@
             </van-popup>
         </div>
 
+        <!-- 放大预览鼓棒 -->
+        <van-image-preview
+            v-model:show="previewShow"
+            :images="['']"
+            :showIndex="false"
+            :loop="false"
+            :doubleScale="false"
+            :closeOnClickImage="false"
+            :closeOnClickOverlay="false"
+        >
+            <template #image="{ src }">
+                <div>
+                    <swiper-container ref="swiperRef" :free-mode="true" slides-per-view="auto">
+                        <swiper-slide class="w-[200vw] max-w-[200vw]" id="target2"> </swiper-slide>
+                    </swiper-container>
+                    <p class="text-white text-center mt-[20px]" @touchstart="previewHide" @click="previewHide">
+                        <van-icon name="close" size="24px" />
+                    </p>
+                </div>
+            </template>
+        </van-image-preview>
+
+        <!-- 加入购物车 -->
         <CustomPopup v-model="show" :show-close="false">
             <div class="w-[100%] p-[40px] flex flex-col items-center">
                 <img src="/public/image/Group 652@2x.png" class="w-[70%]" />
@@ -234,6 +257,27 @@
                 <div class="flex gap-[20px] my-[20px] w-full">
                     <custom-btn class="flex-[1]" :txt="$t('custom.drumstick.buttons.viewCart')" :active="true" />
                     <custom-btn class="flex-[1]" :txt="$t('custom.drumstick.buttons.backToHome')" />
+                </div>
+            </div>
+        </CustomPopup>
+
+        <!-- 礼品赠送 -->
+        <CustomPopup v-model="show1" :show-close="false" custom-class="w-[calc(100vw-40px)] max-w-[400px]">
+            <div class="w-full p-[0px] flex flex-col items-center relative pb-[40px]">
+                <img src="/image/lp.png" class="w-full relative top-[-100px]" />
+                <div class="mt-[-100px] w-[70%]">
+                    <img
+                        class="w-full object-contain border-[2px] border-solid border-[#ddd] px-[10px] rounded-[10px] aspect-[14/13]"
+                        src="/public/image/bao.png"
+                    />
+                    <p class="text-center mt-[20px]">
+                        可水洗的收纳袋，加厚无异味<br />
+                        防潮防尘
+                    </p>
+                </div>
+                <div class="flex w-[80%] gap-[20px] mt-[20px]">
+                    <CustomBtn class="flex-[1]" txt="立即领取" :active="true" />
+                    <CustomBtn class="flex-[1]" txt="放弃" @click="show1 = false" />
                 </div>
             </div>
         </CustomPopup>
@@ -247,6 +291,7 @@ const { t } = useI18n();
 import { ShoppingCart, ArrowDown } from "@element-plus/icons-vue";
 
 const show = ref(false);
+const show1 = ref(false);
 const fonts = ref([
     "AlexBrush-Regular",
     "Ballpark Weiner",

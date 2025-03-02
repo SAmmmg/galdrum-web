@@ -11,9 +11,10 @@
                     "
                     :class="activeRoute == el.route ? 'bg-[var(--main-color-1)] text-white' : ''"
                 >
-                    <el-icon color="white" :size="16">
-                        <User />
-                    </el-icon>
+                    <img
+                        class="w-[16px]"
+                        :src="activeRoute == el.route ? `/image/personalCenter/${el.src}_active.png` : `/image/personalCenter/${el.src}.png`"
+                    />
                     <span class="ml-[10px]">{{ el.title }}</span>
                 </li>
             </ul>
@@ -33,15 +34,16 @@ definePageMeta({
 });
 
 onMounted(() => {
+    activeRoute.value = route.path;
     console.log(route);
 });
 const types = ref([
-    { title: "账户信息", route: "/personalCenter/accountInfo" },
-    { title: "订单管理", route: "/personalCenter/order" },
-    { title: "我的优惠券", route: "/personalCenter/coupon" },
-    { title: "收货地址", route: "/personalCenter/shippingAddress" },
-    { title: "账号安全", route: "/personalCenter/accountSecurity" },
-    { title: "常见问题", route: "/personalCenter/faq" },
+    { title: "账户信息", route: "/personalCenter/accountInfo", src: "zh" },
+    { title: "订单管理", route: "/personalCenter/order", src: "order" },
+    // { title: "我的优惠券", route: "/personalCenter/coupon" },
+    { title: "收货地址", route: "/personalCenter/shippingAddress", src: "dz" },
+    { title: "账号安全", route: "/personalCenter/accountSecurity", src: "aq" },
+    { title: "常见问题", route: "/personalCenter/faq", src: "faq" },
 ]);
 </script>
 
