@@ -107,7 +107,9 @@ html {
     --van-switch-on-background: var(--main-color-1);
     --van-checkbox-checked-icon-color: var(--main-color-1);
 }
-
+* {
+    --el-dropdown-menuItem-hover-fill: rgba(0, 0, 0, 0.05);
+}
 .custom-ipt {
     height: 40px;
     .el-input__wrapper {

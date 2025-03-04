@@ -26,30 +26,31 @@ const selectZh = ref(false);
             <div class="ppgs">品牌故事</div>
             <el-dropdown trigger="click" @visible-change="(val:boolean )=>selectZh=val">
                 <template #default>
-                    <User style="cursor: pointer; width: 20px; height: 20px" />
+                    <!-- <User style="cursor: pointer; width: 20px; height: 20px" /> -->
+                    <img src="/image/header1.png" class="w-[20px] h-[20px] cursor-pointer" />
                 </template>
                 <template #dropdown>
                     <el-dropdown-menu class="menu">
                         <el-dropdown-item>
-                            <el-icon color="black" :size="16"> <User /></el-icon>
-                            账户信息
+                            <img class="w-[20px] mr-[4px]" src="/image/avatarIcon.png" />
+                            <span>账户信息</span>
                         </el-dropdown-item>
                         <el-dropdown-item>
-                            <el-icon color="black" :size="16"><List /></el-icon>
-                            订单管理
+                            <img class="w-[20px] mr-[4px]" src="/image/Group 1000007425@2x.png" />
+                            <span>订单管理</span>
                         </el-dropdown-item>
                         <el-dropdown-item>
-                            <el-icon color="black" :size="16"><MapLocation /></el-icon>
-                            收货地址
+                            <img class="w-[20px] mr-[4px]" src="/image/Group 1000007429@2x.png" />
+                            <span>收货地址</span>
                         </el-dropdown-item>
                         <el-dropdown-item divided>
-                            <el-icon color="black" :size="16"><SwitchButton /></el-icon>
-                            退出登录
+                            <img class="w-[20px] mr-[4px]" src="/image/Group 1000007431@2x.png" />
+                            <span>退出登录</span>
                         </el-dropdown-item>
                     </el-dropdown-menu>
                 </template>
             </el-dropdown>
-            <ShoppingCart style="cursor: pointer; width: 20px; height: 20px" />
+            <img src="/image/header2.png" class="w-[20px] h-[20px] cursor-pointer" />
         </div>
     </div>
 </template>
