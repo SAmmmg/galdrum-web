@@ -1,5 +1,5 @@
 <template>
-    <div class="gen-box" style="">
+    <div class="gen-box">
         <div class="custom-box">
             <!-- 定制鼓棒  -->
             <div class="" id="target1">
@@ -385,11 +385,15 @@ const formItem = computed<formItem>(() => {
 });
 const uploadIcon = ref<string[]>([]);
 onMounted(() => {
-    leftCtx = left.value?.getContext("2d") as CanvasRenderingContext2D;
-    rightCtx = right.value?.getContext("2d") as CanvasRenderingContext2D;
-
-    drawBot("left");
-    drawBot("right");
+    let timer = setInterval(() => {
+        if (left.value && right.value) {
+            leftCtx = left.value.getContext("2d") as CanvasRenderingContext2D;
+            rightCtx = right.value.getContext("2d") as CanvasRenderingContext2D;
+            drawBot("left");
+            drawBot("right");
+            clearInterval(timer);
+        }
+    });
 });
 for (const [key, val] of Object.entries(leftForm)) {
     let timer: NodeJS.Timeout;
@@ -434,11 +438,14 @@ async function drawBot(type: "left" | "right") {
         let ctx = type == "left" ? leftCtx : rightCtx;
         image.onload = async () => {
             // ctx.clearRect(0, 0, 1024, 74);
+            console.log("amam");
+            console.log(image);
+            console.log(ctx);
             ctx.drawImage(image, 0, 0, 1024, 74);
             await drawLogo(type);
             res(true);
         };
-        image.src = "/image/鼓棒@2x.png";
+        image.src = "http://localhost:3000/image/gubang.png";
     });
 }
 async function drawLogo(type: "left" | "right") {

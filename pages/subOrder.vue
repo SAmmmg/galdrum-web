@@ -299,3 +299,24 @@ const tableData = [
     }
 }
 </style>
+
+<style lang="scss">
+.cutom-table {
+    border-bottom: solid;
+    border-right: solid;
+    border: 1px solid #f5f1ec;
+    --el-table-border: 1px solid #f5f1ec;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    .el-table__header-wrapper {
+        --el-table-header-bg-color: #f5f1ec;
+        .cell {
+            font-weight: 500;
+        }
+    }
+    .cell {
+        color: #131313;
+        text-align: center;
+    }
+}
+</style>

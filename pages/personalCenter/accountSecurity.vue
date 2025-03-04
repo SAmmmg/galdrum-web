@@ -1,5 +1,5 @@
 <template>
-    <div class="flex-[1] bg-white rounded-[10px] p-[20px]">
+    <div class="flex-[1] bg-[#fcfbf9] rounded-[10px] p-[20px]">
         <p class="font-bold text-[24px]">密码设置</p>
 
         <div class="flex items-center justify-between mt-[20px]">
