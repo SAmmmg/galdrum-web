@@ -7,10 +7,6 @@
 </template>
 
 <script lang="ts" setup>
-// console.log(window);
-onBeforeMount(() => {
-    console.log(isMobile() ? "移动端" : "PC端");
-});
 onMounted(() => {
     let fonts = [
         { name: "AlexBrush-Regular", url: "/font/AlexBrush-Regular.ttf" },
@@ -37,15 +33,18 @@ onMounted(() => {
             });
     });
 });
-function isMobile() {
-    const userAgentInfo = navigator.userAgent;
-    const mobileAgents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
-    const mobileFlag = mobileAgents.some(mobileAgent => {
-        return userAgentInfo.indexOf(mobileAgent) > 0;
-    });
 
-    return mobileFlag;
+const { isMobile } = toRefs(useUser());
+function query() {
+    let is = window.matchMedia("(max-width: 960px)").matches;
+    isMobile.value = is;
 }
+onMounted(() => {
+    query();
+    window.addEventListener("resize", () => {
+        query();
+    });
+});
 </script>
 
 <style lang="scss">

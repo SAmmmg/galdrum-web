@@ -1,5 +1,5 @@
 <template>
-    <div class="flex-[1] bg-white rounded-[10px] p-[40px]">
+    <div class="flex-[1] bg-[#fcfbf9] rounded-[10px] p-[40px]">
         <div class="flex items-center mb-[30px]">
             <span class="block w-[80px]">头像</span>
             <img class="w-[80px] aspect-1/1" src="/image/avatar.png" />

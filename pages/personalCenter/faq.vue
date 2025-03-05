@@ -1,5 +1,5 @@
 <template>
-    <div class="flex-[1] bg-white rounded-[10px] p-[20px]">
+    <div class="flex-[1] bg-[#fcfbf9] rounded-[10px] p-[20px]">
         <p class="font-bold text-[24px]">常见问题</p>
 
         <ul>

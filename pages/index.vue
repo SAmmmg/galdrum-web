@@ -1,7 +1,7 @@
 <template>
     <swiper-container class="sw3" ref="swiperRef3" :autoplay="true">
         <swiper-slide v-for="(slide, idx) in slides" :key="idx">
-            <img src="/image/banner.png" alt="" />
+            <img class="cursor-pointer" src="/image/banner.png" @click="navigateTo('/custom')" />
         </swiper-slide>
     </swiper-container>
     <div class="box" @click="navigateTo('/myAddress')">
@@ -94,9 +94,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useUser } from "@/stores/useUser";
-
-const { userInfo } = useUser();
 const type = ref<"密码登录" | "账号注册" | "验证码登录">("账号注册");
 const show = ref(true);
 const swiperRef = ref(null);

@@ -1,6 +1,6 @@
 <template>
     <div class="bg-[#f5f1ec] px-[15vw] py-[40px] flex items-start">
-        <div class="bg-white rounded-[10px] p-[30px] w-[200px] mr-[20px]">
+        <div class="bg-[#fcfbf9] rounded-[10px] p-[30px] w-[200px] min-w-[200px] mr-[20px]">
             <ul class="flex flex-col gap-[30px] w-full">
                 <li
                     v-for="el in types"
