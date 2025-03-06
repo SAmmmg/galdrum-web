@@ -70,7 +70,7 @@ const checked = ref();
 
 <template>
     <div class="blank">
-        <iframe src="https://wp.cymmc.top/my-account/" frameborder="0" class="box" </iframe>
+        <iframe src="https://wp.cymmc.top/cart/" frameborder="0" class="box" </iframe>
     </div>
 </template>
 <style scoped lang="scss">
