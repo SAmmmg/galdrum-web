@@ -11,12 +11,13 @@ import ar from "@/i18n/ar";
 import hi from "@/i18n/hi";
 import tr from "@/i18n/tr";
 import vi from "@/i18n/vi";
+import zh_HK from "@/i18n/zh_HK";
 import zh_CN from "@/i18n/zh_CN";
 
 export default defineI18nConfig(() => ({
-  fallbackLocale: "zh_CN", //语言回调到英语
+  fallbackLocale: "en", //语言回调到英语
   legacy: false, //是否使用vue-i18n-legacy
-  locale: "zh_CN", //默认语言
+  locale: "en", //默认语言
   messages: {
     zh_CN,
     en,
@@ -32,5 +33,6 @@ export default defineI18nConfig(() => ({
     hi,
     tr,
     vi,
+    zh_HK
   },
 }));

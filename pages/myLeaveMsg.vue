@@ -1,19 +1,30 @@
 <template>
-    <div class="min-h-[calc(100vh-40px)] h5:p-[16px] pc:px-[15vw] pc:py-[40px] flex-col pc:bg-[#f5f1ec]">
-        <h5-Back class="bg-white pc:hidden" title="" />
-        <p class="text-center text-[20px] pc:text-[36px] pc:font-bold my-[20px]">我要留言</p>
+    <div class="min-h-[calc(100vh-40px)] p-[16px] flex flex-col">
+        <h5-Back class="bg-white" title="" />
+        <p class="text-center text-[20px] my-[20px]">{{ $t('custom.leaveMsg.title') }}</p>
 
         <div
             class="rounded-[10px] overflow-hidden mb-[20px]"
             style="border: 2px solid var(--main-color-3); --van-field-text-area-min-height: 160px"
         >
-            <van-field class="rounded-[10px] bg-[#fffcf8]" type="textarea" placeholder="请填写您的留言内容" />
+            <van-field 
+                class="rounded-[10px] bg-[#fffcf8]" 
+                type="textarea" 
+                :placeholder="$t('custom.leaveMsg.placeholder.content')" 
+            />
         </div>
 
         <div class="rounded-[10px] overflow-hidden mb-[20px]" style="border: 2px solid var(--main-color-3)">
-            <van-field class="rounded-[10px] bg-[#fffcf8]" placeholder="请填写您联系电话/邮箱地址" />
+            <van-field 
+                class="rounded-[10px] bg-[#fffcf8]" 
+                :placeholder="$t('custom.leaveMsg.placeholder.contact')" 
+            />
         </div>
-        <CustomBtn class="w-full pc:h-[44px] pc:leading-[42px]" txt="确认留言" :active="true" />
+        <CustomBtn 
+            class="w-full" 
+            :txt="$t('custom.leaveMsg.button')" 
+            :active="true" 
+        />
     </div>
 </template>
 
