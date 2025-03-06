@@ -2,39 +2,38 @@
     <div class="gen-box">
         <div class="custom-box">
             <!-- 定制鼓棒  -->
-            <div class="" id="target1">
-                <Teleport :to="tto">
-                    <div @click="preview" class="flex">
-                        <div class="flex flex-col flexBtn" v-if="tto == '#target1'">
-                            <CustomBtn
-                                class="font-Songti w-full whitespace-nowrap h5:mb-[10px] pc:mb-[30px]"
-                                @click.stop="bang = 'left'"
-                                :active="bang == 'left'"
-                                :txt="$t('custom.drumstick.design.leftStick')"
-                            />
-                            <CustomBtn
-                                class="font-Songti w-full whitespace-nowrap"
-                                @click.stop="bang = 'right'"
-                                :active="bang == 'right'"
-                                :txt="$t('custom.drumstick.design.rightStick')"
-                            />
-                        </div>
-                        <div class="flex flex-col flex-[1] py-[30px] relative">
-                            <div class="mask absolute" :class="{ activeMask: actRegion == 'A' }">
-                                <div>{{ $t("custom.drumstick.design.regions.A") }}</div>
-                            </div>
-                            <div class="mask absolute" :class="{ activeMask: actRegion == 'B' }">
-                                <div>{{ $t("custom.drumstick.design.regions.B") }}</div>
-                            </div>
-                            <div class="mask absolute" :class="{ activeMask: actRegion == 'C' }">
-                                <div>{{ $t("custom.drumstick.design.regions.C") }}</div>
-                            </div>
-                            <canvas class="w-full h5:mb-[10px] pc:mb-[30px]" ref="left" width="1024" height="74"></canvas>
-                            <canvas class="w-full" ref="right" width="1024" height="74"></canvas>
-                        </div>
+            <div class="" id="target1"></div>
+            <Teleport :to="tto">
+                <div @click="preview" class="flex">
+                    <div class="flex flex-col flexBtn" v-if="tto == '#target1'">
+                        <CustomBtn
+                            class="font-Songti w-full whitespace-nowrap h5:mb-[10px] pc:mb-[30px]"
+                            @click.stop="bang = 'left'"
+                            :active="bang == 'left'"
+                            :txt="$t('custom.drumstick.design.leftStick')"
+                        />
+                        <CustomBtn
+                            class="font-Songti w-full whitespace-nowrap"
+                            @click.stop="bang = 'right'"
+                            :active="bang == 'right'"
+                            :txt="$t('custom.drumstick.design.rightStick')"
+                        />
                     </div>
-                </Teleport>
-            </div>
+                    <div class="flex flex-col flex-[1] py-[30px] relative">
+                        <div class="mask absolute" :class="{ activeMask: actRegion == 'A' }">
+                            <div>{{ $t("custom.drumstick.design.regions.A") }}</div>
+                        </div>
+                        <div class="mask absolute" :class="{ activeMask: actRegion == 'B' }">
+                            <div>{{ $t("custom.drumstick.design.regions.B") }}</div>
+                        </div>
+                        <div class="mask absolute" :class="{ activeMask: actRegion == 'C' }">
+                            <div>{{ $t("custom.drumstick.design.regions.C") }}</div>
+                        </div>
+                        <canvas class="w-full h5:mb-[10px] pc:mb-[30px]" ref="left" width="1024" height="74"></canvas>
+                        <canvas class="w-full" ref="right" width="1024" height="74"></canvas>
+                    </div>
+                </div>
+            </Teleport>
 
             <div class="set">
                 <div class="left">
@@ -385,14 +384,16 @@ const formItem = computed<formItem>(() => {
 });
 const uploadIcon = ref<string[]>([]);
 onMounted(() => {
-    let timer = setInterval(() => {
+    console.log("x1");
+    nextTick(() => {
         if (left.value && right.value) {
             leftCtx = left.value.getContext("2d") as CanvasRenderingContext2D;
             rightCtx = right.value.getContext("2d") as CanvasRenderingContext2D;
+            console.log("x3");
             drawBot("left");
             drawBot("right");
-            clearInterval(timer);
         }
+        console.log("x2");
     });
 });
 for (const [key, val] of Object.entries(leftForm)) {
@@ -402,6 +403,7 @@ for (const [key, val] of Object.entries(leftForm)) {
         newVal => {
             clearTimeout(timer);
             timer = setTimeout(async () => {
+                console.log("watch1");
                 leftCtx.clearRect(0, 0, 1024, 74);
                 await drawBot("left");
                 drawIconTxt("left");
@@ -420,6 +422,7 @@ for (const [key, val] of Object.entries(rightForm)) {
         newVal => {
             clearTimeout(timer);
             timer = setTimeout(async () => {
+                console.log("watch2");
                 rightCtx.clearRect(0, 0, 1024, 74);
                 await drawBot("right");
                 drawIconTxt("right");
