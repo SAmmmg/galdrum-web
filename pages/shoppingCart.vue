@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="min-h-[calc(100vh-40px)] bg-[var(--main-color-3)] flex flex-col">
         <h5-Back class="bg-white p-[16px]" title="购物车" />
 
@@ -65,5 +65,25 @@ const checked = ref();
         padding: 2px 6px;
         color: #ff0000;
     }
+}
+</style> -->
+
+<template>
+    <div class="blank">
+        <iframe src="https://wp.cymmc.top/my-account/" frameborder="0" class="box" </iframe>
+    </div>
+</template>
+<style scoped lang="scss">
+// .blank {
+    // padding: 0px 150px
+//}
+.box{
+    height: 100vh;
+    width: 100%;
+}
+@media screen and (max-width: 768px) {
+    // .blank {
+    //     padding: 0px;
+    // }
 }
 </style>

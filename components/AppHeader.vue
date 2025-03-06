@@ -21,7 +21,7 @@ const selectZh = ref(false);
 
 <template>
     <div class="header">
-        <img src="/image/logo_white.png" alt="" />
+        <img src="/image/logo_white.png" alt="" @click="navigateTo('/')" />
         <div style="margin-left: auto; display: flex; align-items: center; gap: 20px">
             <div class="ppgs">品牌故事</div>
             <el-dropdown trigger="click" @visible-change="(val:boolean )=>selectZh=val">
