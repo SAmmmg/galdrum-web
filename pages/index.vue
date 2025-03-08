@@ -5,7 +5,7 @@
         </swiper-slide>
     </swiper-container>
     <div class="box" @click="navigateTo('/myAddress')">
-        <img src="/image/Group 1000007222@2x.png" style="width: 95%" />
+        <img class="pc:my-[30px] h5:my-[20px] w-full" src="/image/Group 1000007222@2x.png" />
 
         <swiper-container class="sw2" ref="swiperRef2" :autoplay="true">
             <swiper-slide v-for="(slide, idx) in slides" :key="idx">
@@ -13,7 +13,7 @@
             </swiper-slide>
         </swiper-container>
 
-        <img src="/image/Group 185@2x.png" style="width: 95%" />
+        <img class="my-[30px] w-full" src="/image/Group 185@2x.png" />
 
         <swiper-container class="sw1" ref="swiperRef1" :autoplay="true">
             <swiper-slide v-for="(slide, idx) in slides" :key="idx">
@@ -21,9 +21,9 @@
             </swiper-slide>
         </swiper-container>
 
-        <img src="/image/Group 208@2x.png" style="width: 60%" />
+        <img class="my-[30px] w-full" src="/image/Group 208@2x.png" />
 
-        <swiper-container class="sw" ref="swiperRef" :autoplay="true">
+        <swiper-container class="sw w-[calc(100%+140px)] translate-x-[-70px]" ref="swiperRef" :autoplay="true">
             <swiper-slide v-for="(slide, idx) in slides" :key="idx">
                 <img src="/public/image/Group_71.png" alt="" />
             </swiper-slide>
@@ -137,10 +137,7 @@ useSwiper(swiperRef3, {
 .box {
     background-color: var(--main-color-1);
     padding: 30px 15vw;
-    & > img {
-        margin: 30px 0;
-        border: 1px dashed rgba($color: #fff, $alpha: 0.3);
-    }
+    overflow: hidden;
 }
 .sw {
     swiper-slide {

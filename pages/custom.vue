@@ -2,8 +2,8 @@
     <div class="gen-box">
         <div class="custom-box">
             <!-- 定制鼓棒  -->
-            <div class="" id="target1"></div>
-            <Teleport :to="tto">
+            <div class="" id="target1">
+                <!-- <Teleport defer :to="tto"> -->
                 <div @click="preview" class="flex">
                     <div class="flex flex-col flexBtn" v-if="tto == '#target1'">
                         <CustomBtn
@@ -33,7 +33,8 @@
                         <canvas class="w-full" ref="right" width="1024" height="74"></canvas>
                     </div>
                 </div>
-            </Teleport>
+                <!-- </Teleport> -->
+            </div>
 
             <div class="set">
                 <div class="left">
@@ -239,7 +240,25 @@
             <template #image="{ src }">
                 <div>
                     <swiper-container ref="swiperRef" :free-mode="true" slides-per-view="auto">
-                        <swiper-slide class="w-[200vw] max-w-[200vw]" id="target2"> </swiper-slide>
+                        <swiper-slide class="w-[200vw] max-w-[200vw]" id="target2">
+                            <div @click="preview" class="flex">
+                                <div class="flex flex-col flex-[1] py-[30px] relative">
+                                    <div class="mask absolute" :class="{ activeMask: actRegion == 'A' }">
+                                        <div>{{ $t("custom.drumstick.design.regions.A") }}</div>
+                                    </div>
+                                    <div class="mask absolute" :class="{ activeMask: actRegion == 'B' }">
+                                        <div>{{ $t("custom.drumstick.design.regions.B") }}</div>
+                                    </div>
+                                    <div class="mask absolute" :class="{ activeMask: actRegion == 'C' }">
+                                        <div>{{ $t("custom.drumstick.design.regions.C") }}</div>
+                                    </div>
+                                    <img class="w-full" :src="previewImg.l" />
+                                    <img class="w-full" :src="previewImg.r" />
+                                    <!-- <canvas class="w-full h5:mb-[10px] pc:mb-[30px]" ref="left" width="1024" height="74"></canvas> -->
+                                    <!-- <canvas class="w-full" ref="right" width="1024" height="74"></canvas> -->
+                                </div>
+                            </div>
+                        </swiper-slide>
                     </swiper-container>
                     <p class="text-white text-center mt-[20px]" @touchstart="previewHide" @click="previewHide">
                         <van-icon name="close" size="24px" />
@@ -531,12 +550,19 @@ function beforeUpload(file: File) {
 const tto = ref<"#target1" | "#target2">("#target1");
 const swiperRef = ref();
 const previewShow = ref(false);
+const previewImg = reactive({
+    l: "",
+    r: "",
+});
 // 预览
 function preview() {
-    previewShow.value = true;
     nextTick(() => {
         setTimeout(() => {
             tto.value = "#target2";
+
+            previewImg.l = left.value?.toDataURL("image/png") || "";
+            previewImg.r = right.value?.toDataURL("image/png") || "";
+            previewShow.value = true;
         }, 0);
     });
 }
