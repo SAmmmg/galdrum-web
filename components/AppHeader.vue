@@ -30,11 +30,7 @@ const selectZh = ref(false);
                 </template>
                 <template #dropdown>
                     <el-dropdown-menu class="menu">
-<<<<<<< HEAD
                         <el-dropdown-item @click="() => navigateTo('/personalCenter/accountInfo')">
-=======
-                        <el-dropdown-item @click="navigateTo('/personalCenter')">
->>>>>>> 76bd62592c2996c8251d7ebcba2a51390068a60b
                             <img class="w-[20px] mr-[4px]" src="/image/avatarIcon.png" />
                             <span>账户信息</span>
                         </el-dropdown-item>
