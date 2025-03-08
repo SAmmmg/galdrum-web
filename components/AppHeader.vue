@@ -21,25 +21,25 @@ const selectZh = ref(false);
 
 <template>
     <div class="header">
-        <img src="/image/logo_white.png" alt="" @click="navigateTo('/')" />
+        <img src="/image/logo_white.png" class="cursor-pointer" @click="navigateTo('/')" />
         <div style="margin-left: auto; display: flex; align-items: center; gap: 20px">
             <div class="ppgs">品牌故事</div>
             <el-dropdown trigger="click" @visible-change="(val:boolean )=>selectZh=val">
                 <template #default>
-                    <!-- <User style="cursor: pointer; width: 20px; height: 20px" /> -->
                     <img src="/image/header1.png" class="w-[20px] h-[20px] cursor-pointer" />
                 </template>
                 <template #dropdown>
                     <el-dropdown-menu class="menu">
-                        <el-dropdown-item>
+                        <el-dropdown-item @click="navigateTo('/personalCenter')">
                             <img class="w-[20px] mr-[4px]" src="/image/avatarIcon.png" />
                             <span>账户信息</span>
                         </el-dropdown-item>
-                        <el-dropdown-item>
+
+                        <el-dropdown-item @click="navigateTo('/personalCenter/order')">
                             <img class="w-[20px] mr-[4px]" src="/image/Group 1000007425@2x.png" />
                             <span>订单管理</span>
                         </el-dropdown-item>
-                        <el-dropdown-item>
+                        <el-dropdown-item @click="navigateTo('/personalCenter/shippingAddress')">
                             <img class="w-[20px] mr-[4px]" src="/image/Group 1000007429@2x.png" />
                             <span>收货地址</span>
                         </el-dropdown-item>
