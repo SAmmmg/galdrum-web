@@ -6,14 +6,14 @@
                     v-for="el in types"
                     class="w-full border-[1px] border-solid border-[#D6D6D6] bg-[#f5f1ec] h-[40px] leading-[40px] rounded-[8px] flex justify-center items-center cursor-pointer"
                     @click="
-                        activeRoute = el.route;
+                        $route.path = el.route;
                         navigateTo(el.route);
                     "
-                    :class="activeRoute == el.route ? 'bg-[var(--main-color-1)] text-white' : ''"
+                    :class="$route.path == el.route ? 'bg-[var(--main-color-1)] text-white' : ''"
                 >
                     <img
                         class="w-[16px]"
-                        :src="activeRoute == el.route ? `/image/personalCenter/${el.src}_active.png` : `/image/personalCenter/${el.src}.png`"
+                        :src="$route.path == el.route ? `/image/personalCenter/${el.src}_active.png` : `/image/personalCenter/${el.src}.png`"
                     />
                     <span class="ml-[10px]">{{ el.title }}</span>
                 </li>
@@ -25,18 +25,11 @@
 </template>
 
 <script setup lang="ts">
-import { User, ShoppingCart, List, MapLocation, SwitchButton } from "@element-plus/icons-vue";
-
 const route = useRoute();
-const activeRoute = ref("/personalCenter/accountInfo");
 definePageMeta({
     redirect: "/personalCenter/accountInfo",
 });
 
-onMounted(() => {
-    activeRoute.value = route.path;
-    console.log(route);
-});
 const types = ref([
     { title: "账户信息", route: "/personalCenter/accountInfo", src: "zh" },
     { title: "订单管理", route: "/personalCenter/order", src: "order" },

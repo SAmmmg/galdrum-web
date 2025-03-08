@@ -4,7 +4,7 @@
             <img class="cursor-pointer" src="/image/banner.png" @click="navigateTo('/custom')" />
         </swiper-slide>
     </swiper-container>
-    <div class="box" @click="navigateTo('/myAddress')">
+    <div class="box">
         <img class="pc:my-[30px] h5:my-[20px] w-full" src="/image/Group 1000007222@2x.png" />
 
         <swiper-container class="sw2" ref="swiperRef2" :autoplay="true">
@@ -39,9 +39,15 @@
                     <el-input class="custom-ipt mb-[20px]" placeholder="账号(手机号/邮箱)" />
                     <el-input class="custom-ipt mb-[20px]" placeholder="请输入登录密码" type="password" />
                     <custom-btn class="mb-[10px] h-[40px] leading-[38px]" txt="登录" :active="true"></custom-btn>
+<<<<<<< HEAD
                     <!-- <p class="text-right">
                         <span class="text-[#485fde]">验证码登录</span>
                     </p> -->
+=======
+                    <p class="text-right">
+                        <span class="text-[#485fde] cursor-pointer" @click="type = '验证码登录'">验证码登录</span>
+                    </p>
+>>>>>>> 76bd62592c2996c8251d7ebcba2a51390068a60b
 
                     <div class="absolute left-[50%] bottom-0 translate-x-[-50%]">
                         <span>还没有账号？</span>
@@ -60,6 +66,7 @@
                     <el-input class="custom-ipt mb-[20px]" placeholder="请设置登录密码" />
                     <el-input class="custom-ipt mb-[20px]" placeholder="请设置登录密码" />
                     <custom-btn class="mb-[10px] h-[40px] leading-[38px]" txt="注册" :active="true"></custom-btn>
+<<<<<<< HEAD
                     <!-- <p class="text-right">
                         <span class="text-[#485fde]" @click="type = '密码登录'">密码登录</span>
                     </p> -->
@@ -67,6 +74,15 @@
                     <div class="absolute left-[50%] bottom-0 translate-x-[-50%]">
                         <span>已有账号？</span>
                         <span class="text-[#485fde] cursor-pointer" @click="type = '密码登录'">直接登录</span>
+=======
+                    <p class="text-right">
+                        <span class="text-[#485fde] cursor-pointer" @click="type = '密码登录'">密码登录</span>
+                    </p>
+
+                    <div class="absolute left-[50%] bottom-0 translate-x-[-50%]">
+                        <span>已有账号？</span>
+                        <span class="text-[#485fde] cursor-pointer" @click="type = '验证码登录'">直接登录</span>
+>>>>>>> 76bd62592c2996c8251d7ebcba2a51390068a60b
                     </div>
                 </template>
 
@@ -80,11 +96,11 @@
                     </div>
                     <custom-btn class="mb-[10px] h-[40px] leading-[38px]" txt="登录" :active="true"></custom-btn>
                     <p class="text-right">
-                        <span class="text-[#485fde]">密码登录</span>
+                        <span class="text-[#485fde] cursor-pointer" @click="type = '密码登录'">密码登录</span>
                     </p>
                     <div class="absolute left-[50%] bottom-0 translate-x-[-50%]">
                         <span>还没有账号？</span>
-                        <span class="text-[#485fde]">立即注册</span>
+                        <span class="text-[#485fde] cursor-pointer" @click="type = '账号注册'">立即注册</span>
                     </div>
                 </template>
             </div>
