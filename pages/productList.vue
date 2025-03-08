@@ -19,7 +19,7 @@
                         <small>$160</small>
                     </p>
                     <p>
-                        <CustomBtn txt="去购买" :active="true" />
+                        <CustomBtn txt="去购买" :active="true" @click="navigateTo('/detail')" />
                     </p>
                 </li>
             </ul>
