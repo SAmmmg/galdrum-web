@@ -16,7 +16,7 @@
         <img class="my-[30px] w-full" src="/image/Group 185@2x.png" />
 
         <swiper-container class="sw1" ref="swiperRef1" :autoplay="true">
-            <swiper-slide v-for="(slide, idx) in slides" :key="idx">
+            <swiper-slide v-for="(slide, idx) in slides" :key="idx" @click="navigateTo('/productList')">
                 <img src="/public/image/Group_71.png" alt="" />
             </swiper-slide>
         </swiper-container>
@@ -39,34 +39,34 @@
                     <el-input class="custom-ipt mb-[20px]" placeholder="账号(手机号/邮箱)" />
                     <el-input class="custom-ipt mb-[20px]" placeholder="请输入登录密码" type="password" />
                     <custom-btn class="mb-[10px] h-[40px] leading-[38px]" txt="登录" :active="true"></custom-btn>
-                    <p class="text-right">
+                    <!-- <p class="text-right">
                         <span class="text-[#485fde]">验证码登录</span>
-                    </p>
+                    </p> -->
 
                     <div class="absolute left-[50%] bottom-0 translate-x-[-50%]">
                         <span>还没有账号？</span>
-                        <span class="text-[#485fde]">立即注册</span>
+                        <span class="text-[#485fde] cursor-pointer" @click="type = '账号注册'">立即注册</span>
                     </div>
                 </template>
 
                 <!-- 账号注册 -->
                 <template v-if="type == '账号注册'">
                     <p class="text-[28px] mb-[20px] h-[80px] leading-[80px] text-center">{{ type }}</p>
-                    <el-input class="custom-ipt mb-[20px]" placeholder="账号(手机号/邮箱)" />
+                    <el-input class="custom-ipt mb-[20px]" placeholder="请输入你的用户名" />
                     <div class="mb-[20px] flex">
-                        <el-input class="custom-ipt" placeholder="请输入验证码" />
-                        <custom-btn class="h-[40px] leading-[38px] ml-[10px] w-[160px]" txt="获取验证码"></custom-btn>
+                        <el-input class="custom-ipt" placeholder="请输入你的邮箱" />
+                        <!-- <custom-btn class="h-[40px] leading-[38px] ml-[10px] w-[160px]" txt="获取验证码"></custom-btn> -->
                     </div>
                     <el-input class="custom-ipt mb-[20px]" placeholder="请设置登录密码" />
                     <el-input class="custom-ipt mb-[20px]" placeholder="请设置登录密码" />
                     <custom-btn class="mb-[10px] h-[40px] leading-[38px]" txt="注册" :active="true"></custom-btn>
-                    <p class="text-right">
-                        <span class="text-[#485fde]">密码登录</span>
-                    </p>
+                    <!-- <p class="text-right">
+                        <span class="text-[#485fde]" @click="type = '密码登录'">密码登录</span>
+                    </p> -->
 
                     <div class="absolute left-[50%] bottom-0 translate-x-[-50%]">
                         <span>已有账号？</span>
-                        <span class="text-[#485fde]">直接登录</span>
+                        <span class="text-[#485fde] cursor-pointer" @click="type = '密码登录'">直接登录</span>
                     </div>
                 </template>
 
@@ -82,7 +82,6 @@
                     <p class="text-right">
                         <span class="text-[#485fde]">密码登录</span>
                     </p>
-
                     <div class="absolute left-[50%] bottom-0 translate-x-[-50%]">
                         <span>还没有账号？</span>
                         <span class="text-[#485fde]">立即注册</span>
@@ -94,7 +93,7 @@
 </template>
 
 <script lang="ts" setup>
-const type = ref<"密码登录" | "账号注册" | "验证码登录">("账号注册");
+const type = ref<"密码登录" | "账号注册" | "验证码登录">("密码登录");
 const show = ref(true);
 const swiperRef = ref(null);
 const swiperRef1 = ref(null);
@@ -139,24 +138,29 @@ useSwiper(swiperRef3, {
     padding: 30px 15vw;
     overflow: hidden;
 }
+
 .sw {
     swiper-slide {
         transform: scale(0.8);
         z-index: 1;
+
         img {
             width: 100%;
         }
     }
+
     .swiper-slide-active {
         transform: scale(1);
         position: relative;
         z-index: 10;
     }
+
     .swiper-slide-prev {
         z-index: 8;
         margin-right: -50px;
         margin-left: 50px;
     }
+
     .swiper-slide-next {
         margin-left: -50px;
         margin-right: 50px;
@@ -164,14 +168,17 @@ useSwiper(swiperRef3, {
         z-index: 8;
     }
 }
+
 .sw1 {
     swiper-slide {
         transform: scale(0.85);
         z-index: 1;
+
         img {
             width: 100%;
         }
     }
+
     .swiper-slide-active {
         transform: scale(1);
         position: relative;

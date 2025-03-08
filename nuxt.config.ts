@@ -120,7 +120,7 @@ export default defineNuxtConfig({
     i18n: {
         baseUrl: process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://www.myimg.ai",
         vueI18n: "./i18n.config.ts", // if you are using custom path, default
-        defaultLocale: "en", // 默认语言
+        defaultLocale: "zh_CN", // 默认语言
         locales: [
             { code: "zh_CN", language: "zh_CN", name: "简体中文" },
             { code: "zh_HK", language: "zh_HK", name: "繁體中文" },

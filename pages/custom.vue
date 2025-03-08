@@ -38,7 +38,7 @@
 
             <div class="set">
                 <div class="left">
-                    <div class="title font-Songti pc:mb-[15px] h5:mb-[20px]">{{ $t("custom.drumstick.select.material") }}</div>
+                    <!-- <div class="title font-Songti pc:mb-[15px] h5:mb-[20px]">{{ $t("custom.drumstick.select.material") }}</div>
                     <div class="btns mb-[20px]">
                         <CustomBtn
                             class="font-Songti border-[#d6d6d6] bg-[var(--main-color-3)] text-[#00000080]"
@@ -70,7 +70,7 @@
                             v-for="el in 3"
                             :txt="$t('custom.drumstick.price.material.hickory')"
                         />
-                    </div>
+                    </div> -->
 
                     <div class="mb-[20px] w-full border-dashed border-2 border-[var(--main-color-3)] h-[1px]"></div>
 

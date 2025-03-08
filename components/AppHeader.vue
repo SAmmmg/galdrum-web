@@ -23,7 +23,7 @@ const selectZh = ref(false);
     <div class="header">
         <img src="/image/logo_white.png" alt="" @click="navigateTo('/')" />
         <div style="margin-left: auto; display: flex; align-items: center; gap: 20px">
-            <div class="ppgs">品牌故事</div>
+            <div class="ppgs" @click="navigateTo('/brandStory')">品牌故事</div>
             <el-dropdown trigger="click" @visible-change="(val:boolean )=>selectZh=val">
                 <template #default>
                     <!-- <User style="cursor: pointer; width: 20px; height: 20px" /> -->
@@ -31,7 +31,7 @@ const selectZh = ref(false);
                 </template>
                 <template #dropdown>
                     <el-dropdown-menu class="menu">
-                        <el-dropdown-item>
+                        <el-dropdown-item @click="() => navigateTo('/personalCenter/accountInfo')">
                             <img class="w-[20px] mr-[4px]" src="/image/avatarIcon.png" />
                             <span>账户信息</span>
                         </el-dropdown-item>
@@ -50,7 +50,7 @@ const selectZh = ref(false);
                     </el-dropdown-menu>
                 </template>
             </el-dropdown>
-            <img src="/image/header2.png" class="w-[20px] h-[20px] cursor-pointer" />
+            <img @click="navigateTo('/ShoppingCart')"  src="/image/header2.png" class="w-[20px] h-[20px] cursor-pointer" />
         </div>
     </div>
 </template>
