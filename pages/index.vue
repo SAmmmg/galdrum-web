@@ -37,9 +37,72 @@
             </swiper-slide>
         </swiper-container>
     </div>
+
+    <custom-popup v-model="show">
+        <div class="p-[20px]">
+            <div class="flex flex-col justify-start  relative pb-[40px]">
+                <!-- 密码登录 -->
+                <template v-if="type == '密码登录'">
+                    <p class="text-[28px] mb-[20px] h-[80px] leading-[80px] text-center">{{ type }}</p>
+                    <el-input class="custom-ipt mb-[20px]" placeholder="账号(手机号/邮箱)" />
+                    <el-input class="custom-ipt mb-[20px]" placeholder="请输入登录密码" type="password" />
+                    <custom-btn class="mb-[10px] h-[40px] leading-[38px]" txt="登录" :active="true"></custom-btn>
+                    <!-- <p class="text-right">
+                        <span class="text-[#485fde]">验证码登录</span>
+                    </p> -->
+
+                    <div class="absolute left-[50%] bottom-0 translate-x-[-50%]">
+                        <span>还没有账号？</span>
+                        <span class="text-[#485fde] cursor-pointer" @click="type = '账号注册'">立即注册</span>
+                    </div>
+                </template>
+
+                <!-- 账号注册 -->
+                <template v-if="type == '账号注册'">
+                    <p class="text-[28px] mb-[20px] h-[80px] leading-[80px] text-center">{{ type }}</p>
+                    <el-input class="custom-ipt mb-[20px]" placeholder="请输入你的用户名" />
+                    <div class="mb-[20px] flex">
+                        <el-input class="custom-ipt" placeholder="请输入你的邮箱" />
+                        <!-- <custom-btn class="h-[40px] leading-[38px] ml-[10px] w-[160px]" txt="获取验证码"></custom-btn> -->
+                    </div>
+                    <el-input class="custom-ipt mb-[20px]" placeholder="请设置登录密码" />
+                    <el-input class="custom-ipt mb-[20px]" placeholder="请设置登录密码" />
+                    <custom-btn class="mb-[10px] h-[40px] leading-[38px]" txt="注册" :active="true"></custom-btn>
+                    <!-- <p class="text-right">
+                        <span class="text-[#485fde]" @click="type = '密码登录'">密码登录</span>
+                    </p> -->
+
+                    <div class="absolute left-[50%] bottom-0 translate-x-[-50%]">
+                        <span>已有账号？</span>
+                        <span class="text-[#485fde] cursor-pointer" @click="type = '密码登录'">直接登录</span>
+                    </div>
+                </template>
+
+                <!-- 验证码登录 -->
+                <template v-if="type == '验证码登录'">
+                    <p class="text-[28px] mb-[20px] h-[80px] leading-[80px] text-center">{{ type }}</p>
+                    <el-input class="custom-ipt mb-[20px]" placeholder="账号(手机号/邮箱)" />
+                    <div class="mb-[20px] flex">
+                        <el-input class="custom-ipt" placeholder="请输入验证码" />
+                        <custom-btn class="h-[40px] leading-[38px] ml-[10px] w-[160px]" txt="获取验证码"></custom-btn>
+                    </div>
+                    <custom-btn class="mb-[10px] h-[40px] leading-[38px]" txt="登录" :active="true"></custom-btn>
+                    <p class="text-right">
+                        <span class="text-[#485fde] cursor-pointer" @click="type = '密码登录'">密码登录</span>
+                    </p>
+                    <div class="absolute left-[50%] bottom-0 translate-x-[-50%]">
+                        <span>还没有账号？</span>
+                        <span class="text-[#485fde] cursor-pointer" @click="type = '账号注册'">立即注册</span>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </custom-popup>
 </template>
 
 <script lang="ts" setup>
+const type = ref<"密码登录" | "账号注册" | "验证码登录">("密码登录");
+const show = ref(true);
 const swiperRef = ref(null);
 const swiperRef1 = ref(null);
 const swiperRef2 = ref(null);
