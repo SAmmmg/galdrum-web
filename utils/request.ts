@@ -8,7 +8,7 @@ interface requstOptions extends options {
     method: "GET" | "POST" | "PUT" | "DELETE";
 }
 // const baseURL = import.meta.env.VITE_BASE_URL;
-const baseURL = "http://wp.cymmc.top:3004";
+const baseURL = "https://wp.cymmc.top:3004";
 // console.log("baseURL", baseURL);
 
 async function request<T>({ method, url, data, headers }: requstOptions): Promise<T> {
