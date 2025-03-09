@@ -1,6 +1,6 @@
 <template>
     <div class="blank">
-        <iframe src="https://wp.cymmc.top/product/drumstick/" frameborder="0" class="box" />
+        <iframe v-if="show" :src="src" frameborder="0" class="box" />
     </div>
 </template>
 <script setup>
@@ -9,6 +9,13 @@ const props = defineProps({
         type: String,
         default: "",
     },
+});
+const route = useRoute();
+const src = ref("");
+const show = ref(false);
+onMounted(() => {
+    src.value = `https://wp.cymmc.top/product/drumstick/?attribute_pa_style=two&yith_wapo_value=${route.query.uuid}`;
+    show.value = true;
 });
 // const url = ref('https://wp.cymmc.top/product/drumstick/')
 </script>

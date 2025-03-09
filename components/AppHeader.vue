@@ -9,16 +9,16 @@
                 </template>
                 <template #dropdown>
                     <el-dropdown-menu class="menu">
-                        <el-dropdown-item @click="() => navigateTo('/personalCenter/accountInfo')">
+                        <el-dropdown-item @click="() => navigateTo('/personalCenterPc/accountInfo')">
                             <img class="w-[20px] mr-[4px]" src="/image/avatarIcon.png" />
                             <span>账户信息</span>
                         </el-dropdown-item>
 
-                        <el-dropdown-item @click="navigateTo('/personalCenter/order')">
+                        <el-dropdown-item @click="navigateTo('/personalCenterPc/order')">
                             <img class="w-[20px] mr-[4px]" src="/image/Group 1000007425@2x.png" />
                             <span>订单管理</span>
                         </el-dropdown-item>
-                        <el-dropdown-item @click="navigateTo('/personalCenter/shippingAddress')">
+                        <el-dropdown-item @click="navigateTo('/personalCenterPc/shippingAddress')">
                             <img class="w-[20px] mr-[4px]" src="/image/Group 1000007429@2x.png" />
                             <span>收货地址</span>
                         </el-dropdown-item>

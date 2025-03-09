@@ -303,9 +303,114 @@
 import { GetIcons, UserUploadIcon } from "~/apis/icons";
 import { useI18n } from "vue-i18n";
 import { ShoppingCart, ArrowDown } from "@element-plus/icons-vue";
+import { CreateCustom, UploadCustom } from "~/apis/custom";
 const { t } = useI18n();
-function buynow() {
-    navigateTo("/detail");
+async function buynow() {
+    let l = await new Promise<string>(res => {
+        left.value?.toBlob(async (blob: Blob | null) => {
+            if (blob) {
+                const file = new File([blob], "canvas_image.png", { type: "image/png" });
+                const form = new FormData();
+                form.append("file", file);
+                console.log(file);
+                console.log(form.get("file"));
+                let {
+                    data: { url },
+                } = await UploadCustom(form);
+
+                res(url);
+            }
+        });
+    });
+    let r = await new Promise<string>(res => {
+        right.value?.toBlob(async (blob: Blob | null) => {
+            if (blob) {
+                const file = new File([blob], "canvas_image.png", { type: "image/png" });
+                const form = new FormData();
+                form.set("file", file);
+                let {
+                    data: { url },
+                } = await UploadCustom(form);
+
+                res(url);
+            }
+        });
+    });
+    console.log("ws");
+    let {
+        data: { uuid },
+    } = await CreateCustom({
+        detail: {
+            left: {
+                url: l,
+                a: {
+                    text: {
+                        color: leftForm.A.txtColor,
+                        data: leftForm.A.txt,
+                        fontSize: leftForm.A.fontFamily,
+                    },
+                    icon: {
+                        id: leftForm.A.icon,
+                    },
+                },
+                b: {
+                    text: {
+                        color: leftForm.B.txtColor,
+                        data: leftForm.B.txt,
+                        fontSize: leftForm.B.fontFamily,
+                    },
+                    icon: {
+                        id: leftForm.B.icon,
+                    },
+                },
+                c: {
+                    text: {
+                        color: leftForm.C.txtColor,
+                        data: leftForm.C.txt,
+                        fontSize: leftForm.C.fontFamily,
+                    },
+                    icon: {
+                        id: leftForm.C.icon,
+                    },
+                },
+            },
+            right: {
+                url: r,
+                a: {
+                    text: {
+                        color: rightForm.A.txtColor,
+                        data: rightForm.A.txt,
+                        fontSize: rightForm.A.fontFamily,
+                    },
+                    icon: {
+                        id: rightForm.A.icon,
+                    },
+                },
+                b: {
+                    text: {
+                        color: rightForm.B.txtColor,
+                        data: rightForm.B.txt,
+                        fontSize: rightForm.B.fontFamily,
+                    },
+                    icon: {
+                        id: rightForm.B.icon,
+                    },
+                },
+                c: {
+                    text: {
+                        color: rightForm.C.txtColor,
+                        data: rightForm.C.txt,
+                        fontSize: rightForm.C.fontFamily,
+                    },
+                    icon: {
+                        id: rightForm.C.icon,
+                    },
+                },
+            },
+        },
+    });
+
+    navigateTo("/detail?uuid=" + uuid);
 }
 const groupedData = ref<any[]>([]);
 onMounted(async () => {
@@ -486,11 +591,9 @@ async function drawBot(type: "left" | "right") {
     return new Promise((res, rej) => {
         let image = new Image();
         let ctx = type == "left" ? leftCtx : rightCtx;
+        image.crossOrigin = "anonymous";
         image.onload = async () => {
             // ctx.clearRect(0, 0, 1024, 74);
-            console.log("amam");
-            console.log(image);
-            console.log(ctx);
             ctx.drawImage(image, 0, 0, 1024, 74);
             await drawLogo(type);
             res(true);
@@ -502,6 +605,7 @@ async function drawLogo(type: "left" | "right") {
     return new Promise((res, rej) => {
         let image = new Image();
         let ctx = type == "left" ? leftCtx : rightCtx;
+        image.crossOrigin = "anonymous";
         image.onload = () => {
             let w = image.width;
             let h = image.height;
@@ -524,6 +628,7 @@ async function drawIconTxt(type: "left" | "right") {
             ctx.fillText(val.txt, 470, 44);
 
             let image = new Image();
+            image.crossOrigin = "anonymous";
             image.onload = () => {
                 let w = image.width;
                 let h = image.height;
@@ -538,6 +643,7 @@ async function drawIconTxt(type: "left" | "right") {
             ctx.fillText(val.txt, 830, 44);
 
             let image = new Image();
+            image.crossOrigin = "anonymous";
             image.onload = () => {
                 let w = image.width;
                 let h = image.height;
@@ -552,6 +658,7 @@ async function drawIconTxt(type: "left" | "right") {
             ctx.fillText(val.txt, 975, 44);
 
             let image = new Image();
+            image.crossOrigin = "anonymous";
             image.onload = () => {
                 let w = image.width;
                 let h = image.height;
