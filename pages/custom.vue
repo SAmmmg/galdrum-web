@@ -147,16 +147,12 @@
                                             <img @click="el.icon = item" v-for="item in uploadIcon" :key="item" :src="item" />
                                         </div>
                                     </el-tab-pane>
-                                    <el-tab-pane :label="$t('custom.drumstick.design.tabs.zodiac')">
+                                    <el-tab-pane :label="item.title" v-for="item in groupedData">
                                         <div class="icons">
-                                            <img
-                                                @click="el.icon = ele"
-                                                v-for="ele in ['/image/Frame@2x(1).png', '/image/Frame@2x(2).png']"
-                                                :src="ele"
-                                            />
+                                            <img @click="el.icon = ele.path" v-for="ele in item.children" :src="ele.path" />
                                         </div>
                                     </el-tab-pane>
-                                    <el-tab-pane :label="$t('custom.drumstick.design.tabs.chineseZodiac')"></el-tab-pane>
+                                    <!-- <el-tab-pane :label="$t('custom.drumstick.design.tabs.chineseZodiac')"></el-tab-pane> -->
                                 </el-tabs>
                                 <el-upload class="pc:hidden" action="#" :before-upload="beforeUpload" :auto-upload="true">
                                     <CustomBtn class="pc:hidden w-full" :txt="$t('custom.drumstick.design.uploadIcon')" :active="true" />
@@ -166,7 +162,8 @@
                     </div>
                 </div>
                 <div class="right">
-                    <div class="title">{{ $t("custom.drumstick.price.title") }}</div>
+                    <!-- <div class="title">{{ $t("custom.drumstick.price.title") }}</div> -->
+                    <!-- 
                     <form action="#">
                         <p>
                             <label>{{ $t("custom.drumstick.price.material.hickory") }}</label>
@@ -182,10 +179,10 @@
                                 <CustomNumberIpt />
                             </label>
                         </p>
-                    </form>
+                    </form> -->
                     <div class="title text-right">{{ $t("custom.drumstick.price.total", { amount: "55" }) }}</div>
-                    <CustomBtn class="mb-[10px]" :txt="$t('custom.drumstick.buttons.addToCart')" @click="show = true" />
-                    <CustomBtn :txt="$t('custom.drumstick.buttons.buyNow')" :active="true" />
+                    <!-- <CustomBtn class="mb-[10px]" :txt="$t('custom.drumstick.buttons.addToCart')" @click="show = true" /> -->
+                    <CustomBtn :txt="$t('custom.drumstick.buttons.buyNow')" @click="buynow" :active="true" />
                 </div>
             </div>
         </div>
@@ -200,7 +197,7 @@
             <span>{{ $t("custom.drumstick.mobile.total", { amount: "80" }) }}</span>
 
             <div class="btns">
-                <button>{{ $t("custom.drumstick.buttons.addToCart") }}</button>
+                <button class="hidden">{{ $t("custom.drumstick.buttons.addToCart") }}</button>
                 <button>{{ $t("custom.drumstick.buttons.buyNow") }}</button>
             </div>
 
@@ -303,10 +300,41 @@
 </template>
 
 <script setup lang="ts">
+import { GetIcons, UserUploadIcon } from "~/apis/icons";
 import { useI18n } from "vue-i18n";
-const { t } = useI18n();
-
 import { ShoppingCart, ArrowDown } from "@element-plus/icons-vue";
+const { t } = useI18n();
+function buynow() {
+    navigateTo("/detail");
+}
+const groupedData = ref<any[]>([]);
+onMounted(async () => {
+    let { data } = await GetIcons();
+    // console.log(data);
+    data.forEach((el: any) => {
+        let obj = groupedData.value.find(e => e.title == el.cate);
+        el.path = "http://localhost:4000" + el.path;
+        if (obj) {
+            obj.children.push(el);
+        } else {
+            obj = {
+                title: el.cate,
+                children: [el],
+            };
+            groupedData.value.push(obj);
+        }
+        // let obj={
+        //     title:el.cate;
+        // }
+
+        // const cate = item?.cate || "无分类";
+        // if (!groupedData[cate]) {
+        //     groupedData[cate] = [];
+        // }
+        // groupedData[cate].push(item);
+    });
+    console.log(groupedData);
+});
 
 const show = ref(false);
 const show1 = ref(false);
@@ -534,15 +562,14 @@ async function drawIconTxt(type: "left" | "right") {
     }
 }
 // 自定义上传图标
-function beforeUpload(file: File) {
-    const reader = new FileReader();
+async function beforeUpload(file: File) {
+    const { userData } = toRefs(useUser());
 
-    reader.onload = function () {
-        let img = reader.result as string;
-        formItem.value.icon = img;
-        uploadIcon.value.push(img);
-    };
-    reader.readAsDataURL(file);
+    const form = new FormData();
+    form.set("file", file);
+    form.set("userId", userData.value.id);
+    let { data } = await UserUploadIcon(form);
+    uploadIcon.value.push("http://localhost:4000" + data.url);
 
     return false;
 }

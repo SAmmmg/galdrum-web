@@ -32,7 +32,7 @@ export default {
             },
             price: {
                 title: "定制金额",
-                total: "总计：￥{amount}",
+                total: "定制金额：￥{amount}",
                 quantity: "数量",
                 material: {
                     hickory: "山胡桃木",
@@ -41,7 +41,7 @@ export default {
             },
             buttons: {
                 addToCart: "加入购物袋",
-                buyNow: "立即购买",
+                buyNow: "去购买",
                 viewCart: "查看购物车",
                 backToHome: "返回首页",
             },
@@ -49,17 +49,18 @@ export default {
                 success: "加入购物车成功！",
             },
             mobile: {
-                total: "合计：￥{amount}"
-            }
+                total: "合计：￥{amount}",
+            },
         },
         brandStory: {
             designConcept: {
                 title: "Gal drum的设计理念与众不同",
-                description: "摒弃了单调的配色和工艺，而是采用特别的设计元素和工艺， 力求与音乐、与鼓手的内心产生共鸣。"
+                description: "摒弃了单调的配色和工艺，而是采用特别的设计元素和工艺， 力求与音乐、与鼓手的内心产生共鸣。",
             },
             customization: {
-                description: "我们深信每位鼓手都应该要有自己的风格和个性，因此我们推出了 灵活的定制服务。无论是图案、色彩，还是鼓棒的材质和形状，都 尽可能根据鼓手的喜好和需求进行定制，这让每一位鼓手都能在舞 台上和日常生活中，尽情探索和表达自己的风格和个性。"
-            }
+                description:
+                    "我们深信每位鼓手都应该要有自己的风格和个性，因此我们推出了 灵活的定制服务。无论是图案、色彩，还是鼓棒的材质和形状，都 尽可能根据鼓手的喜好和需求进行定制，这让每一位鼓手都能在舞 台上和日常生活中，尽情探索和表达自己的风格和个性。",
+            },
         },
         settings: {
             title: "设置",
@@ -72,20 +73,20 @@ export default {
                 email: "邮箱",
                 password: "密码",
                 modifyText: "修改",
-                bindText: "去绑定"
+                bindText: "去绑定",
             },
             buttons: {
                 clearCache: "清除缓存",
-                logout: "退出当前账号"
-            }
+                logout: "退出当前账号",
+            },
         },
         leaveMsg: {
             title: "我要留言",
             placeholder: {
                 content: "请填写您的留言内容",
-                contact: "请填写您联系电话/邮箱地址"
+                contact: "请填写您联系电话/邮箱地址",
             },
-            button: "确认留言"
+            button: "确认留言",
         },
         footer: {
             address: "地址：广东省 深圳市 南山区 民企科技园 3栋601",
@@ -95,14 +96,14 @@ export default {
                 drumstickCustom: "鼓棒定制",
                 drumBag: "鼓包",
                 drumstick: "鼓棒",
-                accessories: "周边"
+                accessories: "周边",
             },
             about: {
                 title: "关于我们",
                 brandStory: "品牌故事",
-                faq: "常见问题"
+                faq: "常见问题",
             },
-            copyright: "Copyright © 2024 Logo 隐私条款"
-        }
-    }
-}
+            copyright: "Copyright © 2024 Logo 隐私条款",
+        },
+    },
+};

@@ -1,17 +1,16 @@
 <template>
     <div class="blank">
-        <iframe src="https://wp.cymmc.top/product/drumstick/" frameborder="0" class="box" </iframe>
+        <iframe src="https://wp.cymmc.top/product/drumstick/" frameborder="0" class="box" />
     </div>
 </template>
 <script setup>
 const props = defineProps({
     url: {
         type: String,
-        default: ''
-    }
-})
+        default: "",
+    },
+});
 // const url = ref('https://wp.cymmc.top/product/drumstick/')
-
 </script>
 <style scoped lang="scss">
 // .blank {

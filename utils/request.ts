@@ -7,8 +7,8 @@ interface options {
 interface requstOptions extends options {
     method: "GET" | "POST" | "PUT" | "DELETE";
 }
-// const baseURL = import.meta.env.VITE_BASE_URL;
-const baseURL = "";
+const baseURL = import.meta.env.VITE_BASE_URL;
+// const baseURL = "";
 // console.log("baseURL", baseURL);
 
 async function request<T>({ method, url, data, headers }: requstOptions): Promise<T> {
@@ -78,14 +78,14 @@ export async function get<T>({ url, data, headers }: options) {
     return await request<T>({ method: "GET", url, data, headers });
 }
 
-export async function post({ url, data, headers }: options) {
-    return await request({ method: "POST", url, data, headers });
+export async function post<T>({ url, data, headers }: options) {
+    return await request<T>({ method: "POST", url, data, headers });
 }
 
-export async function del({ url, data, headers }: options) {
-    return await request({ method: "DELETE", url, data, headers });
+export async function del<T>({ url, data, headers }: options) {
+    return await request<T>({ method: "DELETE", url, data, headers });
 }
 
-export async function put({ url, data, headers }: options) {
-    return await request({ method: "PUT", url, data, headers });
+export async function put<T>({ url, data, headers }: options) {
+    return await request<T>({ method: "PUT", url, data, headers });
 }

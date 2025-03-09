@@ -48,6 +48,7 @@ export default defineNuxtConfig({
             proxy: {
                 "/api": {
                     target: "http://localhost:4000/",
+                    // target: "http://192.168.40.245:3001/",
                     changeOrigin: true,
                     // rewrite: path => path.replace(/^\/api/, ""),
                 },
@@ -137,7 +138,6 @@ export default defineNuxtConfig({
             { code: "hi", language: "hi", name: "हिन्दी" },
             { code: "tr", language: "tr", name: "Türkçe" },
             { code: "vi", language: "vi", name: "Tiếng Việt" },
-
         ],
         strategy: "prefix_except_default", // 路由是否要加入前缀（/zh、/en） 我不需要生成多语言路由 所以设为 no_prefix 其他设置请参考 https://i18n.nuxtjs.org/strategies
         // dynamicRouteParams: true,
