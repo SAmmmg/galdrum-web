@@ -47,7 +47,8 @@ export default defineNuxtConfig({
         server: {
             proxy: {
                 "/api": {
-                    target: "http://localhost:4000/",
+                    // target: "http://localhost:4000/",
+                    target: "http://wp.cymmc.top:3000/",
                     // target: "http://192.168.40.245:3001/",
                     changeOrigin: true,
                     // rewrite: path => path.replace(/^\/api/, ""),
