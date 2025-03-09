@@ -32,7 +32,7 @@
 
     <custom-popup v-model="show">
         <div class="p-[20px]">
-            <div class="flex flex-col justify-start min-h-[50vh] relative pb-[40px]">
+            <div class="flex flex-col justify-start  relative pb-[40px]">
                 <!-- 密码登录 -->
                 <template v-if="type == '密码登录'">
                     <p class="text-[28px] mb-[20px] h-[80px] leading-[80px] text-center">{{ type }}</p>

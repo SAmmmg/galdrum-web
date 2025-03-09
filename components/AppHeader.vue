@@ -23,7 +23,7 @@ const selectZh = ref(false);
     <div class="header">
         <img src="/image/logo_white.png" class="cursor-pointer" @click="navigateTo('/')" />
         <div style="margin-left: auto; display: flex; align-items: center; gap: 20px">
-            <div class="ppgs" @click="navigateTo('/brandStory')">品牌故事</div>
+            <div class="ppgs cursor-pointer" @click="navigateTo('/brandStory')">品牌故事</div>
             <el-dropdown trigger="click" @visible-change="(val:boolean )=>selectZh=val">
                 <template #default>
                     <img src="/image/header1.png" class="w-[20px] h-[20px] cursor-pointer" />
