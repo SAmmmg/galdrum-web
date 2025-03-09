@@ -5,10 +5,7 @@
                 <li
                     v-for="el in types"
                     class="w-full border-[1px] border-solid border-[#D6D6D6] bg-[#f5f1ec] h-[40px] leading-[40px] rounded-[8px] flex justify-center items-center cursor-pointer"
-                    @click="
-                        $route.path = el.route;
-                        navigateTo(el.route);
-                    "
+                    @click="navigateTo(el.route)"
                     :class="$route.path == el.route ? 'bg-[var(--main-color-1)] text-white' : ''"
                 >
                     <img
@@ -27,16 +24,24 @@
 <script setup lang="ts">
 const route = useRoute();
 definePageMeta({
-    redirect: "/personalCenter/accountInfo",
+    redirect: "/personalCenterPc/accountInfo",
+});
+
+onMounted(() => {
+    const { isMobile } = toRefs(useUser());
+    console.log(isMobile.value);
+    if (isMobile.value) {
+        navigateTo("/personalCenterH5");
+    }
 });
 
 const types = ref([
-    { title: "账户信息", route: "/personalCenter/accountInfo", src: "zh" },
-    { title: "订单管理", route: "/personalCenter/order", src: "order" },
+    { title: "账户信息", route: "/personalCenterPc/accountInfo", src: "zh" },
+    { title: "订单管理", route: "/personalCenterPc/order", src: "order" },
     // { title: "我的优惠券", route: "/personalCenter/coupon" },
-    { title: "收货地址", route: "/personalCenter/shippingAddress", src: "dz" },
-    { title: "账号安全", route: "/personalCenter/accountSecurity", src: "aq" },
-    { title: "常见问题", route: "/personalCenter/faq", src: "faq" },
+    { title: "收货地址", route: "/personalCenterPc/shippingAddress", src: "dz" },
+    // { title: "账号安全", route: "/personalCenter/accountSecurity", src: "aq" },
+    { title: "常见问题", route: "/personalCenterPc/faq", src: "faq" },
 ]);
 </script>
 

@@ -1,24 +1,3 @@
-<script setup lang="ts">
-import { User, ShoppingCart, List, MapLocation, SwitchButton } from "@element-plus/icons-vue";
-
-// 滚动一定距离背景变色
-const di = ref(false);
-function scroll() {
-    if (window.scrollY >= 50) {
-        di.value = true;
-    } else {
-        di.value = false;
-    }
-}
-onMounted(() => {
-    window.addEventListener("scroll", scroll);
-    scroll();
-});
-
-// 选中账号图标
-const selectZh = ref(false);
-</script>
-
 <template>
     <div class="header">
         <img src="/image/logo_white.png" class="cursor-pointer" @click="navigateTo('/')" />
@@ -43,17 +22,43 @@ const selectZh = ref(false);
                             <img class="w-[20px] mr-[4px]" src="/image/Group 1000007429@2x.png" />
                             <span>收货地址</span>
                         </el-dropdown-item>
-                        <el-dropdown-item divided>
+                        <el-dropdown-item divided @click="logout">
                             <img class="w-[20px] mr-[4px]" src="/image/Group 1000007431@2x.png" />
                             <span>退出登录</span>
                         </el-dropdown-item>
                     </el-dropdown-menu>
                 </template>
             </el-dropdown>
-            <img @click="navigateTo('/ShoppingCart')"  src="/image/header2.png" class="w-[20px] h-[20px] cursor-pointer" />
+            <img @click="navigateTo('/ShoppingCart')" src="/image/header2.png" class="w-[20px] h-[20px] cursor-pointer" />
         </div>
     </div>
 </template>
+
+<script setup lang="ts">
+import { User, ShoppingCart, List, MapLocation, SwitchButton } from "@element-plus/icons-vue";
+
+const { userData } = toRefs(useUser());
+
+// 滚动一定距离背景变色
+const di = ref(false);
+function scroll() {
+    if (window.scrollY >= 50) {
+        di.value = true;
+    } else {
+        di.value = false;
+    }
+}
+onMounted(() => {
+    window.addEventListener("scroll", scroll);
+    scroll();
+});
+
+function logout() {
+    userData.value = {};
+    localStorage.removeItem("userData");
+    navigateTo("/");
+}
+</script>
 
 <style lang="scss" scoped>
 .header {

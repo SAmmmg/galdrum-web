@@ -1,9 +1,17 @@
 <template>
-    <swiper-container class="sw3" ref="swiperRef3" :autoplay="true">
-        <swiper-slide v-for="(slide, idx) in slides" :key="idx">
-            <img class="cursor-pointer" src="/image/banner.png" @click="navigateTo('/custom')" />
-        </swiper-slide>
-    </swiper-container>
+    <div class="relative">
+        <swiper-container class="sw3" ref="swiperRef3" :autoplay="true">
+            <swiper-slide v-for="(slide, idx) in slides" :key="idx">
+                <img class="" src="/image/banner.png" />
+            </swiper-slide>
+        </swiper-container>
+        <img
+            src="/image/Group 105@2x.png"
+            @click="navigateTo('/custom')"
+            class="absolute cursor-pointer z-10 translate-x-[-50%] left-[50%] bottom-[-20px] w-[10%] min-w-[80px]"
+        />
+    </div>
+
     <div class="box">
         <img class="pc:my-[30px] h5:my-[20px] w-full" src="/image/Group 1000007222@2x.png" />
 

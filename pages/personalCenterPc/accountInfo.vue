@@ -7,18 +7,26 @@
 
         <div class="flex items-center mb-[30px]">
             <span class="block w-[80px]">用户ID</span>
-            <span>7283728</span>
+            <span>{{ userInfo.id }}</span>
         </div>
 
         <div class="flex items-center">
             <span class="block w-[80px]">昵称</span>
-            <el-input class="custom-ipt w-[200px]" v-model="name" />
+            <span>{{ userInfo.name }}</span>
+            <!-- <el-input class="custom-ipt w-[200px]" v-model="userInfo.name" /> -->
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-const name = "小溪小溪";
+// const name = "小溪小溪";
+const userInfo = ref({
+    id: "",
+    name: "",
+});
+onMounted(async () => {
+    userInfo.value = JSON.parse(localStorage.userData)[0];
+});
 </script>
 
 <style scoped></style>
