@@ -1,6 +1,6 @@
 <template>
     <van-popup v-model:show="show" style="background: transparent; overflow-y: visible">
-        <div class="bg-white rounded-[20px]" :class="customClass ? customClass : 'w-[calc(100vw-40px)] max-w-[500px] '">
+        <div class="bg-white rounded-[20px] wcnmd" :class="customClass ? customClass : 'w-[calc(100vw-40px)] max-w-[500px] '">
             <slot name="default"></slot>
         </div>
         <div v-if="showClose" class="mt-[20px] text-center">
