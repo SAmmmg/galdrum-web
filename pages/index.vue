@@ -1,8 +1,8 @@
 <template>
     <div class="relative">
         <swiper-container class="sw3" ref="swiperRef3" :autoplay="true">
-            <swiper-slide v-for="(slide, idx) in slides" :key="idx">
-                <img class="" src="/image/banner.png" />
+            <swiper-slide v-for="el in banners" :key="el">
+                <img class="" :src="`/image/banner/${el}`" />
             </swiper-slide>
         </swiper-container>
         <img
@@ -45,6 +45,7 @@ const swiperRef1 = ref(null);
 const swiperRef2 = ref(null);
 const swiperRef3 = ref(null);
 const slides = ref(Array.from({ length: 10 }));
+const banners = ref(["banner1.png", "banner2.png", "banner3.png", "banner4.png"]);
 
 useSwiper(swiperRef, {
     slidesPerView: 3,
