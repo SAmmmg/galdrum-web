@@ -14,7 +14,7 @@ const route = useRoute();
 const src = ref("");
 const show = ref(false);
 onMounted(() => {
-    src.value = `https://wp.cymmc.top/product/drumstick/?attribute_pa_style=two&yith_wapo_value=${route.query.uuid}`;
+    src.value = `https://wp.cymmc.top/product/drumstick/?attribute_style=two&yith_wapo_value=${route.query.uuid}`;
     show.value = true;
 });
 // const url = ref('https://wp.cymmc.top/product/drumstick/')
