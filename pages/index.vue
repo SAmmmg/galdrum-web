@@ -2,14 +2,11 @@
     <div class="relative">
         <swiper-container class="sw3" ref="swiperRef3" :autoplay="true">
             <swiper-slide v-for="el in banners" :key="el">
-                <img class="" :src="`/image/banner/${el}`" />
+                <img class="" :src="el" />
             </swiper-slide>
         </swiper-container>
-        <img
-            src="/image/Group 105@2x.png"
-            @click="navigateTo('/custom')"
-            class="absolute cursor-pointer z-10 translate-x-[-50%] left-[50%] bottom-[-20px] w-[10%] min-w-[80px]"
-        />
+        <img src="/image/Group 105@2x.png" @click="navigateTo('/custom')"
+            class="absolute cursor-pointer z-10 translate-x-[-50%] left-[50%] bottom-[-20px] w-[10%] min-w-[80px]" />
     </div>
 
     <div class="box">
@@ -45,7 +42,14 @@ const swiperRef1 = ref(null);
 const swiperRef2 = ref(null);
 const swiperRef3 = ref(null);
 const slides = ref(Array.from({ length: 10 }));
-const banners = ref(["banner1.png", "banner2.png", "banner3.png", "banner4.png"]);
+import banner1 from '../public/image/banner/banner1.png';
+import banner2 from '../public/image/banner/banner2.png';
+import banner3 from '../public/image/banner/banner3.png';
+import banner4 from '../public/image/banner/banner4.png';
+// const banner1 = '/image/banner/banner1.png';
+
+
+const banners = ref([banner1, banner2, banner3, banner4]);
 
 useSwiper(swiperRef, {
     slidesPerView: 3,

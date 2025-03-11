@@ -25,7 +25,7 @@
                 <li>
                     <span>{{ $t('custom.footer.about.title') }}</span>
                     <span @click="navigateTo('/brandStory')">{{ $t('custom.footer.about.brandStory') }}</span>
-                    <span @click="navigateTo('/faq')">{{ $t('custom.footer.about.faq') }}</span>
+                    <span @click="navigateTo('/personalCenterH5/faq')">{{ $t('custom.footer.about.faq') }}</span>
                 </li>
             </ul>
         </div>

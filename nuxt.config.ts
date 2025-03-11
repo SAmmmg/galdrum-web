@@ -1,4 +1,5 @@
 export default defineNuxtConfig({
+    
     // css: ["~/assets/style/index.scss", "@/assets/iconfont/iconfont.css"],
     // css: ["~/assets/css/tailwind.css"],
     tailwindcss: {
@@ -75,7 +76,7 @@ export default defineNuxtConfig({
     },
 
     app: {
-        // baseUrl: process.env.NODE_ENV === "development" ? "http://localhost:3011" : "https://www.myimg.ai",
+            baseURL: '/custom',
         head: {
             meta: [
                 { charset: "utf-8" },
@@ -147,5 +148,5 @@ export default defineNuxtConfig({
         // langDir: 'i18n/' //延迟加载
     },
 
-    compatibilityDate: "2024-10-26",
+    compatibilityDate: "2025-03-11",
 });
