@@ -7,7 +7,13 @@ export const useUser = defineStore("user", () => {
     //     password: "",
     //     expire: "",
     // });
-    const userData = reactive<any>({});
+    const userData = reactive<{
+        data: any;
+        expire: number;
+    }>({
+        data: {},
+        expire: 0,
+    });
 
     // onServerPrefetch(async () => {
     //     let u = localStorage.getItem("userData") || "";

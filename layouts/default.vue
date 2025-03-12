@@ -20,7 +20,13 @@
                 <template v-if="type == '密码登录'">
                     <p class="text-[28px] mb-[20px] h-[80px] leading-[80px] text-center">{{ type }}</p>
                     <el-input v-model="loginForm.user" class="custom-ipt mb-[20px]" placeholder="账号(手机号/邮箱)" />
-                    <el-input v-model="loginForm.password" class="custom-ipt mb-[20px]" placeholder="请输入登录密码" type="password" />
+                    <el-input
+                        v-model="loginForm.password"
+                        class="custom-ipt mb-[20px]"
+                        placeholder="请输入登录密码"
+                        type="password"
+                        @keydown.enter="clickLogin"
+                    />
                     <custom-btn class="mb-[10px] h-[40px] leading-[38px]" txt="登录" :active="true" @click="clickLogin"></custom-btn>
                     <!-- <p class="text-right">
                         <span class="text-[#485fde]">验证码登录</span>
@@ -84,7 +90,15 @@ onBeforeMount(() => {
     const { userData } = toRefs(useUser());
     let u = localStorage.getItem("userData") || "";
     if (u) {
-        Object.assign(userData.value, JSON.parse(u)[0]);
+        let obj = JSON.parse(u);
+
+        if (Date.now() > obj.expire || !obj.expire) {
+            // 过期
+            navigateTo("/");
+            return;
+        }
+        Object.assign(userData.value, obj);
+        // Object.assign(userData.value, JSON.parse(u)[0]);
     }
     pd();
 });
@@ -135,17 +149,20 @@ const show = ref(false);
 watch(() => route.fullPath, pd);
 function pd() {
     const { userData } = toRefs(useUser());
-    if (userData.value.id) {
-    } else {
-        show.value = true;
-        ElMessage.warning("请先登录");
-    }
+    // if (userData.value.id) {
+    // } else {
+    //     show.value = true;
+    //     ElMessage.warning("请先登录");
+    // }
 
     const authRoute = ["/personalCenterPc", "/personalCenterH5", "/shoppingCart", "/detail", "/custom"];
     console.log(route.matched[0].path);
     if (authRoute.findIndex(e => e == route.matched[0].path) != -1) {
         // 未登录
-        if (!userData.value.id) {
+        if (!userData.value.data.id) {
+            show.value = true;
+            ElMessage.warning("请先登录");
+            localStorage.removeItem("userData");
             navigateTo("/");
         }
     }
@@ -169,7 +186,14 @@ async function clickLogin() {
         data: { nonce },
     } = await UserNonce();
     // nonce
-    localStorage.setItem("userData", JSON.stringify(data));
+    localStorage.setItem(
+        "userData",
+        JSON.stringify({
+            data: data[0],
+            // 半天
+            expire: Date.now() + 1209600000,
+        })
+    );
     loginForm.nonce = nonce;
 
     nextTick(() => {

@@ -2,7 +2,7 @@
     <div class="relative">
         <swiper-container class="sw3" ref="swiperRef3" :autoplay="true">
             <swiper-slide v-for="el in banners" :key="el">
-                <img class="" :src="`/image/banner/${el}`" />
+                <img class="w-full" :src="`/image/banner/${el}`" />
             </swiper-slide>
         </swiper-container>
         <img
