@@ -1,6 +1,6 @@
 <template>
-    <div class="blank">
-        <iframe v-if="show" :src="src" frameborder="0" class="box" />
+    <div class="blank pt-[40px] bg-[#fefcf8]">
+        <iframe v-if="show" id="iframe" :src="src" @load="load" frameborder="0" class="box" />
     </div>
 </template>
 <script setup>
@@ -17,20 +17,14 @@ onMounted(() => {
     src.value = `https://wp.cymmc.top/product/drumstick/?attribute_style=two&yith_wapo_value=${route.query.uuid}`;
     show.value = true;
 });
-// const url = ref('https://wp.cymmc.top/product/drumstick/')
+function load() {
+    let iframe = document.getElementById("#iframe");
+    iframe.style.height = iframe.contentWindow.document.body.scrollHeight + "px";
+}
 </script>
 <style scoped lang="scss">
-// .blank {
-// padding: 0px 150px
-//}
 .box {
     height: 100vh;
     width: 100%;
-}
-
-@media screen and (max-width: 768px) {
-    // .blank {
-    //     padding: 0px;
-    // }
 }
 </style>

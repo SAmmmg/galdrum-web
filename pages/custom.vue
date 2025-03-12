@@ -418,7 +418,7 @@ onMounted(async () => {
     // console.log(data);
     data.forEach((el: any) => {
         let obj = groupedData.value.find(e => e.title == el.cate);
-        el.path = "http://localhost:4000" + el.path;
+        el.path = "https://wp.cymmc.top:3004" + el.path;
         if (obj) {
             obj.children.push(el);
         } else {
@@ -598,7 +598,7 @@ async function drawBot(type: "left" | "right") {
             await drawLogo(type);
             res(true);
         };
-        image.src = "http://localhost:3000/image/gubang.png";
+        image.src = "/image/gubang.png";
     });
 }
 async function drawLogo(type: "left" | "right") {
