@@ -41,7 +41,7 @@ export default {
             },
             buttons: {
                 addToCart: "加入购物袋",
-                buyNow: "去购买",
+                buyNow: "完成定制",
                 viewCart: "查看购物车",
                 backToHome: "返回首页",
             },

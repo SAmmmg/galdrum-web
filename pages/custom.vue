@@ -6,18 +6,11 @@
                 <!-- <Teleport defer :to="tto"> -->
                 <div @click="preview" class="flex">
                     <div class="flex flex-col flexBtn" v-if="tto == '#target1'">
-                        <CustomBtn
-                            class="font-Songti w-full whitespace-nowrap h5:mb-[10px] pc:mb-[30px]"
-                            @click.stop="bang = 'left'"
-                            :active="bang == 'left'"
-                            :txt="$t('custom.drumstick.design.leftStick')"
-                        />
-                        <CustomBtn
-                            class="font-Songti w-full whitespace-nowrap"
-                            @click.stop="bang = 'right'"
-                            :active="bang == 'right'"
-                            :txt="$t('custom.drumstick.design.rightStick')"
-                        />
+                        <CustomBtn class="font-Songti w-full whitespace-nowrap h5:mb-[10px] pc:mb-[30px]"
+                            @click.stop="bang = 'left'" :active="bang == 'left'"
+                            :txt="$t('custom.drumstick.design.leftStick')" />
+                        <CustomBtn class="font-Songti w-full whitespace-nowrap" @click.stop="bang = 'right'"
+                            :active="bang == 'right'" :txt="$t('custom.drumstick.design.rightStick')" />
                     </div>
                     <div class="flex flex-col flex-[1] py-[30px] relative">
                         <div class="mask absolute" :class="{ activeMask: actRegion == 'A' }">
@@ -76,43 +69,33 @@
 
                     <h2 class="font-Songti pc:mb-[30px] h5:mb-[10px]">{{ $t("custom.drumstick.design.title") }}</h2>
                     <div class="sj pc:mb-[30px] h5:mb-[10px]">
-                        <CustomBtn @click="bang = 'left'" :active="bang == 'left'" :txt="$t('custom.drumstick.design.leftStick')" />
-                        <CustomBtn @click="bang = 'right'" :active="bang == 'right'" :txt="$t('custom.drumstick.design.rightStick')" />
+                        <CustomBtn @click="bang = 'left'" :active="bang == 'left'"
+                            :txt="$t('custom.drumstick.design.leftStick')" />
+                        <CustomBtn @click="bang = 'right'" :active="bang == 'right'"
+                            :txt="$t('custom.drumstick.design.rightStick')" />
                     </div>
                     <div class="sjgb">
                         <div class="title font-bold">{{ $t("custom.drumstick.design.colorTitle") }}</div>
                         <div class="colors">
-                            <div
-                                v-for="el in colors"
+                            <div v-for="el in colors"
                                 :style="{ borderColor: el == formItem?.txtColor ? el : 'transparent' }"
-                                @click="formItem.txtColor = el"
-                            >
+                                @click="formItem.txtColor = el">
                                 <div :style="{ backgroundColor: el }"></div>
                             </div>
                         </div>
 
                         <el-collapse accordion v-model="actRegion">
-                            <el-collapse-item v-for="(el, k) in form" :title="$t(`custom.drumstick.design.regions.${k}`)" :name="k">
+                            <el-collapse-item v-for="(el, k) in form"
+                                :title="$t(`custom.drumstick.design.regions.${k}`)" :name="k">
                                 <template #icon="{ isActive }">
-                                    <img
-                                        class="ml-auto w-[20px]"
-                                        @click.stop="actRegion = k"
-                                        v-show="isActive"
-                                        src="/image/Group 1000007417@2x.png"
-                                    />
-                                    <img
-                                        class="ml-auto w-[20px]"
-                                        @click.stop="actRegion = k"
-                                        v-show="!isActive"
-                                        src="/image/Group 1000007416@2x.png"
-                                    />
+                                    <img class="ml-auto w-[20px]" @click.stop="actRegion = k" v-show="isActive"
+                                        src="/image/Group 1000007417@2x.png" />
+                                    <img class="ml-auto w-[20px]" @click.stop="actRegion = k" v-show="!isActive"
+                                        src="/image/Group 1000007416@2x.png" />
                                 </template>
                                 <div class="ipts flex flex-wrap gap-[10px] mb-[10px]">
-                                    <el-select
-                                        class="h5:w-full"
-                                        v-model="el.fontFamily"
-                                        :placeholder="$t('custom.drumstick.design.fontPlaceholder')"
-                                    >
+                                    <el-select class="h5:w-full" v-model="el.fontFamily"
+                                        :placeholder="$t('custom.drumstick.design.fontPlaceholder')">
                                         <template #label>
                                             <span :style="{ fontFamily: el.fontFamily }">{{ el.fontFamily }}</span>
                                         </template>
@@ -120,42 +103,44 @@
                                             <span :style="{ fontFamily: item }">ABCabc123({{ item }})</span>
                                         </el-option>
                                     </el-select>
-                                    <el-input
-                                        class="h5:w-full"
+                                    <el-input class="h5:w-full"
                                         :placeholder="$t('custom.drumstick.design.textPlaceholder')"
-                                        v-model.lazy="el.txt"
-                                    />
-                                    <el-input
-                                        class="custom-icon h5:w-full"
-                                        :placeholder="$t('custom.drumstick.design.iconPlaceholder')"
-                                        readonly
-                                        @click="el.showBox = !el.showBox"
-                                    >
+                                        v-model.lazy="el.txt" />
+                                    <el-input class="custom-icon h5:w-full"
+                                        :placeholder="$t('custom.drumstick.design.iconPlaceholder')" readonly
+                                        @click="el.showBox = !el.showBox">
                                         <template #suffix>
-                                            <el-icon @click.stop="el.showBox = !el.showBox" :class="el.showBox ? 'rotate-180' : 'rotate-0'">
+                                            <el-icon @click.stop="el.showBox = !el.showBox"
+                                                :class="el.showBox ? 'rotate-180' : 'rotate-0'">
                                                 <ArrowDown />
                                             </el-icon>
                                         </template>
                                     </el-input>
-                                    <el-upload class="h5:hidden" action="#" :before-upload="beforeUpload" :auto-upload="true">
-                                        <CustomBtn class="h5:hidden" :txt="$t('custom.drumstick.design.uploadIcon')" :active="true" />
+                                    <el-upload class="h5:hidden" action="#" :before-upload="beforeUpload"
+                                        :auto-upload="true">
+                                        <CustomBtn class="h5:hidden" :txt="$t('custom.drumstick.design.uploadIcon')"
+                                            :active="true" />
                                     </el-upload>
                                 </div>
                                 <el-tabs class="icon-box h5:mb-[10px]" type="border-card" v-show="el.showBox">
                                     <el-tab-pane :label="$t('custom.drumstick.design.tabs.myIcon')">
                                         <div class="icons">
-                                            <img @click="el.icon = item" v-for="item in uploadIcon" :key="item" :src="item" />
+                                            <img @click="el.icon = item" v-for="item in uploadIcon" :key="item"
+                                                :src="item" />
                                         </div>
                                     </el-tab-pane>
                                     <el-tab-pane :label="item.title" v-for="item in groupedData">
                                         <div class="icons">
-                                            <img @click="el.icon = ele.path" v-for="ele in item.children" :src="ele.path" />
+                                            <img @click="el.icon = ele.path" v-for="ele in item.children"
+                                                :src="ele.path" />
                                         </div>
                                     </el-tab-pane>
                                     <!-- <el-tab-pane :label="$t('custom.drumstick.design.tabs.chineseZodiac')"></el-tab-pane> -->
                                 </el-tabs>
-                                <el-upload class="pc:hidden" action="#" :before-upload="beforeUpload" :auto-upload="true">
-                                    <CustomBtn class="pc:hidden w-full" :txt="$t('custom.drumstick.design.uploadIcon')" :active="true" />
+                                <el-upload class="pc:hidden" action="#" :before-upload="beforeUpload"
+                                    :auto-upload="true">
+                                    <CustomBtn class="pc:hidden w-full" :txt="$t('custom.drumstick.design.uploadIcon')"
+                                        :active="true" />
                                 </el-upload>
                             </el-collapse-item>
                         </el-collapse>
@@ -201,7 +186,8 @@
                 <button>{{ $t("custom.drumstick.buttons.buyNow") }}</button>
             </div>
 
-            <van-popup v-model:show="drawerShow" position="bottom" :z-index="1000" teleport="body" :style="{ paddingBottom: '60px' }">
+            <van-popup v-model:show="drawerShow" position="bottom" :z-index="1000" teleport="body"
+                :style="{ paddingBottom: '60px' }">
                 <div class="right global-custom-right">
                     <div class="title">{{ $t("custom.drumstick.price.title") }}</div>
                     <form action="#">
@@ -225,15 +211,8 @@
         </div>
 
         <!-- 放大预览鼓棒 -->
-        <van-image-preview
-            v-model:show="previewShow"
-            :images="['']"
-            :showIndex="false"
-            :loop="false"
-            :doubleScale="false"
-            :closeOnClickImage="false"
-            :closeOnClickOverlay="false"
-        >
+        <van-image-preview v-model:show="previewShow" :images="['']" :showIndex="false" :loop="false"
+            :doubleScale="false" :closeOnClickImage="false" :closeOnClickOverlay="false">
             <template #image="{ src }">
                 <div>
                     <swiper-container ref="swiperRef" :free-mode="true" slides-per-view="auto">
@@ -281,10 +260,8 @@
             <div class="w-full p-[0px] flex flex-col items-center relative pb-[40px]">
                 <img src="/image/lp.png" class="w-full relative top-[-100px]" />
                 <div class="mt-[-100px] w-[70%]">
-                    <img
-                        class="w-full object-contain border-[2px] border-solid border-[#ddd] px-[10px] rounded-[10px] aspect-[14/13]"
-                        src="/public/image/bao.png"
-                    />
+                    <img class="w-full object-contain border-[2px] border-solid border-[#ddd] px-[10px] rounded-[10px] aspect-[14/13]"
+                        src="/public/image/bao.png" />
                     <p class="text-center mt-[20px]">
                         可水洗的收纳袋，加厚无异味<br />
                         防潮防尘
@@ -598,7 +575,7 @@ async function drawBot(type: "left" | "right") {
             await drawLogo(type);
             res(true);
         };
-        image.src = "/image/gubang.png";
+        image.src = "/custom/image/gubang.png";
     });
 }
 async function drawLogo(type: "left" | "right") {
@@ -612,7 +589,7 @@ async function drawLogo(type: "left" | "right") {
             ctx.drawImage(image, 520, 18, w * (36 / h), 36);
             res(true);
         };
-        image.src = "/image/logo_black.png";
+        image.src = "/custom/image/logo_black.png";
     });
 }
 // 绘制图标和文字
@@ -676,7 +653,7 @@ async function beforeUpload(file: File) {
     form.set("file", file);
     form.set("userId", userData.value.id);
     let { data } = await UserUploadIcon(form);
-    uploadIcon.value.push("http://localhost:4000" + data.url);
+    uploadIcon.value.push("https://wp.cymmc.top:3004" + data.url);
 
     return false;
 }
@@ -712,6 +689,7 @@ function previewHide() {
     --van-image-preview-overlay-background: rgba(0, 0, 0, 0.5) !important;
     background-color: #fffcf8;
 }
+
 .custom-box {
     width: 70vw;
     margin: 0 auto;
@@ -723,9 +701,11 @@ function previewHide() {
         background-color: #fffcf8;
         z-index: 11;
         padding-top: 20px;
+
         .canvas {
             position: relative;
         }
+
         .mask {
             position: absolute;
             width: 100px;
@@ -735,7 +715,8 @@ function previewHide() {
             border: 1px dashed #dad7ce;
             border-radius: 8px;
             z-index: -1;
-            & > div {
+
+            &>div {
                 position: absolute;
                 top: -30px;
                 left: 50%;
@@ -743,17 +724,21 @@ function previewHide() {
                 white-space: nowrap;
             }
         }
+
         .activeMask {
             background-color: #e5e3dc;
         }
+
         .mask:nth-of-type(1) {
             left: calc((100% * 160) / 1024);
             width: calc((100% * 320) / 1024);
         }
+
         .mask:nth-of-type(2) {
             left: calc((100% * 680) / 1024);
             width: calc((100% * 160) / 1024);
         }
+
         .mask:nth-of-type(3) {
             left: calc((100% * 850) / 1024);
             width: calc((100% * 130) / 1024);
@@ -763,36 +748,44 @@ function previewHide() {
     .set {
         display: flex;
         align-items: flex-start;
+
         .title {
             font-size: 18px;
             // margin-bottom: 15px;
         }
+
         .left,
         .right {
             background-color: white;
             padding: 30px;
         }
+
         .left {
             width: 60%;
             margin-right: 10px;
+
             .sj {
                 display: flex;
+
                 // margin-bottom: 30px;
-                & > button {
+                &>button {
                     background-color: #fffcf8;
                     width: 100px;
                     border-color: #d6d6d6;
                 }
-                & > button:nth-of-type(1) {
+
+                &>button:nth-of-type(1) {
                     border-top-right-radius: 0px;
                     border-bottom-right-radius: 0px;
                     border-right: none;
                 }
-                & > button:nth-of-type(2) {
+
+                &>button:nth-of-type(2) {
                     border-top-left-radius: 0px;
                     border-bottom-left-radius: 0px;
                 }
             }
+
             .sjgb {
                 background-color: #fffcf8;
                 padding: 20px;
@@ -801,17 +794,20 @@ function previewHide() {
 
                 :deep(.el-collapse) {
                     --el-collapse-border-color: var(--main-color-3);
+
                     button:not(.custom-btn),
                     div {
                         background-color: transparent !important;
                     }
                 }
+
                 .colors {
                     display: flex;
                     gap: 10px;
                     flex-wrap: wrap;
                     margin-bottom: 20px;
-                    & > div {
+
+                    &>div {
                         width: 30px;
                         height: 30px;
                         border-radius: 50%;
@@ -820,6 +816,7 @@ function previewHide() {
                         border-color: transparent;
                         padding: 2.5px;
                         cursor: pointer;
+
                         div {
                             width: 100%;
                             height: 100%;
@@ -827,24 +824,29 @@ function previewHide() {
                         }
                     }
                 }
+
                 .ipts {
-                    & > div {
+                    &>div {
                         width: calc(50% - 5px);
                         height: 32px;
                     }
+
                     .custom-btn {
                         width: 120px;
                     }
+
                     .custom-icon {
                         :deep(.el-input__wrapper) {
                             cursor: pointer;
                             padding: 4px 12px;
                         }
+
                         :deep(input) {
                             cursor: pointer;
                         }
                     }
                 }
+
                 .icons {
                     display: flex;
                     flex-wrap: wrap;
@@ -854,25 +856,30 @@ function previewHide() {
                     img {
                         cursor: pointer;
                         width: 20px;
+
                         &:hover {
                             background-color: rgba($color: #000, $alpha: 0.1);
                         }
                     }
                 }
+
                 .icon-box {
                     border-radius: 10px;
                     border-width: 2px;
                     overflow: hidden;
                     --el-border-color: var(--main-color-3) !important;
                     --el-border-color-light: transparent !important;
+
                     :deep(.is-active) {
                         background-color: var(--main-color-3) !important;
                     }
                 }
             }
         }
+
         .right {
             flex: 1;
+
             form {
                 p {
                     display: flex;
@@ -881,29 +888,35 @@ function previewHide() {
                 }
             }
         }
+
         .btns {
             display: flex;
             gap: 20px;
             // margin-bottom: 30px;
         }
+
         h2 {
             font-size: 28px;
             // margin-bottom: 30px;
         }
     }
 }
+
 .fixed-bottom {
     display: none;
 }
+
 #target2 {
     position: sticky;
     top: 60px;
     background-color: #fffcf8;
     z-index: 11;
     padding: 80px 60px 30px;
+
     .canvas {
         position: relative;
     }
+
     .mask {
         position: absolute;
         width: 100px;
@@ -913,7 +926,8 @@ function previewHide() {
         border: 3px dashed #dad7ce;
         border-radius: 8px;
         z-index: -1;
-        & > div {
+
+        &>div {
             font-size: 36px;
             font-weight: bold;
             position: absolute;
@@ -923,31 +937,38 @@ function previewHide() {
             white-space: nowrap;
         }
     }
+
     .activeMask {
         background-color: #e5e3dc;
     }
+
     .mask:nth-of-type(1) {
         left: calc((100% * 160) / 1024);
         width: calc((100% * 320) / 1024);
     }
+
     .mask:nth-of-type(2) {
         left: calc((100% * 680) / 1024);
         width: calc((100% * 160) / 1024);
     }
+
     .mask:nth-of-type(3) {
         left: calc((100% * 850) / 1024);
         width: calc((100% * 130) / 1024);
     }
 }
+
 .flexBtn {
     width: 80px;
     margin-right: 20px;
     justify-content: center;
+
     button {
         border-color: transparent;
         background-color: transparent;
     }
 }
+
 :deep(.el-upload) {
     width: 100%;
     // text-align: left;
@@ -960,9 +981,11 @@ function previewHide() {
     .custom-box {
         width: 100%;
         padding: 0px;
+
         .custom-gb {
             top: 40px;
-            & > div {
+
+            &>div {
                 margin: 0 auto;
 
                 width: calc(100% - 40px);
@@ -972,47 +995,58 @@ function previewHide() {
             .space {
                 height: 20px;
             }
+
             .canvas {
                 button {
                     width: 40px;
                 }
+
                 canvas {
                     width: calc(100% - 40px);
                 }
             }
         }
+
         .set {
             flex-direction: column;
+
             .left {
                 margin-right: 0px;
                 padding: 20px;
+
                 .sjgb {
                     // border: 2px solid #fffcf8;
                     // border-radius: 8px;
                 }
             }
+
             .left,
             .right {
                 width: 100%;
             }
+
             .right {
                 display: none;
             }
         }
     }
+
     #target1 {
         top: 40px !important;
         padding: 0 20px;
     }
+
     #target2 {
         padding: 60px 40px 20px;
+
         .mask {
-            & > div {
+            &>div {
                 top: -60px;
                 font-size: 30px;
             }
         }
     }
+
     .fixed-bottom {
         display: flex;
         position: fixed;
@@ -1026,28 +1060,33 @@ function previewHide() {
         padding-left: 20px;
         gap: 10px;
         z-index: 1010;
+
         .btns {
             margin-left: auto;
             border: 1px solid var(--main-color-1);
             height: calc(100% + 1px);
             margin-top: -1px;
+
             button {
                 font-size: 16px;
                 border: none;
                 height: 100%;
                 padding: 0 20px;
             }
-            & > button:nth-of-type(1) {
-            }
-            & > button:nth-of-type(2) {
+
+            &>button:nth-of-type(1) {}
+
+            &>button:nth-of-type(2) {
                 background-color: var(--main-color-1);
                 color: white;
             }
         }
     }
+
     .flexBtn {
         width: 40px;
         margin-right: 10px;
+
         button {
             height: 24px;
             line-height: 22px;
@@ -1061,10 +1100,12 @@ function previewHide() {
     flex: 1;
     background-color: white;
     padding: 20px;
+
     .title {
         font-size: 16px;
         margin-bottom: 10px;
     }
+
     form {
         p {
             display: flex;

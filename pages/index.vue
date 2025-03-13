@@ -2,11 +2,7 @@
     <div class="relative">
         <swiper-container class="sw3" ref="swiperRef3" :autoplay="true">
             <swiper-slide v-for="el in banners" :key="el">
-<<<<<<< HEAD
                 <img class="" :src="el" />
-=======
-                <img class="w-full" :src="`/image/banner/${el}`" />
->>>>>>> ce6eacd354d048fff49404af89d7afa695768618
             </swiper-slide>
         </swiper-container>
         <img src="/image/Group 105@2x.png" @click="navigateTo('/custom')"

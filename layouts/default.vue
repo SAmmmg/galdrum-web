@@ -105,16 +105,16 @@ onBeforeMount(() => {
 //#region 字体加载
 onMounted(() => {
     let fonts = [
-        { name: "AlexBrush-Regular", url: "/font/AlexBrush-Regular.ttf" },
-        { name: "Ballpark Weiner", url: "/font/Ballpark Weiner.otf" },
-        { name: "Cooper Regular", url: "/font/Cooper Regular.ttf" },
-        { name: "HarringtON", url: "/font/HarringtON.TTF" },
-        { name: "Old English", url: "/font/Old English.ttf" },
-        { name: "Sofia-Regular", url: "/font/Sofia-Regular.otf" },
-        { name: "Stencil", url: "/font/Stencil.ttf" },
-        { name: "engravers_t", url: "/font/engravers_t.ttf" },
-        { name: "gabriola", url: "/font/gabriola.ttf" },
-        { name: "honey_script_semibold", url: "/font/honey_script_semibold.ttf" },
+        { name: "AlexBrush-Regular", url: "/custom/font/AlexBrush-Regular.ttf" },
+        { name: "Ballpark Weiner", url: "/custom/font/Ballpark Weiner.otf" },
+        { name: "Cooper Regular", url: "/custom/font/Cooper Regular.ttf" },
+        { name: "HarringtON", url: "/custom/font/HarringtON.TTF" },
+        { name: "Old English", url: "/custom/font/Old English.ttf" },
+        { name: "Sofia-Regular", url: "/custom/font/Sofia-Regular.otf" },
+        { name: "Stencil", url: "/custom/font/Stencil.ttf" },
+        { name: "engravers_t", url: "/custom/font/engravers_t.ttf" },
+        { name: "gabriola", url: "/custom/font/gabriola.ttf" },
+        { name: "honey_script_semibold", url: "/custom/font/honey_script_semibold.ttf" },
     ];
 
     fonts.forEach(e => {

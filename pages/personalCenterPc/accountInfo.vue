@@ -21,10 +21,12 @@
 <script setup lang="ts">
 // const name = "小溪小溪";
 const userInfo = ref({
-    id: "666",
-    name: "小溪小溪",
+    id: "",
+    name: "",
 });
-onMounted(async () => {});
+onMounted(async () => {
+    userInfo.value = localStorage.userData ? JSON.parse(localStorage.userData).data : {};
+});
 </script>
 
 <style scoped></style>

@@ -72,7 +72,7 @@ function logout() {
     display: flex;
     align-items: center;
     z-index: 99;
-    background: var(--main-color-1) no-repeat right 15% bottom 45% url("/image/Mask group.png");
+    background: var(--main-color-1) no-repeat right 15% bottom 45% url("/custom/image/Mask group.png");
     background-size: auto 180%;
     top: 0px;
     left: 0px;

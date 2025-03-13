@@ -45,7 +45,7 @@
     display: flex;
     flex-direction: column;
     color: white;
-    background: var(--main-color-1) no-repeat right 15% bottom 20% url("/image/Mask group.png");
+    background: var(--main-color-1) no-repeat right 15% bottom 20% url("/custom/image/Mask group.png");
     background-size: auto 115%;
 
     .link {

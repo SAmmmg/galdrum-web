@@ -10,7 +10,7 @@
                 >
                     <img
                         class="w-[16px]"
-                        :src="$route.path == el.route ? `/image/personalCenter/${el.src}_active.png` : `/image/personalCenter/${el.src}.png`"
+                        :src="$route.path == el.route ? `/custom/image/personalCenter/${el.src}_active.png` : `/custom/image/personalCenter/${el.src}.png`"
                     />
                     <span class="ml-[10px]">{{ el.title }}</span>
                 </li>

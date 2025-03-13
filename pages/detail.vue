@@ -16,9 +16,12 @@ const show = ref(false);
 onMounted(() => {
     src.value = `https://wp.cymmc.top/product/drumstick/?attribute_style=two&yith_wapo_value=${route.query.uuid}`;
     show.value = true;
+    load()
 });
 function load() {
     let iframe = document.getElementById("#iframe");
+    // console.log(iframe.contentWindow.document.body.scrollHeight);
+    
     iframe.style.height = iframe.contentWindow.document.body.scrollHeight + "px";
 }
 </script>
